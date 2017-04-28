@@ -1,117 +1,126 @@
 {
 
-  screen : [0, 29, 'Work with Active Jobs'],
+  "screen": [0,29,"Work with Active Jobs"],
 
-  templates : {
-      excel : 'wrkactjob.xlsx',
-      word  : 'wrkactjob.docx',
-      output : 'wrkactjob',
-      script : null
+  "templates": {
+    "excel": "wrkactjob.xlsx",
+    "word": "wrkactjob.docx",
+    "output": "wrkactjob",
+    "script": null
   },
 
-  excel : {
-      prop : {
-      	Title: "Work with active jobs",
-      	Subject: "Tests",
-      	Author: "GreenScreens Service",
-      	Manager: "Manager",
-      	Company: "Green Screens",
-      	Category: "Experimentation",
-      	Keywords: "Test",
-      	Comments: "Nothing to say here",
-      	LastAuthor: "GreenScreens Service",
-      	CreatedDate: {ref:'created'}
+  "excel": {
+
+    "sheet": "Sheet1",
+
+    "fields": {
+      "title": ["C1","Sheet1"],
+      "system": {
+        "cell": "B3",
+        "style": {
+          "bold": true
+        }
       },
-      sheet : 'Sheet1',
-      fields : {
-                  title  : ['C1' , 'Sheet1'],
-                  system : {cell:'B3', style : {bold:true}},
-                  date   : 'D3',
-                  time   : ['F3'],
-                  jobs   : 'F2',
-                  test1   : {row:1, col:1, sheet:'Book1', ref :'test'},
-                  test2  : {cell:'G9', sheet:'Book1', style : {bold:true}}
+      "date": "D3",
+      "time": ["F3"],
+      "jobs": "F2",
+      "test1": {
+        "row": 1,
+        "col": 1,
+        "sheet": "Book1",
+        "ref": "test"
       },
-      grids : {
-          wrkactjob : {
-              sheet : 'Sheet1',
-              header : ['A5','B5','C5','D5','E5','F5'],
-              detail : ['A6','B6','C6',{cell:'D6', style:{}, type:'number'},'E6','F6'],
-              total : {style : {bold:true}}
-          },
-          wrkactjob1 : {
-              ref: 'wrkactjob',
-              sheet : 'Sheet2',
-              header : {row:5, col:1},
-              detail : {row:6, col:1},
-              total : {row:16, col:1, style : {bold:true}, offset:false}
+      "test2": {
+        "cell": "G9",
+        "sheet": "Book1",
+        "style": {
+          "bold": true
+        }
+      }
+    },
+
+    "grids": {
+
+      "wrkactjob": {
+        "sheet": "Sheet1",
+        "header": ["A5", "B5", "C5", "D5", "E5", "F5"],
+        "detail": ["A6", "B6", "C6", {"cell": "D6", "style": {}, "type": "number"}, "E6", "F6" ],
+        "total": {
+          "style": {
+            "bold": true
           }
+        }
+      },
+
+      "wrkactjob1": {
+        "ref": "wrkactjob",
+        "sheet": "Sheet2",
+        "header": { "row": 5, "col": 1 },
+        "detail": { "row": 6, "col": 1 },
+        "total": { "row": 16, "col": 1, "style": { "bold": true }, "offset": false }
       }
+    }
   },
 
-  fields : {
-      command : 10
+  "fields": {
+    "command": 10
   },
 
-  data : {
-        title :  [0,29,21],
-        system : [0,71,8],
-        date :   [1,61,8],
-        time :   [1,71,8],
-        jobs :   [2,62,4],
-        test :   'fixed data',
-        created : { exp : "(new Date()).toLocaleDateString(navigator.languages[0] || navigator.language).replace(/ /g,'');", fn : ""}
+  "data": {
+    "title" :  [0,29,21],
+    "system" : [0,71,8],
+    "date" :   [1,61,8],
+    "time" :   [1,71,8],
+    "jobs" :   [2,62,4],
+    "test": "fixed data",
+    "created": {
+      "exp": "(new Date()).toLocaleDateString(navigator.languages[0] || navigator.language).replace(/ /g,'');",
+      "fn": ""
+    }
   },
-
-  grids : {
-
-      wrkactjob : {
-
-        macro : [
-                   {
-			"cmd": "PGDOWN",
-			"startTrigger": [18,72,"More..."],
-			"stopTrigger": [18,73,"Bottom"],
-			"processTrigger": [8,6,"Subsystem/Job"]
-		}
-	   ],
-
-           def : {
-             rows : 9,
-             rowHeight : 1,
-             type: [null, null, null, 'f', null, null, null],
-             trim: [0, 1, 1, 1, 1, 1, 0]
-           },
-
-           headers : [
-                       [8,  6, 13],
-                       [8, 21, 11],
-                       [8, 33,  5],
-                       [8, 39,  5],
-                       [8, 46, 15],
-                       [8, 62,  8],
-                       'const'
-           ],
-
-           data : [
-                [9,  6, 13],
-                [9, 21, 11],
-                [9, 33,  5],
-                [9, 39,  5],
-                [9, 46, 15],
-                [9, 63,  8],
-                'Fixed'
-           ],
-
-           totals : [
-               't1',
-               't2',
-               't3',
-               '=SUM(INDIRECT(ADDRESS(6,COLUMN())&":"&ADDRESS(ROW()-1,COLUMN())))',
-               't5',
-               't6',
-               't7'
-           ]
-      }
+  "grids": {
+    "wrkactjob": {
+      "macro": [
+        {
+          "cmd": "PGDOWN",
+	  "startTrigger": [18,72,"More..."],
+	  "stopTrigger": [18,73,"Bottom"],
+	  "processTrigger": [8,6,"Subsystem/Job"]
+        }
+      ],
+      "def": {
+        "rows": 9,
+        "rowHeight": 1,
+        "type": [null, null, null, "f", null, null, null],
+        "trim": [0, 1, 1, 1, 1, 1, 0]
+      },
+      "headers": [
+        [8,  6, 13],
+        [8, 21, 11],
+        [8, 33,  5],
+        [8, 39,  5],
+        [8, 46, 15],
+        [8, 62,  8],
+        "const"
+      ],
+      "data": [
+        [9,  6, 13],
+        [9, 21, 11],
+        [9, 33,  5],
+        [9, 39,  5],
+        [9, 46, 15],
+        [9, 63,  8],
+        "Fixed"
+      ],
+      "totals": [
+        "t1",
+        "t2",
+        "t3",
+        "=SUM(INDIRECT(ADDRESS(6,COLUMN())&\":\"&ADDRESS(ROW()-1,COLUMN())))",
+        "t5",
+        "t6",
+        "t7"
+      ]
+    }
   }
 }

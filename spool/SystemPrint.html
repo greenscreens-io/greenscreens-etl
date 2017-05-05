@@ -1,0 +1,99 @@
+<html>
+<link href="<%- @env.origin %>/office/assets/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="<%- @env.origin %>/office/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+<script src="<%- @env.origin %>/office/assets/js/jquery-2.1.4.min.js" type="text/javascript" charset="UTF-8" ></script>
+<script src="<%- @env.origin %>/office/assets/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="UTF-8" ></script>
+<style>
+ .popover {
+    min-width :700px !important;
+ }
+.row{
+  font-size: 10px;
+}
+.table-condensed{
+  font-size: 12px;
+}
+.table-condensed p{
+  font-size: 9px;
+  color: grey;
+}
+</style>
+<body>
+
+<% headerHelper = (item) -> %>
+    <th><%- item %></th>
+<% end %>
+
+<% bodyHelper = (rec) -> %>
+
+  <% switch rec[1] : %>
+      <% when 'Diagnostic' : %>
+          <tr class="danger">
+      <% end %>
+      <% when 'Escape' : %>
+          <tr class="warning">
+      <% end %>
+      <% else : %>
+          <tr>
+      <% end %>
+  <% end %>
+
+    <td><%- rec[0] %></td>
+    <td><%- rec[1] %></td>
+    <td><%- rec[2] %></td>
+    <td><%- rec[3] %></td>
+    <td><%- rec[4] %></td>
+    <td><%- rec[5] %></td>
+    <td><%- rec[6] %></td>
+    <td><%- rec[7] %></td>
+    <td><%- rec[8] %></td>
+    <td><%- rec[9] %></td>
+    <td><%- rec[10] %></td>
+    <td class="text-center">
+        <% if rec[11]?.length : %>
+          <a href="#" class="glyphicon glyphicon-envelope" data-toggle="popover" data-content="<pre><%- rec[11] %></pre>" rel="popover" data-placement="left" data-trigger="hover"></a>
+        <% else : %>
+            <p>N/A</p>
+        <% end %>
+
+    </td>
+  </tr>
+<% end %>
+
+<div class="container">
+  <h3><%- @title %></h3>
+  <div class="row">
+    <div class="col-md-8"> System : <%- @system %> </div>
+    <div class="col-md-2 text-right"> <%- @product %>  <%- @release %> </div>
+    <div class="col-md-2 text-right"> <%- @date %>  <%- @time %> </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8"> JOB : <%- @jobName %> / <%- @jobNumber %> / <%- @jobDescription %></div>
+    <div class="col-md-4 text-right"> User/ Lib : <%- @user %> / <%- @library %> </div>
+  </div>
+
+  <br>
+
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <% for elm in @grid1.header : %>
+            <%- headerHelper elm %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+        <% for elm in @grid1 : %>
+            <%- bodyHelper elm %>
+        <% end %>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  $('a[rel="popover"]').popover({html:true});
+</script>
+
+</body>
+</html>

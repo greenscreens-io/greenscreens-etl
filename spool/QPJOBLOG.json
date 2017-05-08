@@ -3,8 +3,8 @@
   "description" : "Default mapping to extract system spool files into html based on ECT template rendering",
 
   "templates": {
-    "html": "SystemPrint.html",
-    "output": "SystemPrint"
+    "html": "QPJOBLOG.html",
+    "output": "QPJOBLOG"
   },
 
   "excel" : {

@@ -18,6 +18,13 @@
   color: grey;
 }
 </style>
+<script>
+<!-- 
+use this to inject report data if you it for additional processing
+for example to create charts etc.
+-->
+ var data = <%- JSON.stringify(@) %>
+</script>
 <body>
 
 <% headerHelper = (item) -> %>

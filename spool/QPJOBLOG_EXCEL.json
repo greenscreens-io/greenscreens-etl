@@ -3,8 +3,8 @@
   "description" : "Default mapping to extract system spool files into excel",
 
   "templates": {
-    "excel": "default.xlsx",
-    "output": "SystemPrint"
+    "excel": "QPJOBLOG.xlsx",
+    "output": "QPJOBLOG"
   },
 
   "excel" : {

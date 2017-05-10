@@ -2,9 +2,9 @@
 
 Examples for ETL engine
 
-- Copy example resources to [user]/io.greenscreens/etl 
-- In web terminal go to the WRKACTJOB 
--  select Export to Excel or Word from context menu.
+- Copy example resources to [user]/io.greenscreens/etl
+- In web terminal go to the WRKACTJOB
+- Select Export to Excel or Word from context menu.
 
 JSON structure dfinition is defined in schema.json.
 

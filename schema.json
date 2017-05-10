@@ -1,0 +1,400 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "linter":"https://jsonschemalint.com/#/version/draft-04/markup/json",
+  "description": "Green Screens ETL engine schema",
+  "type": "object",
+  "required": [
+    "templates"
+  ],
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "templates": {
+      "desc" : "",
+      "type": "object",
+      "$ref": "#/definitions/templates"
+    },
+    "actions": {
+      "desc" : "Function to be called on event.",
+      "type": "object",
+      "$ref": "#/definitions/actions"
+    },
+    "excel": {
+      "desc" : "Data to Excel mapping definition",
+      "type": "object",
+      "$ref": "#/definitions/excel"
+    },
+    "data": {
+      "desc" : "List of screen or spool data.",
+      "type": "object",
+      "$ref": "#/definitions/record"
+    },
+    "grids": {
+      "desc" : "List of extracted data arrays. This is generic reference name used in Excel mapping or Word row mapping",
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        ".+": {
+          "desc" : "Data array containing subfile data or spool segment data",
+          "type": "object",
+          "$ref": "#/definitions/grid"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "templates": {
+      "desc" : "List of template files available to export engine",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "output"
+      ],
+      "oneOf": [
+        {
+          "anyOf": [
+            {
+              "required": [
+                "html"
+              ]
+            },
+            {
+              "required": [
+                "excel"
+              ]
+            },
+            {
+              "required": [
+                "word"
+              ]
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "html": {
+          "desc" : "ECT JS based html template",
+          "type": "string"
+        },
+        "excel": {
+          "desc" : "Excel xlsx template",
+          "type": "string"
+        },
+        "word": {
+          "desc" : "Word docx template",
+          "type": "string"
+        },
+        "output": {
+          "desc" : "Name of output file",
+          "type": "string"
+        }
+      }
+    },
+    "actions": {
+      "desc" : "Function to be called on event.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "onResult": {
+          "desc" : "",
+          "type": "string"
+        },
+        "onExport": {
+          "desc" : "",
+          "type": "string"
+        },
+        "onExtract": {
+          "desc" : "",
+          "type": "string"
+        }
+      },
+      "oneOf": [
+        {
+          "anyOf": [
+            {
+              "required": [
+                "beforeExport"
+              ]
+            },
+            {
+              "required": [
+                "beforeETL"
+              ]
+            },
+            {
+              "required": [
+                "afterETL"
+              ]
+            },
+            {
+              "required": [
+                "afterExport"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "excel": {
+      "type": "object",
+      "desc" : "",
+      "properties": {
+        "format": {
+          "desc" : "",
+          "type": "string",
+          "enum": [
+            "array",
+            "object"
+          ]
+        },
+        "sheet": {
+          "desc" : "",
+          "type": "string"
+        },
+        "fields": {
+          "desc" : "",
+          "type": "object",
+          "additionalProperties": false,
+          "patternProperties": {
+            ".+": {
+              "type": "string"
+            }
+          }
+        },
+        "grids": {
+          "desc" : "",
+          "type": "object",
+          "additionalProperties": false,
+          "patternProperties": {
+            ".+": {
+              "desc" : "",
+              "type": "object",
+              "$ref": "#/definitions/sheetDef"
+            }
+          }
+        }
+      }
+    },
+    "record": {
+      "desc" : "",
+      "type": "object",
+      "patternProperties": {
+        ".+": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/rowTypeArray"
+            },
+            {
+              "$ref": "#/definitions/rowTypeObject"
+            }
+          ]
+        }
+      }
+    },
+    "grid": {
+      "desc" : "",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "def",
+        "data"
+      ],
+      "properties": {
+        "def": {
+          "desc" : "",
+          "type": "object",
+          "$ref": "#/definitions/gridDef"
+        },
+        "headers": {
+          "desc" : "",
+          "type": "array",
+          "$ref": "#/definitions/arrayType"
+        },
+        "totals": {
+          "desc" : "",
+          "type": "array",
+          "$ref": "#/definitions/arrayType"
+        },
+        "data": {
+          "desc" : "",
+          "type": "array",
+          "$ref": "#/definitions/arrayType"
+        }
+      }
+    },
+    "gridDef": {
+      "desc" : "",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "startPage": {
+          "desc" : "",
+          "type": "number"
+        },
+        "pages": {
+          "desc" : "",
+          "type": "number"
+        },
+        "rows": {
+          "desc" : "",
+          "type": "number"
+        },
+        "rowHeight": {
+          "desc" : "",
+          "type": "number"
+        },
+        "rowIndicator": {
+          "desc" : "",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/rowTypeObject"
+            },
+            {
+              "$ref": "#/definitions/rowTypeArray"
+            }
+          ]
+        },
+        "type": {
+          "desc" : "Data taype, b - boolean, s - string, n - number",
+          "type": "array",
+          "minmium": 0,
+          "items": {
+            "type": "string",
+            "enum": [
+              null,
+              "b",
+              "f",
+              "s"
+            ]
+          }
+        },
+        "trim": {
+          "desc" : "",
+          "type": "array",
+          "items": {
+            "type": "number",
+            "enum": [
+              1,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "arrayType": {
+      "desc" : "",
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "$ref": "#/definitions/rowTypeArray"
+          },
+          {
+            "$ref": "#/definitions/rowTypeObject"
+          }
+        ]
+      }
+    },
+    "groupType": {
+      "desc" : "",
+      "type": "object",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "#/definitions/rowTypeArray"
+        },
+        {
+          "$ref": "#/definitions/rowTypeObject"
+        }
+      ]
+    },
+    "rowTypeArray": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 3,
+      "maxItems": 3,
+      "desc": "[row, col, len]"
+    },
+    "rowTypeObject": {
+      "desc" : "",
+      "additionalProperties": false,
+      "required": [
+        "row",
+        "col",
+        "len"
+      ],
+      "properties": {
+        "row": {
+          "desc" : "",
+          "type": "number"
+        },
+        "col": {
+          "desc" : "",
+          "type": "number"
+        },
+        "len": {
+          "desc" : "",
+          "type": "number"
+        },
+        "page": {
+          "desc" : "",
+          "type": "number"
+        },
+        "trim": {
+          "desc" : "",
+          "type": "boolean"
+        },
+        "match": {
+          "desc" : "Used only if multiline set to true",
+          "type": "string"
+        },
+        "multiline": {
+          "desc" : "Define record as multiline. Use when number of rows is unkown. Parser will extract data until match value is found.",
+          "type": "boolean"
+        }
+      }
+    },
+    "sheetDef": {
+      "type": "object",
+      "desc" : "",
+      "properties": {
+        "sheet": {
+          "desc" : "Sheet to receive data",
+          "type": "string"
+        },
+        "header": {
+          "desc" : "List of Excel cells for every column in headers column array",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "detail": {
+          "desc" : "List of Excel cells for every column in data column array",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "total": {
+          "desc" : "List of Excel cells for every column in totals column array",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

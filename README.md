@@ -1,4 +1,16 @@
 # greenscreens-etl
-Examples for ETL engine
+####Examples for ETL engine
 
-Copy example resources to [user]/io.greenscreens/etl then in web terminal go to the WRKACTJOB and select Export to Excel or Word from context menu.
+- Copy example resources to [user]/io.greenscreens/etl 
+- In web terminal go to the WRKACTJOB 
+-  select Export to Excel or Word from context menu.
+
+JSON structure dfinition is defined in schema.json.
+
+To test JSON definition to schema.json, use one of
+
+https://jsonschemalint.com/
+http://www.jsonschemavalidator.net/
+
+<hr>
+<small>&copy; Green Screens Ltd.</small>

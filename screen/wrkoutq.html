@@ -1,0 +1,285 @@
+<html>
+<link href="<%- @env.origin %>/office/assets/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="<%- @env.origin %>/office/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+<script src="<%- @env.origin %>/office/assets/js/jquery-2.1.4.min.js" type="text/javascript" charset="UTF-8" ></script>
+<script src="<%- @env.origin %>/office/assets/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="UTF-8" ></script>
+<script src="<%- @env.origin %>/office/lib/ui.js" type="text/javascript" charset="UTF-8" ></script>
+
+ <script>
+
+
+  function onAction() {
+     var cmd = this.getAttribute('data-id');
+     parent.postMessage({cmd:'ui', data:[], action:cmd}, '*');
+   }
+
+   function changeClass() {
+      $('.sortControl-sortOptions li').removeClass('activeSort');
+      $(this).addClass('activeSort');
+   }
+
+   $(document).ready(function(){
+      $("#terminal").click(switchTerminal);
+      $('.sortControl-sortOptions li').on('click', changeClass);
+      $('.ui-button:not([data-id=""])').click(onAction);
+   });
+ </script>
+
+ <style>
+
+    body {
+      font-family: arial, helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 100%;
+      background-color: #666;
+      color: whitesmoke;
+    }
+
+    .wrapper {
+      display: block;
+      background-color: #333;
+      width: 90%;
+      min-width: 320px;
+      margin: 2em auto;
+      padding: 0 1em 0.1em;
+    }
+    /* =================================*/
+
+    /*
+      ---------------------------------
+        $_UI BEHAVIOR
+      ---------------------------------
+    */
+
+    .ui-button{cursor:pointer}
+
+    /*
+      ---------------------------------
+        $_Controllers and Filters
+      ---------------------------------
+    */
+
+    /* Table Filter/Sort Controllers */
+    table-listController{}
+
+    .sortControl-indicatorTitle,
+    .sortControl-sortOptions,
+    .sortControl-sortOptions li{
+      list-style: none;
+      margin: 0 0 1em;
+      padding: 0;
+    }
+
+    .sortControl-indicatorTitle,
+    .sortControl-sortOptions li {
+      display: inline-block;
+      padding: 0.25em 0.5em;
+      background: #555;
+      color: #eee;
+      float: left;
+      line-height: 150%;
+      font-size: 1em;
+      margin-left: 1px;
+    }
+    .sortControl-indicatorTitle {background: none; color: #999; padding-left: 0;}
+    .sortControl-sortOptions li:hover {
+      background: #999;
+    }
+    li.activeSort{
+      background: #000;
+      padding-bottom: 0;
+      border-bottom: 0.25em solid rgb(255, 153, 0);}
+    
+    .searchField {float: right}
+    .buttonControl {
+      display: block;
+      background: rgb(255, 153, 0) no-repeat center center;
+      width: 20px;
+      height: 2em;
+      padding: 0 1em;
+    padding-top: 0.5em;
+    padding-right: 1.5em;
+    margin-right: 1px;
+     }
+    .searchControl-buttonSearch {
+      display: block;
+      background: rgb(255, 153, 0) no-repeat center center;
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAVCAYAAACdbmSKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAARJJREFUeNqMUtERgjAMbTm/OdyAEdhAnAA20BFkA50AR2ADcAJ1AnECcQI9FtDEe+VysaDvLtc0zWvTl1ij0Pd9QksuQh1ZE4bh0wWsSi7JUvMNJhRErAYSCEeyCAkN2R2EFVkMn4l798qF7IU19pS8xTlbyoEcmwdZZEZAZzXy6oD2GeKV/KwHBdY8EPUeJgiGLuycH4h4ZP4Ek87ws6nEjwCQP4C8jLU40IQIPTRDPgVLoeBGT4hoyUdhK26qxTSwii3+mYjYkgRprW6imgAHHp+dU9B66mfCDdsWtz+1ehqJ8E++hvtIC+Ffx/o0+ZKP5PvTy6lFpc1/vqSa206N0Vhp5zHSTO359p3ojRdvAQYAEnKeKBy9DC4AAAAASUVORK5CYII=);
+      width: 20px;
+      height: 2em;
+      padding: 0 1em;
+    }
+    .buttonControl:hover {background-color: rgb(215, 113, 0)}
+    .buttonControl:active {background-color: rgb(185, 83, 0)}
+
+    /*
+      --------------------------------- 
+        $_TABLE STYLES 
+      ---------------------------------
+    */
+
+    /* Bootstrap Table Overwrite Styles */
+    .table {font-size: 16px}
+    .table td {color: #777; vertical-align: middle !important;}
+    .table tr {background-color: #eaeaea; border-bottom: 1px solid rgb(221, 221, 221);}
+    .table tr:hover {background-color: #ccc !important; cursor: pointer;}
+    .table tr:nth-child(even) {background-color: #e1e1e1}
+
+    /* Generic Table Styles */
+    .table-dataTitle,
+    .table-primaryTitle,
+    .table-secondaryTitle { display: block; clear: both; line-height: 120%;}
+    
+    .table .highlight-black {color: rgb(64, 64, 64)}
+    .table .highlight-blue {color: rgb(0, 153, 204)}
+    .table .highlight-gold {color: rgb(255, 153, 0)}
+
+    .table-dataTitle{font-size: 0.8em}
+    .table-dataTitle b{font-weight: bold; font-size: 85%;}
+    .table-primaryTitle{font-size: 1.2em}
+    .table-secondaryTitle{}
+    
+    .table-detailTrigger {border-left: 1px solid rgb(221, 221, 221); text-align: center;}
+    .detailBlock-title {font-size: 0.75em; line-height: 100%;}
+    .detailBlock-icon {
+      display: block;
+      margin: 0 auto;
+      height: 28px;
+      width: 28px;
+      background: no-repeat top left;
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAddJREFUeNrMVstxgzAQBU0KIBUYV2A6CBx8pwToIKmAcQfpAJfAnQOkA6jAcgd04OzGD0bRAJLIOMnO7Ahs6b39svI9C6nrOqQlJT2QhtrfkrQnrY7HozRh+QaimJaCNMZPHfSK9x1pBGVpSU9E3DoRElFASwmv2OoTPBhW9qcwjiNQkeZz+/2Zw2xtg1e29t1zEDr/CmKWhM53i4QKmYSFnbdBgFPC22+kvhaWC8iSpfAp+xkwIx3mPAFeA9L9iCeUPSXW3EQGybAGSggnAUauYd8JUY0pcmYbxmHhWSXtUHApOCYP2ULpWCA52uBM+ra0CZhyjIKPpr4glGfvAUIcGcK6f0IoPfSOLcBNDScZ+mw4Uo19LfC56iwLZcy3KsacA5v3HQTK1qXfIu39w/Icc4Rj0VwdCF9cPVQ5xIYaiDYSeirhzjJ/gTaepM1IUjkEeiSyPBT/wDvmkALDM4L1ruHsHSLDZ3uh9F+6oWBaS++mXhfIQTv3ATZ5uDbZNWHslrnGouEPbIjhuTbjAtf8ATMEx71KYSmHtgCwTf5CU96BVeB60up9OM2uBSA9f18DG4N47V6kYv/+FUPMDMwEG5u1nBpy1syR/Y9r4p9chB951f8UYABNx+qN0CCaxAAAAABJRU5ErkJggg==);
+      margin-top: 0.25em;
+      border: none !important;
+    }
+
+    /* Table Media Queries */
+    
+    @media (max-width: 480px) {
+      .user-usernameGroup, .sortUsername {display: none !important}
+    }
+    
+    @media (max-width: 768px) {
+      .user-phone, 
+      .user-email {display: none};
+      /*
+      .sortControl-indicatorTitle,
+      .sortControl-sortOptions li {font-size: 0.75em; padding: 0.25em;}
+      li.activeSort{padding-bottom: 0}
+      */
+    }
+
+    /*
+      ---------------------------------
+        $_MIXINS
+      ---------------------------------
+    */
+
+    /* Prevent Text Select */
+    .no-select,
+    .sortControl-sortOptions li{
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+  .terminal {
+      color: gainsboro;
+      margin: 4px;
+  }
+ </style>
+<body>
+ <a href="#" id="terminal" class="terminal fa fa-desktop"></a>
+
+
+  <% headerHelper = (item) -> %>
+      <div class="table-listController clearfix">
+        <div class="sortControl">
+          <ul class="sortControl-sortOptions">
+            <span class="sortControl-indicatorTitle">Sort By</span>
+            <li class="sortFile ui-button activeSort">File</li>
+            <li class="sortUser ui-button">User</li>
+            <li class="sortData ui-button">Data</li>
+            <li class="sortStatus ui-button">Status</li>
+          </ul>
+        </div>
+        <div class="searchField">
+          <div class="buttonControl ui-button" data-id="PGUP">&uarr;</div>
+        </div>
+        <div class="searchField">
+          <div class="buttonControl ui-button" data-id="PGDOWN">&darr;</div>
+        </div>
+        <!--
+        <div class="searchField">
+          <div class="searchControl-buttonSearch ui-button"></div>
+        </div>
+        -->
+        <div class="addEntry"></div>
+      </div>
+  <% end %>
+
+
+  <% bodyHelper = (rec) -> %>
+
+         <tr>
+           <td>
+             <span class="table-dataTitle"><b>Subsystem:</b> <%- rec[4] %> / <%- rec[5] %></span>
+             <span class="table-primaryTitle user-name highlight-black"><%- rec[1] %></span>
+           </td>
+           <td class="user-usernameGroup">
+             <span class="table-dataTitle">User:</span>
+             <span class="table-primaryTitle user-username highlight-blue"><%- rec[2] %></span>
+           </td>
+           <td>
+             <span class="table-secondaryTitle user-phone">Type : <%- rec[3] %></span>
+             <span class="table-secondaryTitle user-email">Status : <%- rec[6] %></span>
+           </td>
+           <td class="table-detailTrigger">
+             <span class="table-dataTitle detailBlock-title">More</span>
+             <span class="detailBlock-icon"></span>
+           </td>
+         </tr>
+
+  <% end %>
+
+
+  <!-- MAIN PART FROM SCREEN HEADER-->
+
+  <div class="container">
+    <div class="row">
+      <div align="center" class="col-md-12"><h3><%- @title %></h3></div>
+    </div>
+  </div>
+
+  <!-- SUBFILE PART -->
+
+  <div class="wrapper">
+
+      <%- headerHelper @ %>
+
+      <table class="table-default table user-table">
+        <tbody>
+          <% for elm in @subfile : %>
+              <%- bodyHelper elm %>
+          <% end %>
+        </tbody>
+      </table>
+
+  </div> <!-- end wrapper -->
+
+  <!-- FOOTER PART -->
+  <div class="container">
+    <div class="row">
+        <div align="center" class="col-md-offset-5 col-md-6">
+            <ul class="sortControl-sortOptions">
+              <li class="ui-button" data-id="PF3">Exit</li>
+              <li class="ui-button" data-id="PF5">Refresh</li>
+            </ul>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

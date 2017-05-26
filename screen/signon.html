@@ -4,6 +4,27 @@
 <script src="<%- @env.origin %>/office/assets/js/jquery-2.1.4.min.js" type="text/javascript" charset="UTF-8" ></script>
 <script src="<%- @env.origin %>/office/assets/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="UTF-8" ></script>
 <script src="<%- @env.origin %>/office/lib/ui.js" type="text/javascript" charset="UTF-8" ></script>
+ <script>
+
+  function onLogin() {
+
+      var cmd = this.getAttribute('data-id');
+      var els = document.querySelectorAll('input:not([data-id=""])');
+
+      var data = [];
+      els.forEach(function(v,i,a) {
+          data.push({id : v.getAttribute('data-id'), val : v.value});
+          return true;
+      });
+      Tn5250.sendTerminal(cmd, data);
+  }
+
+   $(document).ready(function(){
+     $("#terminal").click(Tn5250.switchTerminal);
+     $('button:not([data-id=""])').click(onLogin);
+   });
+ </script>
+
 <style>
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 .btn { display: inline-block; *display: inline; *zoom: 1; padding: 4px 10px 4px; margin-bottom: 0; font-size: 13px; line-height: 18px; color: #333333; text-align: center;text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75); vertical-align: middle; background-color: #f5f5f5; background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6); background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6)); background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6); background-image: -o-linear-gradient(top, #ffffff, #e6e6e6); background-image: linear-gradient(top, #ffffff, #e6e6e6); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#ffffff, endColorstr=#e6e6e6, GradientType=0); border-color: #e6e6e6 #e6e6e6 #e6e6e6; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); border: 1px solid #e6e6e6; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); cursor: pointer; *margin-left: .3em; }
@@ -72,41 +93,30 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 </style>
 <body>
 
-<div class="login">
+  <a href="#" id="terminal" class="terminal fa fa-desktop"></a>
 
-    <h1>Login</h1>
-
-    <form method="post">
-    	<input type="text" value="<%- @user %>" name="user" data-id="1" placeholder="Username" required="required" style="text-transform: uppercase;"/>
-        <input type="password" value="<%- @password %>" name="password" data-id="2" placeholder="Password" required="required" />
-        <button type="submit" data-id="ENTER" class="btn btn-primary btn-block btn-large">Let me in.</button>
-    </form>
-
-    <div class="row" style="color:grey;">
-      <div class="col-md-6">
-           <small> System : <%- @system %> </small> 
-      </div>
-      <div class="col-md-6">
-           <small> Display : <%- @displayName %> </small>
-      </div>
-    </div>
-    
-    <br>
+  <br><br><br><br><br>
 
   <div class="row">
-    <div class="col-md-12"><%- @error %> </div>
+    <div class="col-md-12" align="center"><h1 class="alert-danger"><%- @error %></h1></div>
   </div>
 
-</div>
+  <div class="login">
 
+    <div class="row">
+      <div class="col-md-6"><small>System : <%- @system %> </small></div>
+      <div class="col-md-6"><small>Display : <%- @displayName %> </small></div>
+    </div>
 
- <a href="#" id="terminal" class="terminal fa fa-desktop"></a>
- 
- <script>
-   $(document).ready(function(){
-     $("#terminal").click(switchTerminal);
-   });
- </script>
+    <br>
+
+      <form method="post">
+      	<input type="text" value="<%- @user %>" name="user" data-id="1" placeholder="Username" required="required" style="text-transform: uppercase;"/>
+          <input type="password" value="<%- @password %>" name="password" data-id="2" placeholder="Password" required="required" />
+          <button type="submit" data-id="ENTER" class="btn btn-primary btn-block btn-large">Let me in.</button>
+      </form>
+
+  </div>
 
 </body>
 </html>

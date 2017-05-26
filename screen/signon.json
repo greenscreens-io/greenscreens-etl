@@ -1,5 +1,7 @@
 {
 
+  "screen": [0,9,"Welcome to PUB400.COM"],
+
   "templates": {
     "html": "signon.html",
     "output": "signon",
@@ -16,6 +18,7 @@
     subsystem : [2,69,10],
     displayName :[3,69,10],
     error : [23,0,79]
-  }
-  
+  },
+
+  "grids" : {}
 }

@@ -4,27 +4,35 @@
 <script src="<%- @env.origin %>/office/assets/js/jquery-2.1.4.min.js" type="text/javascript" charset="UTF-8" ></script>
 <script src="<%- @env.origin %>/office/assets/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="UTF-8" ></script>
 <script src="<%- @env.origin %>/office/lib/ui.js" type="text/javascript" charset="UTF-8" ></script>
-<style>
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
-.btn { display: inline-block; *display: inline; *zoom: 1; padding: 4px 10px 4px; margin-bottom: 0; font-size: 13px; line-height: 18px; color: #333333; text-align: center;text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75); vertical-align: middle; background-color: #f5f5f5; background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6); background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6)); background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6); background-image: -o-linear-gradient(top, #ffffff, #e6e6e6); background-image: linear-gradient(top, #ffffff, #e6e6e6); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#ffffff, endColorstr=#e6e6e6, GradientType=0); border-color: #e6e6e6 #e6e6e6 #e6e6e6; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); border: 1px solid #e6e6e6; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); cursor: pointer; *margin-left: .3em; }
-.btn:hover, .btn:active, .btn.active, .btn.disabled, .btn[disabled] { background-color: #e6e6e6; }
-.btn-large { padding: 9px 14px; font-size: 15px; line-height: normal; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
-.btn:hover { color: #333333; text-decoration: none; background-color: #e6e6e6; background-position: 0 -15px; -webkit-transition: background-position 0.1s linear; -moz-transition: background-position 0.1s linear; -ms-transition: background-position 0.1s linear; -o-transition: background-position 0.1s linear; transition: background-position 0.1s linear; }
-.btn-primary, .btn-primary:hover { text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); color: #ffffff; }
-.btn-primary.active { color: rgba(255, 255, 255, 0.75); }
-.btn-primary { background-color: #4a77d4; background-image: -moz-linear-gradient(top, #6eb6de, #4a77d4); background-image: -ms-linear-gradient(top, #6eb6de, #4a77d4); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6eb6de), to(#4a77d4)); background-image: -webkit-linear-gradient(top, #6eb6de, #4a77d4); background-image: -o-linear-gradient(top, #6eb6de, #4a77d4); background-image: linear-gradient(top, #6eb6de, #4a77d4); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#6eb6de, endColorstr=#4a77d4, GradientType=0);  border: 1px solid #3762bc; text-shadow: 1px 1px 1px rgba(0,0,0,0.4); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5); }
-.btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] { filter: none; background-color: #4a77d4; }
-.btn-block { width: 100%; display:block; }
 
-* { -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -ms-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box; }
+<script>
 
-html { width: 100%; height:100%; overflow:hidden; }
+  function onAction() {
 
-body {
-    width: 100%;
-    color:white;
-	height:100%;
-	font-family: 'Open Sans', sans-serif;
+     var cmd = this.getAttribute('data-id');
+     var val = this.getAttribute('data-val');
+     var data = [];
+
+     if (val) {
+      data.push({id:1, val:val});
+     }
+     Tn5250.sendTerminal(cmd, data);
+   }
+
+   $(document).ready(function(){
+      $("#terminal").click(Tn5250.switchTerminal);
+      $('.ui-button:not([data-id=""])').click(onAction);
+      $('.menu:not([data-id=""])').click(onAction);
+   });
+ </script>
+
+ <style>
+
+    body {
+      font-family: arial, helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 100%;
+      color: whitesmoke;
 	background: #092756;
 	background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #670d10 0%, #092756 100%);
 	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
@@ -32,67 +40,189 @@ body {
 	background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
 	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
-}
-.login {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin: -150px 0 0 -150px;
-	width:300px;
-	height:300px;
-}
-.login h1 { color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; }
+    }
 
-input {
-	width: 100%;
-	margin-bottom: 10px;
-	background: rgba(0,0,0,0.3);
-	border: none;
-	outline: none;
-	padding: 10px;
-	font-size: 13px;
-	color: #fff;
-	text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
-	border: 1px solid rgba(0,0,0,0.3);
-	border-radius: 4px;
-	box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
-	-webkit-transition: box-shadow .5s ease;
-	-moz-transition: box-shadow .5s ease;
-	-o-transition: box-shadow .5s ease;
-	-ms-transition: box-shadow .5s ease;
-	transition: box-shadow .5s ease;
-}
-input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
-.terminal {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    color: #ffe0c1;
-}
-</style>
+    /* =================================*/
+
+    /*
+      ---------------------------------
+        $_UI BEHAVIOR
+      ---------------------------------
+    */
+
+    .ui-button{cursor:pointer}
+
+    /*
+      ---------------------------------
+        $_Controllers and Filters
+      ---------------------------------
+    */
+
+    /* Table Filter/Sort Controllers */
+    table-listController{}
+
+    .sortControl-indicatorTitle,
+    .uiControls,
+    .uiControls li{
+      list-style: none;
+      margin: 0 0 1em;
+      padding: 0;
+    }
+
+    .uiControls li {
+      display: inline-block;
+      padding: 0.25em 0.5em;
+      background: #555;
+      color: #eee;
+      float: left;
+      line-height: 150%;
+      font-size: 1em;
+      margin-left: 1px;
+    }
+
+    .uiControls li:hover {
+      background: #999;
+    }
+    
+    li.activeSort{
+      background: #000;
+      padding-bottom: 0;
+      border-bottom: 0.25em solid rgb(255, 153, 0);}
+
+
+    /*
+      --------------------------------- 
+        $_TABLE STYLES 
+      ---------------------------------
+    */
+
+    /* Bootstrap Table Overwrite Styles */
+    .table {font-size: 16px}
+    .table td {color: #777; vertical-align: middle !important;}
+    .table tr {background-color: #eaeaea; border-bottom: 1px solid rgb(221, 221, 221);}
+    .table tr:hover {background-color: #ccc !important; cursor: pointer;}
+    .table tr:nth-child(even) {background-color: #e1e1e1}
+
+    /* Generic Table Styles */
+    .table-dataTitle,
+    .table-primaryTitle,
+    .table-secondaryTitle { display: block; clear: both; line-height: 120%;}
+    
+    .table .highlight-black {color: rgb(64, 64, 64)}
+    .table .highlight-blue {color: rgb(0, 153, 204)}
+    .table .highlight-gold {color: rgb(255, 153, 0)}
+
+    .table-dataTitle{font-size: 0.8em}
+    .table-dataTitle b{font-weight: bold; font-size: 85%;}
+    .table-primaryTitle{font-size: 1.2em}
+    .table-secondaryTitle{}
+    
+    .table-detailTrigger {border-left: 1px solid rgb(221, 221, 221); text-align: center;}
+    .detailBlock-title {font-size: 0.75em; line-height: 100%;}
+    .detailBlock-icon {
+      display: block;
+      margin: 0 auto;
+      height: 28px;
+      width: 28px;
+      background: no-repeat top left;
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAddJREFUeNrMVstxgzAQBU0KIBUYV2A6CBx8pwToIKmAcQfpAJfAnQOkA6jAcgd04OzGD0bRAJLIOMnO7Ahs6b39svI9C6nrOqQlJT2QhtrfkrQnrY7HozRh+QaimJaCNMZPHfSK9x1pBGVpSU9E3DoRElFASwmv2OoTPBhW9qcwjiNQkeZz+/2Zw2xtg1e29t1zEDr/CmKWhM53i4QKmYSFnbdBgFPC22+kvhaWC8iSpfAp+xkwIx3mPAFeA9L9iCeUPSXW3EQGybAGSggnAUauYd8JUY0pcmYbxmHhWSXtUHApOCYP2ULpWCA52uBM+ra0CZhyjIKPpr4glGfvAUIcGcK6f0IoPfSOLcBNDScZ+mw4Uo19LfC56iwLZcy3KsacA5v3HQTK1qXfIu39w/Icc4Rj0VwdCF9cPVQ5xIYaiDYSeirhzjJ/gTaepM1IUjkEeiSyPBT/wDvmkALDM4L1ruHsHSLDZ3uh9F+6oWBaS++mXhfIQTv3ATZ5uDbZNWHslrnGouEPbIjhuTbjAtf8ATMEx71KYSmHtgCwTf5CU96BVeB60up9OM2uBSA9f18DG4N47V6kYv/+FUPMDMwEG5u1nBpy1syR/Y9r4p9chB951f8UYABNx+qN0CCaxAAAAABJRU5ErkJggg==);
+      margin-top: 0.25em;
+      border: none !important;
+    }
+
+    /* Table Media Queries */
+
+    @media (max-width: 480px) {
+      .user-usernameGroup, .sortUsername {display: none !important}
+    }
+
+    @media (max-width: 768px) {
+      .user-phone,
+      .user-email {display: none};
+      /*
+      .sortControl-indicatorTitle,
+      .uiControls li {font-size: 0.75em; padding: 0.25em;}
+      li.activeSort{padding-bottom: 0}
+      */
+    }
+
+    /*
+      ---------------------------------
+        $_MIXINS
+      ---------------------------------
+    */
+
+  .terminal {
+      color: gainsboro;
+      margin: 4px;
+  }
+
+
+    .wrapper {
+      display: block;
+      width: 50%;
+      min-width: 320px;
+      margin: 2em auto;
+      padding: 0 1em 0.1em;
+    }
+
+  .wrapper .row {
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.55);
+  }
+
+  .menu {
+      font-size: 20px;
+      line-height: 25px;
+      padding: 10px;
+      margin: 1px;
+      color: rgba(255, 255, 255, 0.49);
+      background: rgba(255, 255, 255, 0.14);
+  }
+
+  .menu:hover {
+    background: rgba(0, 0, 0, 0.14);
+    color: rgb(255, 255, 255);
+  }
+ </style>
 <body>
-
-<div class="login">
-    <h1>Login to <%- @system %></h1>
-    <p> Display Name : <%- @displayName %> </p>
-    <form method="post">
-    	<input type="text" value="<%- @user %>" name="user" data-id="1" placeholder="Username" required="required" style="text-transform: uppercase;"/>
-        <input type="password" value="<%- @password %>" name="password" data-id="2" placeholder="Password" required="required" />
-        <button type="submit" data-id="ENTER" class="btn btn-primary btn-block btn-large">Let me in.</button>
-    </form>
-  <div class="row">
-    <div class="col-md-12"><%- @error %> </div>
-  </div>    
-</div>
-
-
  <a href="#" id="terminal" class="terminal fa fa-desktop"></a>
- 
- <script>
-   $(document).ready(function(){
-     $("#terminal").click(switchTerminal);
-   });
- </script>
+
+   <% hotspotHelper = (rec) -> %>
+          <div class="col-xs-12 menu" data-id="ENTER" data-val="<%- rec[0] %>" > <%- rec[1] %> </div>
+   <% end %>
+
+  <!-- MAIN PART FROM SCREEN HEADER-->
+
+  <div class="container">
+    <div class="row">
+      <div align="center" class="col-md-12"><h3><%- @title %></h3></div>
+    </div>
+  </div>
+
+  <!-- SUBFILE PART -->
+
+  <div class="wrapper">
+
+    <div class="row">
+          <% for elm in @hotspots : %>
+              <%- hotspotHelper elm %>
+          <% end %>
+    </div>
+
+  </div> <!-- end wrapper -->
+
+  <!-- FOOTER PART -->
+  <div class="container">
+    <div class="row">
+        <div align="center" class="col-md-offset-5 col-md-6">
+            <ul class="uiControls">
+              <li class="ui-button" data-id="ENTER" data-val="wrkactjob">WRKACTJOB</li>
+              <li class="ui-button" data-id="ENTER" data-val="wrkoutq prt01">WRKOUTQ</li>
+              <li class="ui-button" data-id="PF3" >Return</li>
+            </ul>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>

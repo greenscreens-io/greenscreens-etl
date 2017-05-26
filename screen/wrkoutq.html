@@ -10,7 +10,7 @@
 
   function onAction() {
      var cmd = this.getAttribute('data-id');
-     parent.postMessage({cmd:'ui', data:[], action:cmd}, '*');
+     Tn5250.sendTerminal(cmd, data);
    }
 
    function changeClass() {
@@ -19,9 +19,9 @@
    }
 
    $(document).ready(function(){
-      $("#terminal").click(switchTerminal);
-      $('.sortControl-sortOptions li').on('click', changeClass);
+      $("#terminal").click(Tn5250.switchTerminal);
       $('.ui-button:not([data-id=""])').click(onAction);
+      $('.sortControl-sortOptions li').on('click', changeClass);      
    });
  </script>
 

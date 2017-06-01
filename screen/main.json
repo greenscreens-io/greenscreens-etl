@@ -6,7 +6,7 @@
 
   "templates": {
     "html": "main.html",
-    "output": "main",
+    "output": "#wrapper",
     "script": null
   },
 
@@ -15,7 +15,8 @@
   },
 
   "data": {
-      "title" :  [0,32,25]
+      "title" : [0,32,25],
+      "error" : [23,0,79]
   },
 
   "grids": {

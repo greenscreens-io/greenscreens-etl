@@ -4,7 +4,7 @@
 
   "templates": {
     "html": "wrkoutq.html",
-    "output": "wrkoutq",
+    "output": "#wrapper",
     "script": null
   },
 
@@ -17,7 +17,8 @@
     "title" :  [0,29,25],
     "queueName" :  [2, 10,10],
     "libraryName" : [2,36,10],
-    "status" :   [2,61,8]
+    "status" :   [2,61,8],
+    "error" : [23,1,78]
   },
   "grids": {
     "subfile": {

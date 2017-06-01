@@ -4,7 +4,8 @@
 
   "templates": {
     "html": "signon.html",
-    "output": "signon",
+    "output": "#wrapper",
+    "desc" : "if html & output then trigger event with action  = output, if no output, just replace iframe, if no html, send json",
     "script": null
   },
 

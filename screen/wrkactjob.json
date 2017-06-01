@@ -4,7 +4,7 @@
 
   "templates": {
     "html": "wrkactjob.html",
-    "output": "wrkactjob",
+    "output": "#wrapper",
     "script": null
   },
 
@@ -18,10 +18,11 @@
     "system" : [0,71,8],
     "date" :   [1,61,8],
     "time" :   [1,71,8],
-    "jobs" :   [2,62,4]
+    "jobs" :   [2,62,4],
+    "error" : [23,1,79]
   },
   "grids": {
-    "wrkactjob": {
+    "subfile": {
       "_macro": [
         {
           "cmd": "PGDOWN",

@@ -1,8 +1,31 @@
 [
- [0,9,"Welcome to PUB400.COM", null, "signon.json"],
- [0,35,"Sign On", null, "signon.json"],
- [0, 29, "Work with Active Jobs", null, "wrkactjob.json"],
- [0, 29, "Work with Output Queue", null, "wrkoutq.json"],
- [2, 1, "Select one of the following", null, "main.json"]
+  {
+    r:0, c:9,  
+    "_i" : 2,
+    "_o" : "x|s|e|n",
+    "_match" : "regex",
+    "o": "x",
+    "t":"Welcome to PUB400.COM",
+    "f":"signon.json"
+  },
+  {r:0, c:29, t:"Work with Active Jobs", f:"wrkactjob.json",
+    "_e": [
+      {r:3, c:21, t:"Current", f:"wrkactjob-ext.json"},
+
+      {r:8, c:59, t:"AuxIO", f:"wrkactjob-elapsed.json"},
+      {r:4, c:59, t:"AuxIO", f:"wrkactjob-elapsed-ext.json"},
+
+      {r:8, c:64, t:"Storage", f:"wrkactjob-threads.json"},
+      {r:4, c:64, t:"Storage", f:"wrkactjob-threads-ext.json"}
+    ]
+  },
+  {r:0, c:29, t:"Work with Output Queue", f:"wrkoutq.json", "o": "x",
+    "_e": [
+      {r:8, c:40, t:"User", f:"wrkoutq-alt.json"}
+    ]
+  },
+  {r:2, c:1,  t:"Select one of the following", f:"main.json", "o": "x"}
 
 ]
+
+

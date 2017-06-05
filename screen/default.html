@@ -236,11 +236,11 @@
 
 		    $('.sidebar-wrapper a:not([data-id=""])').click(Tn5250.onAction);
 		    $('#dashboard').click(function(){
-                         Tn5250.macro({});
+                         Tn5250.macro({"cmd":"PF3","stopTrigger":[0,1,"MAIN"]});
                     });
 		    $('#signout').click(function() {
 		         var macro = [
-                                      {"cmd":"PF3","stopTrigger":[0,32,"OS/400 Main Menu"]},
+                                      {"cmd":"PF3","stopTrigger":[0,1,"MAIN"]},
                                       {"cmd":"ENTER","fields":[[1,"90"]]}
                                       ];
                          Tn5250.macro(macro);

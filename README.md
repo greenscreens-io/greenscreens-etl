@@ -8,12 +8,5 @@ Examples for ETL engine
 - To test modernization, start terminal and call from browser console Tn5250.Application.modernize()
 
 
-JSON structure dfinition is defined in schema.json.
-
-To test JSON definition to schema.json, use one of
-
-https://jsonschemalint.com/
-http://www.jsonschemavalidator.net/
-
 <hr>
 <small>&copy; Green Screens Ltd.</small>

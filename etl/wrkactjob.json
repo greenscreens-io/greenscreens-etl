@@ -1,7 +1,5 @@
 {
 
-  "screen": [0,29,"Work with Active Jobs"],
-
   "templates": {
     "excel": "wrkactjob.xlsx",
     "word": "wrkactjob.docx",
@@ -11,6 +9,19 @@
 
   "excel": {
 
+      prop : {
+      	Title: "Work with active jobs",
+      	Subject: "Tests",
+      	Author: "GreenScreens Service",
+      	Manager: "Manager",
+      	Company: "Green Screens",
+      	Category: "Experimentation",
+      	Keywords: "Test",
+      	Comments: "Nothing to say here",
+      	LastAuthor: "GreenScreens Service",
+      	CreatedDate: {ref:'created'}
+      },
+      
     "sheet": "Sheet1",
 
     "fields": {
@@ -80,7 +91,7 @@
   },
   "grids": {
     "wrkactjob": {
-      "macro": [
+      "_macro": [
         {
           "cmd": "PGDOWN",
 	  "startTrigger": [18,72,"More..."],

@@ -1,5 +1,7 @@
 [
- [0, 29, "Work with Active Jobs", null, "wrkactjob.json"],
- [0, 32, "IBM i Main Menu", null, "mainmenu.json"],
- [0, 9, "Welcome to PUB400.COM * your public IBM i server", null, "signon.json"]
+{r:0, c:9,  t:"Welcome to PUB400.COM", f:"signon.json", "_contains" : true, "_exact" : true, "_match" : "" },
+{r:0, c:29, t:"Work with Active Jobs", f:"wrkactjob.json", fh:null, ah:null},
+{r:0, c:32, t:"IBM i Main Menu", f:"mainmenu.json"}
 ]
+
+

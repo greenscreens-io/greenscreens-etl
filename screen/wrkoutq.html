@@ -1,34 +1,20 @@
+  <% headHelper = (rec) -> %>
+      <td><%- rec %></td>
+  <% end %>
+
+  <% bodyCols = (rec) -> %>
+           <td>
+             <span><%- rec %></span>
+           </td>
+  <% end %>
 
   <% bodyHelper = (rec) -> %>
 
          <tr>
-           <td>
-             <span><%- rec[1] %></span>
-           </td>
-           <td >
-             <span><%- rec[2] %></span>
-           </td>
-           <td>
-             <span><%- rec[3] %></span>
-           </td>
-           <td>
-             <span><%- rec[6] %></span>
-           </td>
-           <td>
-             <span><%- rec[4] %></span>
-           </td>
-           <td>
-             <span><%- rec[5] %></span>
-           </td>
-           <td>
-             <span><%- rec[6] %></span>
-           </td>
-           <td>
-             <span><%- rec[7] %></span>
-           </td>
-           <td>
-             <span><%- rec[8] %></span>
-           </td>
+
+           <% for elm in rec : %>
+              <%- bodyCols elm %>
+           <% end %>
 
            <td>
             <div class="btn-group pull-right" role="group" aria-label="...">
@@ -44,19 +30,37 @@
 
            <div class="container-fluid">
 
+                <% if @error?.length : %>
+                    <div class="row card">
+                       <div class="col-md-8"><h5 class="alert-danger"><%- @error %></h5></div>
+                    </div>
+                <% end %>
+
+
                 <!-- TOOLBAR PART -->
                 <div class="row card">
-                   <div class="col-md-8"><h5 class="alert-danger"><%- @error %></h5></div>
+                   <div class="col-md-8">
+                      <button type="button" class="btn btn-default ui-button" data-type="action" data-cmd="PF17">Top</button>
+                      <button type="button" class="btn btn-default ui-button" data-type="action" data-cmd="PF18">Bottom</button>
+                   </div>
+
                    <div class="col-md-4">
                     <div class="btn-group pull-right" role="group" aria-label="...">
-                      <button type="button" class="btn btn-defaultui-button" data-type="action" data-cmd="PF3">Exit</button>
                       <button type="button" class="btn btn-defaultui-button" data-type="action" data-cmd="PF5">Refresh</button>
+                      <button type="button" class="btn btn-defaultui-button" data-type="action" data-cmd="PF3">Exit</button>
                     </div>
                    </div>
                 </div>
 
                 <!-- GRID PART -->
                 <div class="row">
+                    <div class="col-md-12">
+                     <ul class="nav nav-tabs">
+                      <li role="presentation" class="<%- @view1 %>"><a href="#" class="ui-button" data-type="action" data-cmd="PF11">View 1</a></li>
+                      <li role="presentation" class="<%- @view2 %>"><a href="#" class="ui-button" data-type="action" data-cmd="PF11">View 2</a></li>
+                    </ul>
+                    </div>
+
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
@@ -65,22 +69,18 @@
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-striped" >
+
                                     <thead>
                                       <tr>
-                                        <th>File</th>
-                                    	<th>User</th>
-                                    	<th>User Data</th>
-                                    	<th>Status</th>
-                                    	<th>Pages</th>
-                                    	<th>Copies</th>
-                                    	<th>Form Type</th>
-                                    	<th>Priority</th>
+                                        <% for elm in @subfile.header : %>
+                                            <%- headHelper elm %>
+                                        <% end %>
                                        </tr>
                                      </thead>
 
                                     <tbody>
-                                      <% @cnt=1 %>
-                                      <% for elm in @subfile : %>
+                                      <% @cnt=0 %>
+                                      <% for elm in @subfile.items : %>
                                           <% elm.cnt=@cnt %>
                                           <%- bodyHelper elm %>
                                           <% @cnt++ %>

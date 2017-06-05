@@ -96,8 +96,8 @@
                      </tr>
                   </thead>
                   <tbody>
-                     <% if @items.splice(-1,1)?.length : %>
-                       <% for item in @items : %>
+                     <% if @items.items.splice(-1,1)?.length : %>
+                       <% for item in @items.items : %>
                         <%- itemHelper item %>
                        <% end %>
                      <% end %>
@@ -109,7 +109,7 @@
                         <td></td>
                         <td></td>
                         <td><b>Total:</b></th>
-                        <td><%- @total %> &euro;</td>
+                        <td><%- @items.total[5].trim() %> &euro;</td>
                      </tr>
                   </tfoot>
                </table>

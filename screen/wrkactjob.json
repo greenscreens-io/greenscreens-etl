@@ -31,7 +31,7 @@
           "big" : false,
           "byStatus" : "active"
         },
-        "match": {"r":7, "c":21, "t":"Current"},
+        "match": {"r":8, "c":46, "t":"Function"},
         "trigger" : [],
         "rows": 9,
         "rowHeight": 1,
@@ -61,42 +61,7 @@
       "totals" : []
     },
 
-    "byStatusExt": {
 
-      "def": {
-        "name":"subfile",
-        "opts" : {
-          "type" : "default",
-          "big" : true,
-          "byStatus" : "active"
-        },
-        "match": {"r":3, "c":21, "t":"Current"},
-        "rows": 15,
-        "rowHeight": 1,
-        "type": [null, null, null, "f", null, null, null],
-        "trim": [0, 1, 1, 1, 1, 1, 0]
-      },
-      "headers": [
-        [4,  1, 3],
-        [4,  6, 13],
-        [4, 21, 11],
-        [4, 33,  5],
-        [4, 39,  5],
-        [4, 46, 15],
-        [4, 62,  8]
-      ],
-      "data": [
-        [5,  1, 2],
-        [5,  6, 13],
-        [5, 21, 11],
-        [5, 33,  5],
-        [5, 39,  5],
-        [5, 46, 15],
-        [5, 63,  8]
-      ],
-      "totals" : []
-    },
-    
     "byElapse": {
 
       "def": {
@@ -139,7 +104,121 @@
       "totals" : []
     },
     
-    "byElapseExt": {
+    "byThread": {
+
+      "def": {
+        "name":"subfile",
+        "opts" : {
+          "byThread" : "active",
+          "type" : "thread",
+          "big" : false
+        },
+        "match" : {"r":8, "c":54, "t":"Threads"},
+        "rows": 9,
+        "rowHeight": 1,
+        "type": [null, null, null, "f", null, null, null],
+        "trim": [0, 1, 1, 1, 1, 1, 0]
+      },
+
+      "headers": [
+        [8,  1, 3],
+        [8,  6, 13],
+        [8, 21,  4],
+        [8, 33,  6],
+        [8, 41,  4],
+        [8, 47,  5],
+        [8, 54,  7],
+        [8, 64,  7]
+      ],
+
+      "data": [
+        [9,  1, 2],
+        [9,  6, 12],
+        [9, 21, 10],
+        [9, 33,  6],
+        [9, 41,  4],
+        [9, 47,  5],
+        [9, 54,  6],
+        [9, 64,  7]
+      ],
+      "totals" : []
+    },
+
+
+    "byStatusExtA": {
+
+      "def": {
+        "name":"subfile",
+        "opts" : {
+          "type" : "default",
+          "big" : true,
+          "byStatus" : "active"
+        },
+
+        "match": {"r":3, "c":46, "t":"Function"},
+        "rows": 16,
+        "rowHeight": 1,
+        "type": [null, null, null, "f", null, null, null],
+        "trim": [0, 1, 1, 1, 1, 1, 0]
+      },
+      "headers": [
+        [3,  1, 3],
+        [3,  6, 13],
+        [3, 21, 11],
+        [3, 33,  5],
+        [3, 39,  5],
+        [3, 46, 15],
+        [3, 62,  8]
+      ],
+      "data": [
+        [4,  1, 2],
+        [4,  6, 13],
+        [4, 21, 11],
+        [4, 33,  5],
+        [4, 39,  5],
+        [4, 46, 15],
+        [4, 63,  8]
+      ],
+      "totals" : []
+    },
+
+    "byStatusExtB": {
+
+      "def": {
+        "name":"subfile",
+        "opts" : {
+          "type" : "default",
+          "big" : true,
+          "byStatus" : "active"
+        },
+        "match": {"r":4, "c":46, "t":"Function"},
+        "rows": 15,
+        "rowHeight": 1,
+        "type": [null, null, null, "f", null, null, null],
+        "trim": [0, 1, 1, 1, 1, 1, 0]
+      },
+      "headers": [
+        [4,  1, 3],
+        [4,  6, 13],
+        [4, 21, 11],
+        [4, 33,  5],
+        [4, 39,  5],
+        [4, 46, 15],
+        [4, 62,  8]
+      ],
+      "data": [
+        [5,  1, 2],
+        [5,  6, 13],
+        [5, 21, 11],
+        [5, 33,  5],
+        [5, 39,  5],
+        [5, 46, 15],
+        [5, 63,  8]
+      ],
+      "totals" : []
+    },
+
+    "byElapseExtA": {
 
       "def": {
         "name":"subfile",
@@ -148,7 +227,50 @@
           "type" : "elapsed",
           "big" : true
         },
-        "match" : {"r":4, "c":59, "t":"AuxIO"},
+        "match": {"r":3, "c":59, "t":"AuxIO"},
+        "rows": 16,
+        "rowHeight": 1,
+        "type": [null, null, null, "f", null, null, null],
+        "trim": [0, 1, 1, 1, 1, 1, 0]
+      },
+      "headers": [
+        [3,  1, 3],
+        [3,  6, 13],
+        [3, 21,  4],
+        [3, 27,  5],
+        [3, 33,  3],
+        [3, 42,  3],
+        [3, 47,  3],
+        [3, 54,  3],
+        [3, 59,  5],
+        [3, 66,  5]
+      ],
+      "data": [
+        [4,  1, 2],
+        [4,  6, 13],
+        [4, 21,  5],
+        [4, 27,  5],
+        [4, 33,  4],
+        [4, 42,  3],
+        [4, 47,  3],
+        [4, 52,  5],
+        [4, 59,  5],
+        [4, 66,  5]
+      ],
+      "totals" : []
+    },
+
+    "byElapseExtB": {
+
+      "def": {
+        "name":"subfile",
+        "opts" : {
+          "byElapse" : "active",
+          "type" : "elapsed",
+          "big" : true
+        },
+
+        "match": {"r":4, "c":59, "t":"AuxIO"},
         "rows": 15,
         "rowHeight": 1,
         "type": [null, null, null, "f", null, null, null],
@@ -180,48 +302,9 @@
       ],
       "totals" : []
     },
-    
-    "byThread": {
 
-      "def": {
-        "name":"subfile",
-        "opts" : {
-          "byThread" : "active",
-          "type" : "thread",
-          "big" : false
-        },
-        "match" : {"r":8, "c":64, "t":"Storage"},
-        "rows": 9,
-        "rowHeight": 1,
-        "type": [null, null, null, "f", null, null, null],
-        "trim": [0, 1, 1, 1, 1, 1, 0]
-      },
 
-      "headers": [
-        [8,  1, 3],
-        [8,  6, 13],
-        [8, 21,  4],
-        [8, 33,  6],
-        [8, 41,  4],
-        [8, 47,  5],
-        [8, 54,  7],
-        [8, 64,  7]
-      ],
-
-      "data": [
-        [9,  1, 2],
-        [9,  6, 12],
-        [9, 21, 10],
-        [9, 33,  6],
-        [9, 41,  4],
-        [9, 47,  5],
-        [9, 54,  6],
-        [9, 64,  7]
-      ],
-      "totals" : []
-    },
-    
-    "byThreadExt": {
+    "byThreadExtA": {
 
       "def": {
         "name":"subfile",
@@ -230,7 +313,48 @@
           "type" : "thread",
           "big" : true
         },
-        "match" : {"r":4, "c":64, "t":"Storage"},
+        "match" : {"r":3, "c":54, "t":"Threads"},
+        "trigger" : [],
+        "rows": 16,
+        "rowHeight": 1,
+        "type": [null, null, null, "f", null, null, null],
+        "trim": [0, 1, 1, 1, 1, 1, 0]
+      },
+
+      "headers": [
+        [3,  1, 3],
+        [3,  6, 13],
+        [3, 21,  4],
+        [3, 33,  6],
+        [3, 41,  4],
+        [3, 47,  5],
+        [3, 54,  7],
+        [3, 64,  7]
+      ],
+
+      "data": [
+        [4,  1, 2],
+        [4,  6, 12],
+        [4, 21, 10],
+        [4, 33,  6],
+        [4, 41,  4],
+        [4, 47,  5],
+        [4, 54,  6],
+        [4, 64,  7]
+      ],
+      "totals" : []
+    },
+    
+    "byThreadExtB": {
+
+      "def": {
+        "name":"subfile",
+        "opts" : {
+          "byThread" : "active",
+          "type" : "thread",
+          "big" : true
+        },
+        "match" : {"r":4, "c":54, "t":"Threads"},
         "trigger" : [],
         "rows": 15,
         "rowHeight": 1,
@@ -250,17 +374,17 @@
       ],
 
       "data": [
-        [4,  1, 2],
-        [4,  6, 12],
-        [4, 21, 10],
-        [4, 33,  6],
-        [4, 41,  4],
-        [4, 47,  5],
-        [4, 54,  6],
-        [4, 64,  7]
+        [5,  1, 2],
+        [5,  6, 12],
+        [5, 21, 10],
+        [5, 33,  6],
+        [5, 41,  4],
+        [5, 47,  5],
+        [5, 54,  6],
+        [5, 64,  7]
       ],
       "totals" : []
-    }                    
+    }
 
   }
 }

@@ -225,19 +225,8 @@
 		    	 } else {
 		    		 showSidebar();
 		    	 }
-		    	 
-		    	 el = document.querySelector('field');
-		    	 if (el) {
-		    	   el.focus();
-                         }
-
 		    });
-
-
-                    Tn5250.listen('error', function(v) {
-                      document.querySelector('#wrapper').innerHTML = 'v';
-                    });
-
+		    
 		    Tn5250.listen('prompt', function(v) {
 		      if (v && v.value) {
                         var data = [{val: 'wrkoutq ' + v.value, opt:[[19,6],[20,6]]}];
@@ -247,11 +236,11 @@
 
 		    $('.sidebar-wrapper a:not([data-id=""])').click(Tn5250.onAction);
 		    $('#dashboard').click(function(){
-                         Tn5250.macro({"cmd":"PF3","stopTrigger":[0,1,"MAIN"]});
+                         Tn5250.macro({"cmd":"PF3","stopTrigger":{r:0,c:1,t:"MAIN"}});
                     });
 		    $('#signout').click(function() {
 		         var macro = [
-                                      {"cmd":"PF3","stopTrigger":[0,1,"MAIN"]},
+                                      {"cmd":"PF3","stopTrigger":{r:0,c:1,t:"MAIN"}},
                                       {"cmd":"ENTER","fields":[[1,"90"]]}
                                       ];
                          Tn5250.macro(macro);
@@ -259,7 +248,6 @@
 		    $('#queue').click(function() {
                        Tn5250.prompt('Select Outq ', '#prompt');
                     });
-
 	    });
 	</script>
 

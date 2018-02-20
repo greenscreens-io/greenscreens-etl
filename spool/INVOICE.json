@@ -1,0 +1,83 @@
+{
+
+  "description" : "Demo for invoice spool",
+
+  "templates": {
+    "default": {
+       "html" :  "spool/invoice.html",
+       "output": "INVOICE"
+    }
+  },
+
+  "data": {
+    "invoiceDate": {
+      "row": 0,
+      "col": 14,
+      "len": 15,
+      "page": 1,
+      "trim": true
+    },
+    "clientName":   [2,0,50],
+    "clientStreet": [3,0,50],
+    "clientCity":   [4,0,50],
+    "clientEmail":  [5,6,50],
+
+    "invoiceID": [6,10,50],
+    "orderID": [7,10,50],
+
+    "companyName":   [2,70,60],
+    "companyStreet": [3,70,60],
+    "companyCity":   [4,70,60],
+    "companyEmail":  [5,99,20],
+
+    "companySwift": [6, 99, 20],
+    "companyIBAN":  [7, 99, 20],
+
+    "paymentDue": [8, 13, 25],
+    "amountDue":  [8, 99, 11]
+
+  },
+
+  "grids": {
+
+    "items": {
+
+      "def": {
+        "startPage": 1,
+        "pages": null,
+        "maxRows": 10,
+        "rowHeight": 1,
+        "rowIndicator" : {"row" : 0, "col" : 0, "len" : 7, "match" : "\\d" },
+        "totalIndicator" : {"row" : 12, "col" : 92, "len" : 5, "match" : "Total" }
+      },
+
+      "headers": [
+         [10,0,8],
+         [10,8,16],
+         [10,24,54],
+         [10,78,15],
+         [10,93,9],
+         [10,102,8]
+      ],
+
+      "data": [
+         [12,0, 5],
+         [12,8,16],
+         [12,24,54],
+         [12,78,15],
+         [12,93,9],
+         [12,102,8]
+      ],
+      
+      "totals": [
+         "",
+         "",
+         "",
+         "",
+         "",
+         [12,100,10]
+      ]
+    }
+  }
+}
+

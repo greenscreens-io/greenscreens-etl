@@ -1,0 +1,121 @@
+{
+  "description": "",
+  "timestamp": 0,
+  "version": 0,
+  "type" : "detect",
+  
+  "root": "screen/root.json",
+
+  "items": [
+    {
+      "fieldHash": "50E5078D23FA0AAD9CDDF74957B224F3E5740D95",
+      "attrHash": "50E5078D23FA0AAD9CDDF74957B224F3E5740D95",
+      "file": "screen/defs/blank.json"
+    },
+    {
+      "query": {
+        "signon": "signon0 || signon1"
+      },
+      "segments": {
+        "signon0": {
+          "row": 0,
+          "col": 9,
+          "text": "Welcome to PUB400.COM",
+          "rule": "exist"
+        },
+        "signon1": {
+          "row": 0,
+          "col": 35,
+          "text": "Sign On",
+          "rule": "exist"
+        }
+      },
+      "detect": "signon",
+      "file": "screen/defs/signon.json"
+    },
+    {
+      "query": {
+        "main": "main0 || main1 || main2 || main3 || main4"
+      },
+      "segments": {
+        "main0": {
+          "row": 2,
+          "col": 1,
+          "text": "Select one of the following",
+          "rule": "exist"
+        },
+        "main1": {
+          "row": 4,
+          "col": 1,
+          "text": "Select one of the following",
+          "rule": "exist"
+        },
+        "main2": {
+          "row": 0,
+          "col": 32,
+          "text": "OS/400 Main Menu"
+        },
+        "main3": {
+          "row": 0,
+          "col": 32,
+          "text": "IBM i Main Menu "
+        },
+        "main4": {
+          "row": 0,
+          "col": 1,
+          "text": "LIMENU"
+        }
+      },
+      "detect": "main",
+      "file": "screen/defs/main.json"
+    },
+    {
+      "row": 0,
+      "col": 29,
+      "text": "Work with Active Jobs",
+      "file": "screen/defs/wrkactjob.json"
+    },
+    {
+      "row": 0,
+      "col": 29,
+      "text": "Work with Output Queue",
+      "file": "screen/defs/wrkoutq.json",
+      "rule": "exist"
+    },
+    {
+      "query": {
+        "main": "scr1 || scr2"
+      },
+      "segments": {
+        "scr1": {
+          "row": 0,
+          "col": 25,
+          "text": "M A S T E R     I N Q U I R Y",
+          "rule": "start"
+        },
+        "scr2": {
+          "row": 0,
+          "col": 25,
+          "text": "MASTER",
+          "rule": "start"
+        }
+      },
+      "detect": "main",
+      "file": "screen/defs/masterInquiry.json"
+    },
+    {
+      "row": 2,
+      "col": 20,
+      "text": "Customer details",
+      "file": "screen/defs/customerDetails.json",
+      "rule": "start"
+    },
+    {
+      "row": 0,
+      "col": 28,
+      "text": "Customer Card",
+      "file": "screen/defs/customerCard.json",
+      "rule": "start"
+    }
+  ]
+}

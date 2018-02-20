@@ -1,0 +1,90 @@
+<html>
+<link href="{{env.origin}}/office/assets/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="{{env.origin}}/office/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+<script src="{{env.origin}}/office/assets/js/jquery-2.1.4.min.js" type="text/javascript" charset="UTF-8" ></script>
+<script src="{{env.origin}}/office/assets/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="UTF-8" ></script>
+<style>
+ .popover {
+    min-width :700px !important;
+ }
+.row{
+  font-size: 10px;
+}
+.table-condensed{
+  font-size: 12px;
+}
+.table-condensed p{
+  font-size: 9px;
+  color: grey;
+}
+</style>
+
+<body>
+
+
+<div class="container">
+  <h3>{{title}}</h3>
+  <div class="row">
+    <div class="col-md-8"> System : {{system}} </div>
+    <div class="col-md-2 text-right"> {{product}}  {{release}} </div>
+    <div class="col-md-2 text-right"> {{date}}  {{time}} </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8"> JOB : {{jobName}} / {{jobNumber}} / {{jobDescription}}</div>
+    <div class="col-md-4 text-right"> User/ Lib : {{user}} / {{library}} </div>
+  </div>
+
+  <br>
+
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        {{#each grid1.header}}
+            <th>{{this}}</th>
+        {{/each}}
+      </tr>
+    </thead>
+    <tbody>
+        {{#each grid1.items}}
+           {{set "_tmp" this[1].trim()}}
+
+           {{#js_if "@root._tmp === 'Diagnostic'"}}
+               <tr class="danger">
+           {{else}}
+             {{#js_if "@root._tmp === 'Escape'"}}
+                 <tr class="warning">
+             {{else}}
+                 <tr>
+             {{/js_if}}
+           {{/js_if}}
+
+              {{#each this}}
+
+                 {{#js_if "@index === 11"}}
+                      <td class="text-center">
+                          {{#if this}}
+                            <a href="#" class="glyphicon glyphicon-envelope" data-toggle="popover" data-content="<pre>{{this}}</pre>" rel="popover" data-placement="left" data-trigger="hover"></a>
+                          {{else}}
+                              <p>N/A</p>
+                          {{/if}}
+                      </td>
+                 {{else}}
+                   <td>{{this}}</td>
+                 {{/js_if}}
+
+
+               {{/each}}
+
+            </tr>
+        {{/each}}
+    </tbody>
+  </table>
+</div>
+
+<script>
+  $('a[rel="popover"]').popover({html:true});
+</script>
+
+</body>
+</html>

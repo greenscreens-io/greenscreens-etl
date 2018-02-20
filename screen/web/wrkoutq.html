@@ -1,0 +1,99 @@
+           <div class="container-fluid">
+
+               <div class="row card">
+                   <div class="header">
+                      <h4 class="title">{{ data.title }}</h4>
+                   </div>
+               </div>
+
+              {{#if data.error}}
+                <div class="row card">
+                  <div class="col-md-8">
+                    <h5 class="alert-danger">{{ data.error }}</h5></div>
+                </div>
+               {{/if}}
+
+
+                <!-- TOOLBAR PART -->
+                <div class="row card">
+                   <div class="col-md-8">
+                      <button type="button" class="btn btn-default ui-button" data-type="action" data-cmd="PF17">Top</button>
+                      <button type="button" class="btn btn-default ui-button" data-type="action" data-cmd="PF18">Bottom</button>
+                   </div>
+
+                   <div class="col-md-4">
+                    <div class="btn-group pull-right" role="group" aria-label="...">
+                      <button type="button" class="btn btn-defaultui-button" data-type="action" data-cmd="PF5">Refresh</button>
+                      <button type="button" class="btn btn-defaultui-button" data-type="action" data-cmd="PF3">Exit</button>
+                    </div>
+                   </div>
+                </div>
+
+                <!-- GRID PART -->
+                <div class="row">
+                    <div class="col-md-12">
+                     <ul class="nav nav-tabs">
+                      <li role="presentation" class="{{ data.view1 }}"><a href="#" class="ui-button" data-type="action" data-cmd="PF11">View 1</a></li>
+                      <li role="presentation" class="{{ data.view2 }}"><a href="#" class="ui-button" data-type="action" data-cmd="PF11">View 2</a></li>
+                    </ul>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-striped" >
+
+                                 <thead>
+                                  <tr>
+                                    {{#each subfile.header}}
+                                        <td>
+                                          {{this}}
+                                        </td>
+                                    {{/each}}
+                                    <td style="width:80px;">Option</td>
+                                  </tr>
+                                </thead>
+
+                                    <tbody>
+
+                                      {{#each subfile.items}}
+                                      
+                                        <tr>
+                                        
+                                        {{#each this}}
+                                          <td>
+                                           <span>{{ this }}</span>
+                                          </td>
+                                        {{/each}}
+
+                                         <td>
+                                          <div class="btn-group pull-right" role="group" aria-label="...">
+                                           <a class="ui-button" title="Release" href="#" data-id="{{js '@index+1' }}" data-val="6" data-cmd="ENTER" data-type="action" ><i class="ti-printer"></i></a>
+                                           <a class="ui-button" title="Hold" href="#" data-id="{{js '@index+1' }}" data-val="3" data-cmd="ENTER" data-type="action" ><i class="ti-control-pause"></i></a>
+                                           <a class="ui-button" title="Delete" href="#" data-id="{{js '@index+1' }}" data-val="4" data-cmd="ENTER" data-type="action" ><i class="ti-trash"></i></a>
+                                           </div>
+                                         </td>
+
+                                      </tr>
+    
+                                  {{/each}}
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+              <!-- FOOTER PART -->
+                <div class="row">
+                  <nav aria-label="...">
+                    <ul class="pager">
+                      <li><a href="#" class="ui-button" data-type="action" data-cmd="PGUP">Previous</a></li>
+                      <li><a href="#" class="ui-button" data-type="action" data-cmd="PGDOWN">Next</a></li>
+                    </ul>
+                  </nav>
+                </div>
+
+            </div>

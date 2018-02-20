@@ -1,0 +1,102 @@
+{
+
+  "description": "",
+  "timestamp": 0,
+  "version": 0,
+  "type" : "screen",
+
+  "templates": {
+    "default": {
+        "html": "screen/web/wrkoutq.html",
+        "output": "#wrapper"
+    },
+    "os" :{
+      "android" : {
+        "html": "screen/mobile/wrkoutq.html"
+      }
+    }
+  },
+
+  "fields": {
+
+  },
+
+  "data": {
+    "fid" : 0,
+    "title" :  [0,29,25],
+    "queueName" :  [2, 10,10],
+    "libraryName" : [2,36,10],
+    "status" :   [2,61,8],
+    "error" : [23,1,78]
+  },
+  "grids": {
+
+    "view1": {
+
+      "def": {
+        "name":"subfile",
+        "opts" : {
+          "view1" : "active"
+        },
+        "match":{"row":8, "col":18, "text":"User"},
+        "rows": 9,
+        "rowHeight": 1
+      },
+      "headers": [
+        [8,  6, 11],
+        [8, 18, 11],
+        [8, 30, 11],
+        [8, 42,  5],
+        [8, 48,  5],
+        [8, 56,  5],
+        [8, 64,  4],
+        [8, 69,  6],
+        [8, 76,  3]
+      ],
+      "data": [
+        [9,  6, 11],
+        [9, 18, 11],
+        [9, 30, 11],
+        [9, 42,  5],
+        [9, 48,  5],
+        [9, 56,  5],
+        [9, 64,  4],
+        [9, 69,  6],
+        [9, 76,  3]
+      ],
+      "totals" : []
+    },
+
+    "view2": {
+
+      "def": {
+        "name":"subfile",
+        "opts" : {
+          "view2" : "active"
+        },
+        "match":{"row":8, "col":40, "text":"User"},
+        "rows": 9,
+        "rowHeight": 1
+      },
+      "headers": [
+        [8,  6, 4],
+        [8, 18, 8],
+        [8, 28, 3],
+        [8, 40, 4],
+        [8, 52, 6],
+        [8, 60, 4],
+        [8, 70, 4]
+      ],
+      "data": [
+        [9,  6, 10],
+        [9, 19,  6],
+        [9, 28, 10],
+        [9, 40, 10],
+        [9, 52,  6],
+        [9, 60,  8],
+        [9, 70,  8]
+      ],
+      "totals" : []
+    }
+  }
+}

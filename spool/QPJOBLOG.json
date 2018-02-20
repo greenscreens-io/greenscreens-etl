@@ -3,15 +3,13 @@
   "description" : "Default mapping to extract system spool files into html based on ECT template rendering",
 
   "templates": {
-    "html": "QPJOBLOG.html",
-    "output": "QPJOBLOG"
+    "default": {
+       "html" : "spool/QPJOBLOG.html",
+       "excel" : "spool/QPJOBLOG.xlsx",
+       "output": "QPJOBLOG"
+    }
   },
   
-  "actions" : {
-    "onResult" : "test",
-    "onExport" : "test",
-    "onExtract" : "test"
-  },
 
   "excel" : {
 
@@ -41,7 +39,7 @@
   },
 
   "data": {
-    "title": [0,50,25],
+    "title": [0,40,30],
     "system": {
       "row": 0,
       "col": 86,
@@ -70,9 +68,7 @@
         "rows": 9,
         "rowHeight": 1,
         "rowIndicator" : [0, 2, 7],
-        "_rowIndicator" : {"row" : 0, "col" : 2, "len" : 7, "match" : ""},
-         "type": [null, null, null, null, null, null, null, null],
-         "trim": [1, 1, 1, 1, 1, 1, 1, 1]
+        "_rowIndicator" : {"row" : 0, "col" : 2, "len" : 7, "match" : ""}
       },
 
       "headers": [

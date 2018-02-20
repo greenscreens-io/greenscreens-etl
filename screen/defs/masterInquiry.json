@@ -1,0 +1,138 @@
+{
+  "description": "",
+  "timestamp": 0,
+  "version": 0,
+  "type" : "screen",
+
+  "templates": {
+    "default": {
+       "html" : "screen/web/masterInquiry.html",
+       "output": "#wrapper"
+    },
+    "os" :{
+      "android" : {
+         "html" : "screen/mobile/masterInquiry.html",
+         "output": "#wrapper"
+       }
+    }
+  },
+
+  "fields": {
+     "filter" : 1
+  },
+
+  "options" : {"row":3, "col":1, "rows":3, "cols": 40, "type" : "opt"},
+
+  "data" : {
+      "time": {
+        "row": 0, 
+        "col": 3, 
+        "len": 8, 
+        "name": "", 
+        "trim": ""
+      },
+      "date": {
+        "row": 0, 
+        "col": 69, 
+        "len": 8, 
+        "name": "", 
+        "trim": ""
+      },
+      "title": {
+        "row": 0, 
+        "col": 24, 
+        "len": 31, 
+        "name": "", 
+        "trim": ""
+      },
+      "user": {
+        "row": 1, 
+        "col": 3, 
+        "len": 10, 
+        "name": "", 
+        "trim": ""
+      },
+      "filterTitle": {
+        "row": 2, 
+        "col": 3, 
+        "len": 18, 
+        "name": "", 
+        "trim": ""
+      }
+  },
+
+  "grids" : {
+
+        "view1" : {
+          "def": {
+            "name":"subfile",
+            "opts" : {
+              "type" : "default",
+              "view1" : "active"
+            },
+            "match": {
+                     "row":4, 
+                     "col":32, 
+                     "text":"First Name", 
+                     "rule":"start"
+            },
+            "rows": 15,
+            "rowHeight": 1
+          },
+
+          "headers": [
+            [4,  7,  5],
+            [4, 15,  9],
+            [4, 32, 10],
+            [4, 46,  2],
+            [4, 49,  7],
+            [4, 65,  7]
+          ],
+
+          "data": [
+            [6,  7,  5],
+            [6, 15, 15],
+            [6, 32, 12],
+            [6, 46,  2],
+            [6, 50,  5],
+            [6, 59, 14]
+          ],
+          "totals" : []
+        },
+
+        "view2" : {
+          "def": {
+            "name":"subfile",
+            "opts" : {
+              "type" : "alternate",
+              "view2" : "active"
+            },
+            "match": {"row":4, "col":32, "text":"Address", "rule":"start"},
+            "rows": 15,
+            "rowHeight": 1
+          },
+    
+          "headers": [
+            [4,  7,  5],
+            [4, 15,  9],
+            [4, 32,  7],
+            [4, 53,  4],
+            [4, 73,  4],
+            [4, 78,  2]
+          ],
+
+          "data": [
+            [6,  7,  5],
+            [6, 15, 15],
+            [6, 32, 20],
+            [6, 53, 20],
+            [6, 74,  3],
+            [6, 78,  1]
+          ],
+          "totals" : []
+        }
+  }
+
+}
+
+

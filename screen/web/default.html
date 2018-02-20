@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <title>Web Terminal - Modernization</title>
+
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+  <meta name="viewport" content="width=device-width" />
+
+  <!-- Bootstrap core CSS     -->
+  <link href="{{env.origin}}/resources/assets/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Animation library for notifications   -->
+  <link href="{{env.origin}}/resources/assets/css/animate.min.css" rel="stylesheet" />
+
+  <!--  Paper Dashboard core CSS    -->
+  <link href="{{env.origin}}/resources/assets/css/paper-dashboard.css" rel="stylesheet" />
+
+  <!--  CSS for Demo Purpose, don't include it in your project     -->
+  <link href="{{env.origin}}/resources/assets/css/demo.css" rel="stylesheet" />
+
+  <!--  Fonts and icons     -->
+  <link href="{{env.origin}}/resources/assets/fonts/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="{{env.origin}}/resources/assets/fonts/muli/muli.css" rel="stylesheet" type="text/css">
+  <link href="{{env.origin}}/resources/assets/css/themify-icons.css" rel="stylesheet">
+
+  <style>
+  
+    li.active {
+      font-weight: bold;
+    }
+
+    .ui-button {
+      cursor: pointer;
+      background: white;
+      border: 1px solid #e8e8e8 !important;
+    }
+
+    .card {
+      padding: 5px;
+    }
+
+    .jconfirm input {
+      border: 1px solid lightgray;
+    }
+    
+    .loader_back {
+        z-index: 9999999;
+        background : #343434;
+        font-weight: bold;
+        display: flex;
+        border-radius: 5px;
+        position: absolute;
+        left: 47%;
+        top: 45%;
+        margin: auto;
+        padding : 8px;
+        display:none;
+     }
+    
+    .loader {
+        border: 8px solid #565656;
+        border-top: 8px solid #ffffffc9;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 0.75s linear infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+  </style>
+</head>
+
+<body>
+
+  <template id="prompt">
+		<div class="form-group">
+		    <input autofocus type="text" name="value"  class="form-control" >
+		</div>
+		<p class="text-danger" style="display:none">Empty value not allowed!</p>
+	</template>
+
+
+  <div class="wrapper">
+    <div class="sidebar" data-background-color="white" data-active-color="danger">
+
+      <!--
+		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+	-->
+
+      <div class="sidebar-wrapper">
+        <div class="logo">
+          <a href="#" class="simple-text">Options</a>
+        </div>
+
+        <ul class="nav">
+          <li class="active">
+            <a href="#" id="dashboard">
+                        <i class="ti-panel"></i>
+                        <p>Dashboard</p>
+                    </a>
+          </li>
+          <li>
+            <a href="#" data-type="sidebar" data-cmd="ENTER" data-val="wrkactjob" data-opt="[[19,6],[20,6]]">
+                        <i class="ti-user"></i>
+                        <p>Active Jobs</p>
+                    </a>
+          </li>
+          <li>
+            <a href="#" data-type="sidebar" data-cmd="ENTER" data-val="wrkoutq PRTDEMO" data-opt="[[19,6],[20,6]]">
+                        <i class="ti-view-list-alt"></i>
+                        <p>OUTQ PRTDEMO</p>
+                    </a>
+          </li>
+          <li>
+            <a href="#" id="queue">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Output Queue</p>
+                    </a>
+          </li>
+          <li>
+            <a href="#" id="signout">
+                        <i class="ti-power-off"></i>
+                        <p>Sign Out</p>
+                    </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+    <div class="main-panel">
+      <nav class="navbar navbar-default">
+
+        <div class="container-fluid">
+
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar bar1"></span>
+                        <span class="icon-bar bar2"></span>
+                        <span class="icon-bar bar3"></span>
+                    </button>
+            <a class="navbar-brand" href="#">Green Screens Web Terminal</a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li id="cmd">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="command">
+                                <i class="ti-comment"></i>
+                                <p>Command</p>
+                            </a>
+              </li>
+              <li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="terminal">
+                                <i class="ti-desktop"></i>
+                                <p>Terminal</p>
+                            </a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="ti-printer"></i>
+                                <p>Printer</p>
+                                <b class="caret"></b>
+                              </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#" id="printer">Start</a></li>
+                  <li><a href="#" id="template">Template</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="ti-server"></i>
+                                    <p>Transfers</p>
+                                    <b class="caret"></b>
+                              </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#" id="upload">Upload</a></li>
+                  <li><a href="#" id="download">Download</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="reload">
+                                <i class="ti-reload"></i>
+                            </a>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+
+      </nav>
+
+      <div class="content" id="wrapper"></div>
+
+      <footer class="footer">
+        <div class="container-fluid">
+          <nav class="pull-left">
+            <ul>
+
+              <li>
+                <a href="http://blog.greenscreens.io">Blog</a>
+              </li>
+              <li>
+                <a href="http://www.greenscreens.io/license.html">Licenses</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright pull-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.greenscreens.io">Green Screens</a>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+<div id="loader" class="loader_back">
+ <div class="loader"></div>
+</div>
+</body>
+
+<!--   Core JS Files   -->
+<script src="{{env.origin}}/resources/assets/js/jquery-1.10.2.js" type="text/javascript" charset="UTF-8"></script>
+<script src="{{env.origin}}/resources/assets/js/bootstrap.min.js" type="text/javascript" charset="UTF-8"></script>
+<script src="{{env.origin}}/resources/assets/js/bootstrap-checkbox-radio.js"></script>
+<script src="{{env.origin}}/resources/assets/js/bootstrap-notify.js"></script>
+<script src="{{env.origin}}/lite/lib/microevent.js" type="text/javascript" charset="UTF-8"></script>
+<script src="{{env.origin}}/lite/lib/ui.js" type="text/javascript" charset="UTF-8"></script>
+
+<script type="text/javascript">
+
+  function showNotification(msg, from, align, type, delay){
+
+    return $.notify({
+      icon: "ti-gift",
+      message: msg || ''
+     },{
+      allow_dismiss: false,
+      delay: delay || 2500,
+      type: type || 'info',
+      placement: {
+        from: from || 'top',
+        align: align || 'center'
+      }
+   });
+  }
+
+  function hideSidebar() {
+    $('#cmd').hide();
+    $('.sidebar').hide();
+    $('.main-panel').css({
+      width: '100%'
+    });
+  }
+
+  function showSidebar() {
+    $('#cmd').show();
+    $('.sidebar').show();
+    $('.main-panel').css({
+      width: ''
+    });
+  }
+
+  function onCommand(val) {
+    var data = [{
+      val: val,
+      opt: [[19, 6],[20, 6]]
+    }];
+    Tn5250.sendTerminal('ENTER', data);
+  }
+
+  function onPrompt(v, id) {
+    if (v && v.value) {
+      if (id === 'cmd') {
+        onCommand(v.value);
+      }
+      if (id === 'outq') {
+        onCommand('wrkoutq ' + v.value);
+      }
+    }
+  }
+
+  function onHtml(target, data, json) {
+    Tn5250.unlink();
+    $('#loader').hide();
+    var el = document.querySelector("template[data-id='main']");
+    if (el) {
+      showSidebar();
+    } else {
+      hideSidebar();
+    }
+    setTimeout(function() {
+      Tn5250.link();
+    }, 10);
+  }
+
+  function onSubmit(data) {
+    $('#loader').show();
+    Tn5250.unlink();
+  }
+
+  function onError(data){
+    Tn5250.unlink();
+    if (data.output) {
+       $('#wrapper').html(data.err);
+    } else {
+       showNotification(data.err,null,null, 'danger', 2000);
+    }
+    Tn5250.link();
+  }
+
+  $(document).on('keydown', function(e) {
+    if (e.key && e.key.length > 1 && e.key.indexOf('F') === 0) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  });
+
+  $(document).ready(function() {
+
+    hideSidebar();
+    Tn5250.init(false);
+
+    $("#reload").click(Tn5250.reload);
+    $("#terminal").click(Tn5250.switchTerminal);
+    $("#printer").click(Tn5250.printer);
+    $("#template").click(Tn5250.template);
+    $("#upload").click(Tn5250.upload);
+    $("#download").click(Tn5250.download);
+
+    Tn5250.listen('html', onHtml);
+    Tn5250.listen('submit', onSubmit);
+    Tn5250.listen('prompt', onPrompt);
+     Tn5250.listen('error', onError);
+
+    $('.sidebar-wrapper a[data-type="sidebar"]').click(Tn5250.onAction);
+
+    $('#dashboard').click(function() {
+      Tn5250.macro({
+        "cmd": "PF3",
+        "stopTrigger": {row: 0, col: 1, text: "MAIN"}
+      });
+    });
+
+    $('#queue').click(function() {
+      Tn5250.prompt('Enter OUTQ', '#prompt', 'outq');
+    });
+
+    $('#command').click(function() {
+      Tn5250.prompt('Enter command ', '#prompt', 'cmd');
+    });
+
+    $('#signout').click(function() {
+
+      var macro = [{
+          "cmd": "PF3",
+          "stopTrigger": {row: 0, col: 1, text: "MAIN"}
+        },
+        {
+          "cmd": "ENTER",
+          "fields": [ [1, "90"] ]
+        }
+      ];
+      Tn5250.macro(macro);
+    });
+
+  });
+</script>
+
+</html>

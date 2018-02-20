@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <title>Acme Ltd.</title>
+  <link rel="stylesheet" href="**assets/css/framework7.min.css">
+  <link rel="stylesheet" href="**assets/css/fonts.css">
+  <script type="text/javascript" src="**assets/lib/framework7.min.js"></script>
+  <script type="text/javascript" src="**assets/lib/jquery.min.js"></script>
+  <script type="text/javascript" src="**assets/lib/microevent.js"></script>
+  <script type="text/javascript" src="{{env.origin}}/lite/lib/ui.js"></script>
+
+</head>
+
+<body>
+
+  <!-- Status bar overlay for full screen mode (PhoneGap) -->
+  <div class="statusbar"></div>
+
+  <!-- Panels overlay-->
+  <div class="panel-backdrop"></div>
+
+  <!-- Left panel with reveal effect-->
+  <div class="panel panel-left panel-reveal">
+    <div class="block">
+       <a href="#" id="terminal" class="button button-fill button-raised">Terminal</a>
+    </div>
+
+    <div class="block">
+       <a href="#" id="reload" class="button button-fill button-raised">Reload</a>
+    </div>    
+  </div>
+
+  
+    <!-- Main view, should have "view-main" class -->
+    <div class="view view-main" name="appView">
+
+      <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+      <div class="page" name="main" data-page="main">
+
+      <!-- Top Navbar-->
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="left">
+          	<a href="#" class="link icon-only panel-open"><i class="f7-icons">bars</i></a>
+          </div>
+          <div dir="ltr" class="center sliding">Acme Ltd.</div>
+          <div class="right">
+
+          </div>
+        </div>
+      </div>
+
+
+        <!-- Page, "data-page" contains page name -->
+        <div data-page="index" name="index" class="page">
+
+          <!-- Scrollable page content -->
+          <div dir="ltr" class="page-content">
+
+            <div class="block-title">Welcome</div>
+            <div class="block">
+              <p>Please wait while loading resources...</p>
+            </div>
+
+          </div>
+
+        </div>
+        <!-- end page-content -->
+
+      </div>
+      <!-- end page -->
+
+
+    </div>
+    <!-- end view -->
+
+   <script type="text/javascript">
+
+      window.$$ = Dom7;
+      var OPTS = {pushState: false, reloadAll:true, history:false, force:true, reloadCurrent: true , animate:false};
+
+      var myApp = new Framework7({
+        theme : 'md',
+
+        animatePages: false,
+        materialRipple:false,
+        sortable: false,
+        swipeBackPageAnimateShadow: false,
+        swipeBackPageAnimateOpacity: false,
+        swipeout : false,
+        swipeoutNoFollow:true,
+        swipePanelNoFollow:true,
+        animateNavBackIcon: false,
+
+        routes: [],
+        on : {
+            pageInit : function(page) {
+              if (location.pathname.endsWith(page.route.path) || location.pathname === page.route.path || page.route.name==='index') {
+                Tn5250.init(true);
+                $("#terminal").click(function(){
+                  myApp.panel.close();
+                  Tn5250.switchTerminal();
+                });
+                $("#reload").click(Tn5250.reload);
+              }
+            }
+        }
+      });
+      
+      function wrap(data) {
+        return '<div data-page="blank" class="page"><div class="navbar"><div class="navbar-inner"><div class="left"><a href="#" class="link icon-only panel-open"><i class="f7-icons">bars</i></a></div></div></div><div class="page-content">' + data + '</div></div>';
+      }
+
+      // Add main view
+      var mainView = myApp.views.create('.view-main', {
+        dynamicNavbar: false,
+        domCache: false
+      });
+
+     Tn5250.listen('error', function(data){
+        mainView.router.load({url:'/q/', content:wrap('Internal template error: ' + data), OPTS});
+     });
+
+      Tn5250.listen('submit', function(cmd, action, data){
+         //myApp.dialog.progress();
+         myApp.preloader.show();
+      });
+
+     Tn5250.listen('message', function(){
+         //myApp.dialog.close();
+         myApp.preloader.hide();
+     });
+
+      Tn5250.listen('html', function(el,data, json){
+         if (data.indexOf('class="page"') < 0) {
+            data = wrap(data);
+         }
+         mainView.router.load({url:'/q/', content:data} , OPTS);
+      });
+   </script>
+
+
+</html>

@@ -3,8 +3,10 @@
   "description" : "Demo for invoice spool",
 
   "templates": {
-    "html": "invoice.html",
-    "output": "INVOICE"
+    "default": {
+       "html" :  "spool/invoice.html",
+       "output": "INVOICE"
+    }
   },
 
   "data": {
@@ -15,21 +17,21 @@
       "page": 1,
       "trim": true
     },
-    "clientName": [2,0,50],
+    "clientName":   [2,0,50],
     "clientStreet": [3,0,50],
-    "clientCity": [4,0,50],
-    "clientEmail": [5,6,50],
+    "clientCity":   [4,0,50],
+    "clientEmail":  [5,6,50],
 
     "invoiceID": [6,10,50],
     "orderID": [7,10,50],
 
-    "companyName":   [2,70,41],
-    "companyStreet": [3,70,41],
-    "companyCity":   [4,70,41],
-    "companyEmail":  [5,90,21],
+    "companyName":   [2,70,60],
+    "companyStreet": [3,70,60],
+    "companyCity":   [4,70,60],
+    "companyEmail":  [5,99,20],
 
-    "companySwift": [6, 101, 10],
-    "companyIBAN":  [7,  95, 16],
+    "companySwift": [6, 99, 20],
+    "companyIBAN":  [7, 99, 20],
 
     "paymentDue": [8, 13, 25],
     "amountDue":  [8, 99, 11]
@@ -43,31 +45,28 @@
       "def": {
         "startPage": 1,
         "pages": null,
-        "rows": 10,
+        "maxRows": 10,
         "rowHeight": 1,
-        "rowIndicator" : [0, 100, 10],
-        "_rowIndicator" : {"row" : 0, "col" : 2, "len" : 7, "match" : ""},
-         "type": [null, null, null, null, null, null, null, null],
-         "trim": [1, 1, 1, 1, 1, 1],
-         "total" : ["*",100,11]
+        "rowIndicator" : {"row" : 0, "col" : 0, "len" : 7, "match" : "\\d" },
+        "totalIndicator" : {"row" : 12, "col" : 92, "len" : 5, "match" : "Total" }
       },
 
       "headers": [
          [10,0,8],
-         [10,9,16],
-         [10,11,54],
-         [10,79,15],
-         [10,94,9],
-         [10,103,8]
+         [10,8,16],
+         [10,24,54],
+         [10,78,15],
+         [10,93,9],
+         [10,102,8]
       ],
 
       "data": [
          [12,0, 5],
-         [12,7,16],
-         [12,23,54],
-         [12,78,12],
-         [12,91,8],
-         [12,100,10]
+         [12,8,16],
+         [12,24,54],
+         [12,78,15],
+         [12,93,9],
+         [12,102,8]
       ],
       
       "totals": [

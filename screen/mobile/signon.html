@@ -1,0 +1,53 @@
+<div data-page="login-screen" class="page">
+
+      <	!-- Top Navbar-->
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="left">
+          	<a href="#" class="link icon-only panel-open"><i class="f7-icons">bars</i></a>
+          </div>
+          <div dir="ltr" class="center sliding">Acme Ltd.</div>
+          <div class="right">
+            
+          </div>
+        </div>
+      </div>
+      
+    <div dir="ltr" class="page-content login-screen-content">
+      <form autocomplete="off">
+        <div class="list block">
+          <ul>
+          	<li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Username</div>
+                    <div class="item-input-wrap">
+                      <input type="text" value="{{data.user}}" name="username" maxlength=10 placeholder="Your username" data-id="1" required="required" style="text-transform: uppercase;"/>
+                      <span class="input-clear-button" style="right: 0;left: 90%;"></span>
+                    </div>
+                  </div>
+                </li>
+
+          	<li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Password</div>
+                    <div class="item-input-wrap">
+                      <input type="password" value="{{data.password}}" name="password" maxlength=10 placeholder="Your password" data-id="2"  required="required" />
+                      <span class="input-clear-button" style="right: 0;left: 90%;"></span>
+                    </div>
+                  </div>
+                </li>
+
+          </ul>
+        </div>
+
+        <div class="block">
+          <a href="#" class="button button-fill button-big active" data-type="submit" data-cmd="ENTER">Sign In</a>
+        </div>
+
+        <div class="block">
+          <h5 style="color:red;" class="center">{{data.error}}</h5>
+        </div>
+
+      </form>
+    </div>
+  </div>

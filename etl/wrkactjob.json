@@ -1,10 +1,17 @@
 {
 
+  "description": "",
+  "timestamp": 0,
+  "version": 0,
+  "type" : "export",
+
   "templates": {
-    "excel": "wrkactjob.xlsx",
-    "word": "wrkactjob.docx",
-    "output": "wrkactjob",
-    "script": null
+     "default" : {
+         "excel": "etl/wrkactjob.xlsx",
+         "word": "etl/wrkactjob.docx",
+         "output": "etl/wrkactjob",
+         "script": null
+     }
   },
 
   "excel": {
@@ -81,16 +88,16 @@
       "macro": [
         {
           "cmd": "PGDOWN",
-	  "startTrigger": { "r" : 18, "c":72, "t":"More..."},
-	  "stopTrigger": {"r" : 18, "c": 73, "t": "Bottom"},
-	  "processTrigger": {"r" : 8, "c": 6, "t": "Subsystem/Job"}
+	  "startTrigger": { "row" : 18, "col":72, "text":"More..."},
+	  "stopTrigger": {"row" : 18, "col": 73, "text": "Bottom"},
+	  "detect": {"row" : 8, "col": 6, "text": "Subsystem/Job", "rule" : "exist"}
         }
       ],
       "def": {
         "rows": 9,
         "rowHeight": 1,
-        "type": [null, null, null, "f", null, null, null],
-        "trim": [0, 1, 1, 1, 1, 1, 0]
+        "sort" : [1, 0],
+        "_filter" : {"1":"QSECOFR"}
       },
       "headers": [
         [8,  6, 13],
@@ -105,7 +112,7 @@
         [9,  6, 13],
         [9, 21, 11],
         [9, 33,  5],
-        [9, 39,  5],
+        [9, 39,  5, null, "float"],
         [9, 46, 15],
         [9, 63,  8],
         "Fixed"

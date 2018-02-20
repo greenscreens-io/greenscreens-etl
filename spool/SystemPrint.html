@@ -18,7 +18,6 @@
   color: grey;
 }
 </style>
-
 <body>
 
 
@@ -47,12 +46,11 @@
     </thead>
     <tbody>
         {{#each grid1.items}}
-           {{set "_tmp" this[1].trim()}}
 
-           {{#js_if "@root._tmp === 'Diagnostic'"}}
+           {{#js_if "this[1] === 'Diagnostic'"}}
                <tr class="danger">
            {{else}}
-             {{#js_if "@root._tmp === 'Escape'"}}
+             {{#js_if "this[1] === 'Escape'"}}
                  <tr class="warning">
              {{else}}
                  <tr>
@@ -63,14 +61,14 @@
 
                  {{#js_if "@index === 11"}}
                       <td class="text-center">
-                          {{#if this}}
-                            <a href="#" class="glyphicon glyphicon-envelope" data-toggle="popover" data-content="<pre>{{this}}</pre>" rel="popover" data-placement="left" data-trigger="hover"></a>
+                          {{#if this[11]}}
+                            <a href="#" class="glyphicon glyphicon-envelope" data-toggle="popover" data-content="<pre>{{this[11]}}</pre>" rel="popover" data-placement="left" data-trigger="hover"></a>
                           {{else}}
                               <p>N/A</p>
                           {{/if}}
                       </td>
                  {{else}}
-                   <td>{{this}}</td>
+                   <td>{{this[@index]}}</td>
                  {{/js_if}}
 
 

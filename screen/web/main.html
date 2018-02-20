@@ -1,0 +1,89 @@
+ <style>
+
+    .uiControls,
+    .uiControls li{
+      list-style: none;
+      margin: 0 0 1em;
+      padding: 0;
+    }
+
+    .uiControls li {
+      display: inline-block;
+      padding: 0.25em 0.5em;
+      background: #555;
+      color: #eee;
+      float: left;
+      line-height: 150%;
+      font-size: 1em;
+      margin-left: 1px;
+    }
+
+    .uiControls li:hover {
+      background: #999;
+    }
+
+    .main-panel .wrapper {
+      display: block;
+      width: 50%;
+      min-width: 320px;
+      margin: 2em auto;
+      padding: 0 1em 0.1em;
+    }
+
+  .main-panel .container  {
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.55);
+  }
+
+  .main-panel .menu {
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 16px;
+      padding: 8px;
+      margin: 1px;
+      color: rgba(0,0,0, 0.5);
+      background: rgba(255, 255, 255, 0.14);
+  }
+
+  .main-panel .menu:hover {
+    background: rgba(0, 0, 0, 0.14);
+    color: rgb(255, 255, 255);
+  }
+
+  .main-panel .menulist {
+
+  }
+ </style>
+
+  <template data-id="main" ></template>
+
+    <!-- TOOLBAR PART -->
+    {{#if data.error}}
+       <div class="row">
+         <div class="col-md-offset-3 col-md-6"><h5 class="alert-danger">{{data.error}}</h5></div>
+       </div>
+    {{/if}}
+
+  <div class="container">
+    <div class="row">
+      <div align="center" class="col-md-12"><h3>{{data.title}}</h3></div>
+    </div>
+
+  <!-- SUBFILE PART -->
+    <div class="row menulist">
+          {{#each $options }}
+             <div class="col-xs-12 menu" data-id="1" data-cmd="ENTER" data-type="action" data-val="{{this.v}}" > {{this.t}} </div>
+          {{/each}}
+    </div>
+
+  <!-- FOOTER PART -->
+    <div class="row">
+        <div align="center" class="col-md-offset-5 col-md-6">
+            <ul class="uiControls">
+              <li class="ui-button" data-id="1" data-cmd="PF3" data-type="action" >RETURN</li>
+            </ul>
+      </div>
+    </div>
+
+
+  </div>
+  

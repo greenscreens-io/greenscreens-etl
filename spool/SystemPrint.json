@@ -1,12 +1,12 @@
 {
 
-  "description" : "Default mapping to extract system spool files into excel",
+  "description" : "Default mapping to extract system spool files into html based on ECT template rendering",
 
   "templates": {
-     "default" : {
-         "excel": "default.xlsx",
-         "output": "SystemPrint"
-     }
+    "default": {
+       "html" : "spool/SystemPrint.html",
+       "output": "SystemPrint"
+    }
   },
 
   "excel" : {

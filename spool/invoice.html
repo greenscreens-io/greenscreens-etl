@@ -1,14 +1,3 @@
-<% itemHelper = (item) -> %>
-<tr>
-   <td><%- item[0] %></td>
-   <td><%- item[1] %></td>
-   <td><%- item[2] %></td>
-   <td class="text-right"><%- item[3] %></td>
-   <td class="text-right"><%- item[4] %></td>
-   <td class="text-right"><%- item[5] %></td>
-</tr>
-<% end %>
-
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -16,8 +5,8 @@
       <title>Demo app</title>
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link href="<%- @env.origin %>/resources/assets/css/bootstrap.min.css" rel="stylesheet" >
-      <link href="<%- @env.origin %>/resources/assets/fonts/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
+      <link href="{{env.origin}}/resources/assets/css/bootstrap.min.css" rel="stylesheet" >
+      <link href="{{env.origin}}/resources/assets/fonts/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
       <style>
          html,body{background:#f6f6f6;position:absolute;top:0;bottom:0;left:0;right:0;border:0;padding:0;margin:0;line-height:normal!important;overflow:hidden;color:#73879C;font-family:"Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;font-size:13px;font-weight:400;line-height:1.471;overflow-y:auto}.alert-info{color:#fff;background-color:rgba(0,0,0,0.75);border-color:#c1c1c1;box-shadow:0 0 10px -2px #000}.info{display:none;color:#ff6e6e}.invalid .info.active{display:flex}form .invalid{border:1px solid #fbbebe!important;background:#ffefef}.fade{-webkit-transition:none;-o-transition:none;transition:none}.c1{background:#b6d066!important}.c2{background:#6690d0!important}.c3{background:#c066d0!important}.c4{background:#e24747!important}.center{text-align:center}.over{display:none;width:100%;background:rgba(0,0,0,0.25);height:100%;bottom:0;top:0;left:0;position:absolute;z-index:1000;overflow:hidden}.flat input,.flat input:focus,.flat select,.flat select:focus{border:none;border-color:lightgray;border-bottom:1px solid lightgray;box-shadow:none;border-radius:0}.flat textarea,.flat textarea:focus{border-color:lightgray;box-shadow:none;border-radius:0;border:1px solid lightgray}.flat input:focus,.flat select:focus,.flat textarea:focus{box-shadow:0 2px 6px -1px #7d7d7d}.form-control[disabled],.form-control[readonly],fieldset[disabled] .form-control{background-color:#f7f7f7;opacity:1;color:gray;border:0;font-weight:700}.scene{background-image:url(../images/logo.png);background-position:50% 50%;background-position-x:50%;background-position-y:50%;background-repeat:no-repeat}.frame{background:#fff;border:1px solid lightgray;box-shadow:1px 1px 8px #ccc}#wrapper{padding-left:0;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;transition:all .5s ease;overflow:hidden}#wrapper.toggled{padding-left:250px;overflow:hidden}#sidebar-wrapper{z-index:1000;position:fixed;left:250px;width:0;height:100%;bottom:0;_top:50px;margin-left:-250px;overflow:hidden;background:#32404e;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;transition:all .5s ease}#wrapper.toggled #sidebar-wrapper{width:250px}.wrapper{padding:15px;width:100%;overflow-x:hidden}.xyz{min-width:360px}#wrapper.toggled .wrapper{position:relative;margin-right:0}#topbar{background:#32404e}.nav>li{min-height:40px}.navbar{border:none;border-radius:0;box-shadow:1px 1px 5px #888}.navbar-default{background-color:#fff;background-size:200px;background-repeat:no-repeat;background-position:center 10px;background-position-x:center;background-position-y:10px;background-image:url(../images/logo.png)}.navbar-default .navbar-brand,.navbar-default .navbar-brand:focus,.navbar-default .navbar-brand:hover{background:#32404e;width:50px;padding:10px;color:#fff}.navbar-toggle{border:0}.navbar-default .navbar-toggle:focus,.navbar-default .navbar-toggle:hover{background-color:transparent}.navbar-nav>li>a{padding:10px 20px}.fixed-brand{width:auto;background:#32404e;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;transition:all .5s ease}.fixed-brand2{-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;transition:all .5s ease}.fixed-brand2 .navbar-brand{color:transparent}a.brand{color:#fff!important;font-size:18px;font-weight:700;border-bottom:1px solid gray}a.brand:focus{background:transparent}.sidebar-nav{position:absolute;top:0;width:250px;margin:0;padding:0;list-style:none;margin-top:2px}.sidebar-nav li{text-indent:15px;line-height:60px}.sidebar-nav li a{display:block;text-decoration:none;color:#adb3b8}.sidebar-nav li a:hover{text-decoration:none;color:#adb3b8;background:#3c4a57}.nav-pills>li.active>a,.nav-pills>li.active>a:focus,.nav-pills>li.active>a:hover{color:#adb3b8;background-color:#475360;border-left:#4790ea 4px solid}.sidebar-nav li a:active,.sidebar-nav li a:focus{text-decoration:none}.sidebar-nav>.sidebar-brand{height:65px;font-size:18px;line-height:60px}.sidebar-nav>.sidebar-brand a{color:#999}.sidebar-nav>.sidebar-brand a:hover{color:#fff;background:none}.no-margin{margin:0}.nav-pills>li>a{border-radius:0}i{padding-top:10px}.buttons button{color:#fff!important;background:#F16000!important}.buttons button:hover{background:#F49B60!important}.buttons button a{color:#fff!important}.x_panel{position:relative;width:100%;margin-bottom:10px;padding:10px 17px;display:inline-block;background:#fff;-webkit-column-break-inside:avoid;-moz-column-break-inside:avoid;column-break-inside:avoid}.x_title{border-bottom:2px solid #E6E9ED;padding:1px 5px 6px;margin-bottom:10px}.x_title .filter{width:40%;float:right}.x_title h2{margin:5px 0 6px;float:left;display:block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}.x_title h2 small{margin-left:10px}.x_title span{color:#BDBDBD}.panel_toolbox{float:right;min-width:70px}.panel_toolbox>li{float:left}.panel_toolbox>li>a{padding:5px;padding-right:35px;color:#C5C7CB;font-size:14px}.panel_toolbox>li>a:hover{background:#F5F7FA}.tile-stats{position:relative;display:block;margin-bottom:12px;border:1px solid #E4E4E4;-webkit-border-radius:5px;overflow:hidden;padding-bottom:5px;-webkit-background-clip:padding-box;-moz-border-radius:5px;-moz-background-clip:padding;border-radius:5px;background-clip:padding-box;background:#FFF;-moz-transition:all 300ms ease-in-out;-o-transition:all 300ms ease-in-out;-webkit-transition:all 300ms ease-in-out;transition:all 300ms ease-in-out}.tile-stats:hover .icon i{animation-name:tansformAnimation;animation-duration:.5s;animation-iteration-count:1;color:rgba(58,58,58,0.41);animation-timing-function:ease;animation-fill-mode:forwards;-webkit-animation-name:tansformAnimation;-webkit-animation-duration:.5s;-webkit-animation-iteration-count:1;-webkit-animation-timing-function:ease;-webkit-animation-fill-mode:forwards;-moz-animation-name:tansformAnimation;-moz-animation-duration:.5s;-moz-animation-iteration-count:1;-moz-animation-timing-function:ease;-moz-animation-fill-mode:forwards}.tile-stats .icon{color:#BAB8B8;position:absolute;right:8px;top:22px;z-index:1}.tile-stats .icon i{margin:0;font-size:60px;line-height:0;vertical-align:bottom;padding:0}.tile-stats .count{font-size:38px;font-weight:700;line-height:1.65857143}.tile-stats .count,.tile-stats h3,.tile-stats p{position:relative;margin:0;margin-left:10px;z-index:5;padding:0}.tile-stats h3{color:#BAB8B8}.tile-stats p{margin-top:5px;font-size:12px}.tile-stats>.dash-box-footer{position:relative;text-align:center;margin-top:5px;padding:3px 0;color:#fff;color:rgba(255,255,255,0.8);display:block;z-index:10;background:rgba(0,0,0,0.1);text-decoration:none}.tile-stats>.dash-box-footer:hover{color:#fff;background:rgba(0,0,0,0.15);color:#fff;background:rgba(0,0,0,0.15)}.pricing{background:#fff;border:1px solid #e8e8e8;box-shadow:0 2px 6px 3px rgba(230,226,226,0.35)}.pricing .title{background:#1ABB9C;height:110px;color:#fff;padding:15px 0 0;text-align:center}.pricing .title h2{text-transform:capitalize;font-size:18px;border-radius:5px 5px 0 0;margin:0;font-weight:400}.pricing .title h1{font-size:30px;margin:12px}.pricing .title span{background:rgba(51,51,51,0.28);padding:2px 5px}.pricing_features{background:#FAFAFA;padding:20px 15px;min-height:230px;font-size:13.5px}.pricing_features ul li{margin-top:10px}.pricing_footer{padding:10px 15px;background-color:#f5f5f5;border-top:1px solid #ddd;text-align:center;border-bottom-right-radius:3px;border-bottom-left-radius:3px}.pricing_footer p{font-size:13px;padding:10px 0 2px;display:block}.ui-ribbon-container{position:relative}.ui-ribbon-container .ui-ribbon-wrapper{position:absolute;overflow:hidden;width:85px;height:88px;top:-3px;right:-3px}.ui-ribbon-container.ui-ribbon-primary .ui-ribbon{background-color:#5b90bf}.ui-ribbon-container .ui-ribbon{position:relative;display:block;text-align:center;font-size:15px;font-weight:700;color:#fff;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg);padding:7px 0;left:-5px;top:15px;width:120px;line-height:20px;background-color:#555;box-shadow:0 0 3px rgba(0,0,0,.3)}.ui-ribbon-container.ui-ribbon-primary .ui-ribbon:after,.ui-ribbon-container.ui-ribbon-primary .ui-ribbon:before{border-top:2px solid #5b90bf}.ui-ribbon-container .ui-ribbon:before{left:0;bottom:-1px;right:0}.ui-ribbon-container .ui-ribbon:after,.ui-ribbon-container .ui-ribbon:before{position:absolute;content:" ";line-height:0;border-top:2px solid #555;border-left:2px solid transparent;border-right:2px solid transparent}.jconfirm.jconfirm-white .jconfirm-bg{background-color:#000}@media ( min-width :768px){#wrapper{padding-left:250px}.fixed-brand{width:250px}#wrapper.toggled{padding-left:0}#sidebar-wrapper{width:250px}#wrapper.toggled #sidebar-wrapper{width:250px}#wrapper.toggled-2 #sidebar-wrapper{width:50px}#wrapper.toggled-2 #sidebar-wrapper:hover{width:250px}.wrapper{padding:20px;padding-bottom:0;position:relative;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;transition:all .5s ease}#wrapper.toggled .wrapper{position:relative;margin-right:0;padding-left:250px}#wrapper.toggled-2 .wrapper{position:relative;margin-right:0;margin-left:-200px;-webkit-transition:all .5s ease;-moz-transition:all .5s ease;-o-transition:all .5s ease;transition:all .5s ease;width:auto}}@media ( max-width :768px){.navbar-brand{display:none}.nav{overflow-x:hidden}.table-responsive{border:0}}@media print{.no-print,.no-print *{display:none!important}}.blink{animation:blinker 1.5s linear infinite}@keyframes blinker{50%{opacity:.2}}tfoot{background: lightgrey;}
       </style>
@@ -28,7 +17,7 @@
          <div class="row">
             <div class="col-xs-12 invoice-header">
                <h1>
-                  Invoice <small class="pull-right" style="padding-right: 20px;">Date: <%- @invoiceDate.trim() %></small>
+                  Invoice <small class="pull-right" style="padding-right: 20px;">Date: {{invoiceDate}}</small>
                </h1>
             </div>
             <!-- /.col -->
@@ -39,10 +28,10 @@
                <div>
                   To
                   <address>
-                     <strong><%- @clientName.trim() %></strong>
-                     <br><%- @clientStreet.trim() %>
-                     <br><%- @clientCity.trim() %>
-                     <br>Email: <%- @clientEmail.trim() %>
+                     <strong>{{clientName}}</strong>
+                     <br>{{clientStreet}}
+                     <br>{{clientCity}}
+                     <br>Email: {{clientEmail}}
                   </address>
                </div>
             </div>
@@ -51,10 +40,10 @@
                <div class="pull-right" style="padding-right: 35px;;text-align: right;">
                   From
                   <address>
-                     <strong><%- @companyName.trim() %></strong>
-                     <br><%- @companyStreet.trim() %>
-                     <br><%- @companyCity.trim() %>
-                     <br>Email: <%- @companyEmail.trim() %>
+                     <strong>{{companyName}}</strong>
+                     <br>{{companyStreet}}
+                     <br>{{companyCity}}
+                     <br>Email: {{companyEmail}}
                   </address>
                </div>
             </div>
@@ -64,16 +53,16 @@
          <div class="row invoice-info">
             <div class="col-xs-6 invoice-col">
                <div>
-                  <b>Invoice: #<%- @invoiceID.trim() %></b>
-                  <br> <b>Order ID:</b> <%- @orderID.trim() %>
-                  <br> <b>Payment Due:</b> <%- @paymentDue.trim() %>
+                  <b>Invoice: #{{invoiceID}}</b>
+                  <br> <b>Order ID:</b> {{orderID}}
+                  <br> <b>Payment Due:</b> {{paymentDue}}
                </div>
             </div>
             <!-- /.col -->
             <div class="col-xs-6 invoice-col">
                <div class="pull-right" style="text-align: right;">
-                  <b>SWIFT:</b> <%- @companySwift.trim() %>
-                  <br> <b>IBAN:</b> <%- @companyIBAN.trim() %>
+                  <b>SWIFT:</b> {{companySwift}}
+                  <br> <b>IBAN:</b> {{companyIBAN}}
                   <br>
                </div>
             </div>
@@ -96,11 +85,16 @@
                      </tr>
                   </thead>
                   <tbody>
-                     <% if @items.items.splice(-1,1)?.length : %>
-                       <% for item in @items.items : %>
-                        <%- itemHelper item %>
-                       <% end %>
-                     <% end %>
+                     {{#each items.items}}
+                        <tr>
+                           <td>{{this[0]}}</td>
+                           <td>{{this[1]}}</td>
+                           <td>{{this[2]}}</td>
+                           <td class="text-right">{{this[3]}}</td>
+                           <td class="text-right">{{this[4]}}</td>
+                           <td class="text-right">{{this[5]}}</td>
+                        </tr>
+                     {{/each}}
                   </tbody>
                   <tfoot>
                      <tr style="text-align: right;">
@@ -109,7 +103,7 @@
                         <td></td>
                         <td></td>
                         <td><b>Total:</b></th>
-                        <td><%- @items.total[5].trim() %> &euro;</td>
+                        <td>{{items.total[5]}} &euro;</td>
                      </tr>
                   </tfoot>
                </table>
@@ -121,16 +115,16 @@
             <!-- accepted payments column -->
             <div class="col-md-6 col-sm-6col-xs-12">
                   <p class="lead">Payment Methods:</p>
-                  <img src="<%- @env.origin %>/resources/assets/img/visa.png" alt="Visa">
-                  <img src="<%- @env.origin %>/resources/assets/img/mastercard.png" alt="Mastercard">
-                  <img src="<%- @env.origin %>/resources/assets/img/american-express.png" alt="American Express">
-                  <img src="<%- @env.origin %>/resources/assets/img/paypal2.png" alt="Paypal">
+                  <img src="{{env.origin}}/resources/assets/img/visa.png" alt="Visa">
+                  <img src="{{env.origin}}/resources/assets/img/mastercard.png" alt="Mastercard">
+                  <img src="{{env.origin}}/resources/assets/img/american-express.png" alt="American Express">
+                  <img src="{{env.origin}}/resources/assets/img/paypal2.png" alt="Paypal">
             </div>
             <!-- /.col -->
          </div>
          <!-- /.row -->
          <div class="row">
-           <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">Invoice can be payed with direct bank transfer. Use payment code: <%- @orderID.trim() %>-<%- @invoiceID.trim() %></p>
+           <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">Invoice can be payed with direct bank transfer. Use payment code: {{orderID}}-{{invoiceID}}</p>
          </div>
       </div>
    </body>

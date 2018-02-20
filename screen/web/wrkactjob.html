@@ -1,0 +1,121 @@
+<div class="container-fluid" data-fldhash="{{ $screen.fldHash }}" data-attrhash="{{ $screen.attrHash }}" >
+
+               <div class="row card">
+                   <div class="header">
+                      <h4 class="title">{{ data.title }}</h4>
+                   </div>
+               </div>
+
+              {{#if data.error}}
+                <div class="row card">
+                  <div class="col-md-8">
+                    <h5 class="alert-danger">{{ data.error }}</h5></div>
+                </div>
+               {{/if}}
+
+                  <!-- TOOLBAR PART -->
+                  <div class="row card">
+
+                    <div class="col-md-8">
+                      <button type="button" class="btn btn-default ui-button" data-type="action" data-cmd="PF19">Auto</button>
+                      <button type="button" class="btn btn-default ui-button" data-type="action" data-cmd="PF17">Top</button>
+                      <button type="button" class="btn btn-default ui-button" data-type="action" data-cmd="PF18">Bottom</button>
+                      <button type="button" class="btn btn-default ui-button" data-type="action" data-cmd="PF21">Extend</button>
+                      <button type="button" class="btn btn-default ui-button" data-type="action" data-cmd="PF13">Reset stats</button>
+                      <button type="button" class="btn btn-default ui-button" data-type="action" data-cmd="PF10">Restart stats</button>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="btn-group pull-right" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default ui-button" data-type="action" data-cmd="PF5">Refresh</button>
+                        <button type="button" class="btn btn-default ui-button" data-type="action" data-cmd="PF3">Exit</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- GRID PART -->
+                  <div class="row">
+
+                    <!-- SUBFILE TABS -->
+                    <div class="col-md-12">
+                      <ul class="nav nav-tabs">
+                        <li role="presentation" class="{{ data.byStatus }}"><a href="#" class="ui-button" data-type="action" data-cmd="PF11">By Status</a></li>
+                        <li role="presentation" class="{{ data.byElapse }}"><a href="#" class="ui-button" data-type="action" data-cmd="PF11">By Elapsed</a></li>
+                        <li role="presentation" class="{{ data.byThread }}"><a href="#" class="ui-button" data-type="action" data-cmd="PF11">By Thread</a></li>
+                      </ul>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="card">
+
+                        <div class="content table-responsive table-full-width">
+                          <table class="table table-striped">
+
+                            <thead>
+                              <tr>
+                                {{#each subfile.header}}
+                                
+                                      {{#js_if "@index === 0" }}
+                                        <td style="width:40px;" >
+                                         {{ this }}
+                                        </td>
+                                      {{else}}
+                                        <td>
+                                         {{ this }}
+                                        </td>
+                                      {{/js_if}}
+
+                                {{/each}}
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              {{#each subfile.items}}
+
+                                  <tr>
+
+                                    {{#each this}}
+
+                                      {{set "tmp" this}}
+
+                                      {{#js_if "@index === 0" }}
+                                        <td>
+                                          <select style="width:40px;" data-id="{{js '@index+1' }}" data-type="select" data-cmd="ENTER">
+                                             <option value="" {{isSelected '' this}}></option>
+                                           {{#each @root.$options}}
+                                             <option value="{{this.v}}" {{isSelected this.v @root.tmp}}>{{this.v}} {{this.t}}</option>
+                                           {{/each}}
+                                          </select>
+                                        </td>
+                                      {{else}}
+                                        <td>
+                                         <span>{{ this }}</span>
+                                        </td>
+                                      {{/js_if}}
+
+                                    {{/each}}
+
+                                  </tr>
+
+                              {{/each}}
+                            </tbody>
+
+                          </table>
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- FOOTER PART -->
+                  <div class="row">
+                    <nav aria-label="...">
+                      <ul class="pager">
+                        <li><a href="#" class="ui-button" data-type="action" data-cmd="PGUP">Previous</a></li>
+                        <li><a href="#" class="ui-button" data-type="action" data-cmd="PGDOWN">Next</a></li>
+                      </ul>
+                    </nav>
+                  </div>
+
+</div>

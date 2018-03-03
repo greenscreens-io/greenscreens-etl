@@ -28,26 +28,25 @@
   <!-- Left panel with reveal effect-->
   <div class="panel panel-left panel-reveal">
     <div class="block">
-       <a href="#" id="terminal" class="button button-fill button-raised">Terminal</a>
+      <a href="#" id="terminal" class="button button-fill button-raised">Terminal</a>
     </div>
 
     <div class="block">
-       <a href="#" id="reload" class="button button-fill button-raised">Reload</a>
-    </div>    
+      <a href="#" id="reload" class="button button-fill button-raised">Reload</a>
+    </div>
   </div>
 
-  
-    <!-- Main view, should have "view-main" class -->
-    <div class="view view-main" name="appView">
+  <!-- Main view, should have "view-main" class -->
+  <div class="view view-main" name="appView">
 
-      <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
-      <div class="page" name="main" data-page="main">
+    <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+    <div class="page" name="main" data-page="main">
 
       <!-- Top Navbar-->
       <div class="navbar">
         <div class="navbar-inner">
           <div class="left">
-          	<a href="#" class="link icon-only panel-open"><i class="f7-icons">bars</i></a>
+            <a href="#" class="link icon-only panel-open"><i class="f7-icons">bars</i></a>
           </div>
           <div dir="ltr" class="center sliding">Acme Ltd.</div>
           <div class="right">
@@ -56,94 +55,107 @@
         </div>
       </div>
 
+      <!-- Page, "data-page" contains page name -->
+      <div data-page="index" name="index" class="page">
 
-        <!-- Page, "data-page" contains page name -->
-        <div data-page="index" name="index" class="page">
+        <!-- Scrollable page content -->
+        <div dir="ltr" class="page-content">
 
-          <!-- Scrollable page content -->
-          <div dir="ltr" class="page-content">
-
-            <div class="block-title">Welcome</div>
-            <div class="block">
-              <p>Please wait while loading resources...</p>
-            </div>
-
+          <div class="block-title">Welcome</div>
+          <div class="block">
+            <p>Please wait while loading resources...</p>
           </div>
 
         </div>
-        <!-- end page-content -->
 
       </div>
-      <!-- end page -->
-
+      <!-- end page-content -->
 
     </div>
-    <!-- end view -->
+    <!-- end page -->
 
-   <script type="text/javascript">
+  </div>
+  <!-- end view -->
 
-      window.$$ = Dom7;
-      var OPTS = {pushState: false, reloadAll:true, history:false, force:true, reloadCurrent: true , animate:false};
+  <script type="text/javascript">
+    window.$$ = Dom7;
+    var OPTS = {
+      pushState: false,
+      reloadAll: true,
+      history: false,
+      force: true,
+      reloadCurrent: true,
+      animate: false
+    };
 
-      var myApp = new Framework7({
-        theme : 'md',
+    var myApp = new Framework7({
+      theme: 'md',
 
-        animatePages: false,
-        materialRipple:false,
-        sortable: false,
-        swipeBackPageAnimateShadow: false,
-        swipeBackPageAnimateOpacity: false,
-        swipeout : false,
-        swipeoutNoFollow:true,
-        swipePanelNoFollow:true,
-        animateNavBackIcon: false,
+      animatePages: false,
+      materialRipple: false,
+      sortable: false,
+      swipeBackPageAnimateShadow: false,
+      swipeBackPageAnimateOpacity: false,
+      swipeout: false,
+      swipeoutNoFollow: true,
+      swipePanelNoFollow: true,
+      animateNavBackIcon: false,
 
-        routes: [],
-        on : {
-            pageInit : function(page) {
-              if (location.pathname.endsWith(page.route.path) || location.pathname === page.route.path || page.route.name==='index') {
-                Tn5250.init(true);
-                $("#terminal").click(function(){
-                  myApp.panel.close();
-                  Tn5250.switchTerminal();
-                });
-                $("#reload").click(Tn5250.reload);
-              }
-            }
+      routes: [],
+      on: {
+        pageInit: function(page) {
+          if (location.pathname.endsWith(page.route.path)
+             || location.pathname === page.route.path
+             || page.route.name === 'index') {
+            Tn5250.init(true);
+            $("#terminal").click(function() {
+              myApp.panel.close();
+              Tn5250.switchTerminal();
+            });
+            $("#reload").click(Tn5250.reload);
+          }
         }
-      });
-      
-      function wrap(data) {
-        return '<div data-page="blank" class="page"><div class="navbar"><div class="navbar-inner"><div class="left"><a href="#" class="link icon-only panel-open"><i class="f7-icons">bars</i></a></div></div></div><div class="page-content">' + data + '</div></div>';
       }
+    });
 
-      // Add main view
-      var mainView = myApp.views.create('.view-main', {
-        dynamicNavbar: false,
-        domCache: false
+    function wrap(data) {
+      return '<div data-page="blank" class="page"><div class="navbar"><div class="navbar-inner"><div class="left"><a href="#" class="link icon-only panel-open"><i class="f7-icons">bars</i></a></div></div></div><div class="page-content">' + data +
+        '</div></div>';
+    }
+
+    // Add main view
+    var mainView = myApp.views.create('.view-main', {
+      dynamicNavbar: false,
+      domCache: false
+    });
+
+    Tn5250.listen('error', function(data) {
+      mainView.router.load({
+        url: '/q/',
+        content: wrap('Internal template error: ' + data),
+        OPTS
       });
+    });
 
-     Tn5250.listen('error', function(data){
-        mainView.router.load({url:'/q/', content:wrap('Internal template error: ' + data), OPTS});
-     });
+    Tn5250.listen('submit', function(cmd, action, data) {
+      //myApp.dialog.progress();
+      myApp.preloader.show();
+    });
 
-      Tn5250.listen('submit', function(cmd, action, data){
-         //myApp.dialog.progress();
-         myApp.preloader.show();
-      });
+    Tn5250.listen('message', function() {
+      //myApp.dialog.close();
+      myApp.preloader.hide();
+    });
 
-     Tn5250.listen('message', function(){
-         //myApp.dialog.close();
-         myApp.preloader.hide();
-     });
-
-      Tn5250.listen('html', function(el,data, json){
-         if (data.indexOf('class="page"') < 0) {
-            data = wrap(data);
-         }
-         mainView.router.load({url:'/q/', content:data} , OPTS);
-      });
-   </script>
-
+    Tn5250.listen('html', function(el, data, json) {
+      if (data.indexOf('class="page"') < 0) {
+        data = wrap(data);
+      }
+      mainView.router.load({
+        url: '/q/',
+        content: data
+      }, OPTS);
+    });
+  </script>
 
 </html>

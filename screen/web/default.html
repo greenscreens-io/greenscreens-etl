@@ -30,7 +30,6 @@
   <link href="{{env.origin}}/resources/assets/css/themify-icons.css" rel="stylesheet">
 
   <style>
-  
     li.active {
       font-weight: bold;
     }
@@ -48,35 +47,38 @@
     .jconfirm input {
       border: 1px solid lightgray;
     }
-    
+
     .loader_back {
-        z-index: 9999999;
-        background : #343434;
-        font-weight: bold;
-        display: flex;
-        border-radius: 5px;
-        position: absolute;
-        left: 47%;
-        top: 45%;
-        margin: auto;
-        padding : 8px;
-        display:none;
-     }
-    
+      z-index: 9999999;
+      background: #343434;
+      font-weight: bold;
+      display: flex;
+      border-radius: 5px;
+      position: absolute;
+      left: 47%;
+      top: 45%;
+      margin: auto;
+      padding: 8px;
+      display: none;
+    }
+
     .loader {
-        border: 8px solid #565656;
-        border-top: 8px solid #ffffffc9;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        animation: spin 0.75s linear infinite;
+      border: 8px solid #565656;
+      border-top: 8px solid #ffffffc9;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 0.75s linear infinite;
     }
-    
+
     @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
     }
-    
   </style>
 </head>
 
@@ -104,35 +106,40 @@
         </div>
 
         <ul class="nav">
+
           <li class="active">
             <a href="#" id="dashboard">
-                        <i class="ti-panel"></i>
-                        <p>Dashboard</p>
-                    </a>
+              <i class="ti-panel"></i>
+              <p>Dashboard</p>
+            </a>
           </li>
+
           <li>
             <a href="#" data-type="sidebar" data-cmd="ENTER" data-val="wrkactjob" data-opt="[[19,6],[20,6]]">
-                        <i class="ti-user"></i>
-                        <p>Active Jobs</p>
-                    </a>
+              <i class="ti-user"></i>
+              <p>Active Jobs</p>
+            </a>
           </li>
+
           <li>
             <a href="#" data-type="sidebar" data-cmd="ENTER" data-val="wrkoutq PRTDEMO" data-opt="[[19,6],[20,6]]">
-                        <i class="ti-view-list-alt"></i>
-                        <p>OUTQ PRTDEMO</p>
-                    </a>
+             <i class="ti-view-list-alt"></i>
+              <p>OUTQ PRTDEMO</p>
+            </a>
           </li>
+
           <li>
             <a href="#" id="queue">
-                        <i class="ti-view-list-alt"></i>
-                        <p>Output Queue</p>
-                    </a>
+              <i class="ti-view-list-alt"></i>
+              <p>Output Queue</p>
+            </a>
           </li>
+
           <li>
             <a href="#" id="signout">
-                        <i class="ti-power-off"></i>
-                        <p>Sign Out</p>
-                    </a>
+              <i class="ti-power-off"></i>
+              <p>Sign Out</p>
+            </a>
           </li>
 
         </ul>
@@ -150,49 +157,55 @@
                         <span class="icon-bar bar1"></span>
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
-                    </button>
+            </button>
             <a class="navbar-brand" href="#">Green Screens Web Terminal</a>
           </div>
+
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
+
               <li id="cmd">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="command">
-                                <i class="ti-comment"></i>
-                                <p>Command</p>
-                            </a>
+                  <i class="ti-comment"></i>
+                  <p>Command</p>
+                </a>
               </li>
+
               <li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="terminal">
-                                <i class="ti-desktop"></i>
-                                <p>Terminal</p>
-                            </a>
+                  <i class="ti-desktop"></i>
+                  <p>Terminal</p>
+                </a>
               </li>
+
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="ti-printer"></i>
-                                <p>Printer</p>
-                                <b class="caret"></b>
-                              </a>
+                  <i class="ti-printer"></i>
+                  <p>Printer</p>
+                  <b class="caret"></b>
+                </a>
                 <ul class="dropdown-menu">
                   <li><a href="#" id="printer">Start</a></li>
                   <li><a href="#" id="template">Template</a></li>
                 </ul>
               </li>
+
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-server"></i>
-                                    <p>Transfers</p>
-                                    <b class="caret"></b>
-                              </a>
+                 <i class="ti-server"></i>
+                 <p>Transfers</p>
+                  <b class="caret"></b>
+                </a>
                 <ul class="dropdown-menu">
                   <li><a href="#" id="upload">Upload</a></li>
                   <li><a href="#" id="download">Download</a></li>
                 </ul>
               </li>
+
               <li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="reload">
-                                <i class="ti-reload"></i>
-                            </a>
+                  <i class="ti-reload"></i>
+                </a>
               </li>
             </ul>
 
@@ -207,7 +220,6 @@
         <div class="container-fluid">
           <nav class="pull-left">
             <ul>
-
               <li>
                 <a href="http://blog.greenscreens.io">Blog</a>
               </li>
@@ -228,9 +240,9 @@
     </div>
   </div>
 
-<div id="loader" class="loader_back">
- <div class="loader"></div>
-</div>
+  <div id="loader" class="loader_back">
+    <div class="loader"></div>
+  </div>
 </body>
 
 <!--   Core JS Files   -->
@@ -242,13 +254,12 @@
 <script src="{{env.origin}}/lite/lib/ui.js" type="text/javascript" charset="UTF-8"></script>
 
 <script type="text/javascript">
-
-  function showNotification(msg, from, align, type, delay){
+  function showNotification(msg, from, align, type, delay) {
 
     return $.notify({
       icon: "ti-gift",
       message: msg || ''
-     },{
+    }, {
       allow_dismiss: false,
       delay: delay || 2500,
       type: type || 'info',
@@ -256,7 +267,7 @@
         from: from || 'top',
         align: align || 'center'
       }
-   });
+    });
   }
 
   function hideSidebar() {
@@ -278,7 +289,10 @@
   function onCommand(val) {
     var data = [{
       val: val,
-      opt: [[19, 6],[20, 6]]
+      opt: [
+        [19, 6],
+        [20, 6]
+      ]
     }];
     Tn5250.sendTerminal('ENTER', data);
   }
@@ -313,12 +327,12 @@
     Tn5250.unlink();
   }
 
-  function onError(data){
+  function onError(data) {
     Tn5250.unlink();
     if (data.output) {
-       $('#wrapper').html(data.err);
+      $('#wrapper').html(data.err);
     } else {
-       showNotification(data.err,null,null, 'danger', 2000);
+      showNotification(data.err, null, null, 'danger', 2000);
     }
     Tn5250.link();
   }
@@ -345,14 +359,18 @@
     Tn5250.listen('html', onHtml);
     Tn5250.listen('submit', onSubmit);
     Tn5250.listen('prompt', onPrompt);
-     Tn5250.listen('error', onError);
+    Tn5250.listen('error', onError);
 
     $('.sidebar-wrapper a[data-type="sidebar"]').click(Tn5250.onAction);
 
     $('#dashboard').click(function() {
       Tn5250.macro({
         "cmd": "PF3",
-        "stopTrigger": {row: 0, col: 1, text: "MAIN"}
+        "stopTrigger": {
+          row: 0,
+          col: 1,
+          text: "MAIN"
+        }
       });
     });
 
@@ -368,11 +386,17 @@
 
       var macro = [{
           "cmd": "PF3",
-          "stopTrigger": {row: 0, col: 1, text: "MAIN"}
+          "stopTrigger": {
+            row: 0,
+            col: 1,
+            text: "MAIN"
+          }
         },
         {
           "cmd": "ENTER",
-          "fields": [ [1, "90"] ]
+          "fields": [
+            [1, "90"]
+          ]
         }
       ];
       Tn5250.macro(macro);

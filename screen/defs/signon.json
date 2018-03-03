@@ -8,10 +8,7 @@
   "templates": {
     "default": {
         "html": "screen/web/signon.html",
-        "output": "#wrapper",
-        "render" : false,
-        "transform" : false,
-        "flat" : true
+        "output": "#wrapper"
     },
     "os" :{
       "android" : {

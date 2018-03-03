@@ -1,157 +1,160 @@
-﻿<!-- Page content-->
+
+<!-- Page content-->
 <div data-page="prompt1" class="page">
 
 	<!-- Top Navbar-->
 	<div class="navbar">
-	  <div class="navbar-inner">
-	    <div class="left">
-		  <a href="#" class="link icon-only panel-open"><i class="f7-icons">bars</i></a>
-	    </div>
-	    <div class="center sliding">Customer Details</div>
-	    <div class="right">
-               <a href="#" data-popover=".popover-menu" class="link icon-only popover-open"><i class="f7-icons">more_vertical_round_fill</i></a>
-	    </div>
-	  </div>
+		<div class="navbar-inner">
+			<div class="left">
+				<a href="#" class="link icon-only panel-open">
+					<i class="f7-icons">bars</i>
+				</a>
+			</div>
+			<div class="center sliding">Customer Details</div>
+			<div class="right">
+				<a href="#" data-popover=".popover-menu" class="link icon-only popover-open">
+					<i class="f7-icons">more_vertical_round_fill</i>
+				</a>
+			</div>
+		</div>
 	</div>
 
-    <div class="page-content login-screen-content">
-      <form autocomplete="off">
+	<div class="page-content login-screen-content">
+		<form autocomplete="off">
 
-        <div class="block">
+			<div class="block">
 
-        <div class="list">
+				<div class="list">
 
-          <ul>
+					<ul>
 
-             	<li class="item-content item-input">
-                  <div class="item-inner">
-                    <div class="item-title item-label">{{data.customerLbl}}</div>
-                    <div class="item-input-wrap">
-                        <input type="text" placeholder="{{data.customerLbl}}" data-id="1" value="{{data.customerNumber}}"  maxlength="{{$fields.f1.len}}" />
-                        <span class="input-clear-button"></span>
-                    </div>
-                  </div>
-                </li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">{{data.customerLbl}}</div>
+								<div class="item-input-wrap">
+									<input type="text" placeholder="{{data.customerLbl}}" data-id="1" value="{{data.customerNumber}}" maxlength="{{$fields.f1.len}}" />
+									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
 
-             	<li class="item-content item-input">
-                  <div class="item-inner">
-                    <div class="item-title item-label">{{data.firstNameLbl}}</div>
-                    <div class="item-input-wrap">
-                        <input type="text" placeholder="{{data.firstNameLbl}}" data-id="2" value="{{data.firstName}}"  maxlength="{{$fields.f2.len}}" />
-                        <span class="input-clear-button"></span>
-                    </div>
-                  </div>
-                </li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">{{data.firstNameLbl}}</div>
+								<div class="item-input-wrap">
+									<input type="text" placeholder="{{data.firstNameLbl}}" data-id="2" value="{{data.firstName}}" maxlength="{{$fields.f2.len}}" />
+									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
 
-             	<li class="item-content item-input">
-                  <div class="item-inner">
-                    <div class="item-title item-label">{{data.lastNameLbl}}</div>
-                    <div class="item-input-wrap">
-                        <input type="text" placeholder="{{data.lastNameLbl}}" data-id="3" value="{{data.lastName}}"  maxlength="{{$fields.f3.len}}" />
-                        <span class="input-clear-button"></span>
-                    </div>
-                  </div>
-                </li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">{{data.lastNameLbl}}</div>
+								<div class="item-input-wrap">
+									<input type="text" placeholder="{{data.lastNameLbl}}" data-id="3" value="{{data.lastName}}" maxlength="{{$fields.f3.len}}" />
+									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
 
-             	<li class="item-content item-input">
-                  <div class="item-inner">
-                    <div class="item-title item-label">{{data.addressLbl}}</div>
-                    <div class="item-input-wrap">
-                        <input type="text" placeholder="{{data.addressLbl}}" data-id="4" value="{{data.address}}"  maxlength="{{$fields.f4.len}}" />
-                        <span class="input-clear-button"></span>
-                    </div>
-                  </div>
-                </li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">{{data.addressLbl}}</div>
+								<div class="item-input-wrap">
+									<input type="text" placeholder="{{data.addressLbl}}" data-id="4" value="{{data.address}}" maxlength="{{$fields.f4.len}}" />
+									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
 
-             	<li class="item-content item-input">
-                  <div class="item-inner">
-                    <div class="item-title item-label">{{data.cityLbl}}</div>
-                    <div class="item-input-wrap">
-                        <input type="text" placeholder="{{data.cityLbl}}" data-id="5" value="{{data.city}}"  maxlength="{{$fields.f5.len}}" />
-                        <span class="input-clear-button"></span>
-                    </div>
-                  </div>
-                </li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">{{data.cityLbl}}</div>
+								<div class="item-input-wrap">
+									<input type="text" placeholder="{{data.cityLbl}}" data-id="5" value="{{data.city}}" maxlength="{{$fields.f5.len}}" />
+									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
 
-             	<li class="item-content item-input">
-                  <div class="item-inner">
-                    <div class="item-title item-label">{{data.faxLbl}}</div>
-                    <div class="item-input-wrap">
-                        <input type="text" placeholder="{{data.faxLbl}}" data-id="6" value="{{data.fax}}"  maxlength="{{$fields.f6.len}}" />
-                        <span class="input-clear-button"></span>
-                    </div>
-                  </div>
-                </li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">{{data.faxLbl}}</div>
+								<div class="item-input-wrap">
+									<input type="text" placeholder="{{data.faxLbl}}" data-id="6" value="{{data.fax}}" maxlength="{{$fields.f6.len}}" />
+									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
 
-             	<li class="item-content item-input">
-                  <div class="item-inner">
-                    <div class="item-title item-label">{{data.emailLbl}}</div>
-                    <div class="item-input-wrap">
-                        <input type="text" placeholder="{{data.emailLbl}}" data-id="7" value="{{data.email}}"  maxlength="{{$fields.f7.len}}" />
-                        <span class="input-clear-button"></span>
-                    </div>
-                  </div>
-                </li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">{{data.emailLbl}}</div>
+								<div class="item-input-wrap">
+									<input type="text" placeholder="{{data.emailLbl}}" data-id="7" value="{{data.email}}" maxlength="{{$fields.f7.len}}" />
+									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
 
-             	<li class="item-content item-input">
-                  <div class="item-inner">
-                    <div class="item-title item-label">{{data.codeLbl}}</div>
-                    <div class="item-input-wrap">
-                        <input type="text" placeholder="{{data.codeLbl}}" data-id="8" value="{{data.code}}"  maxlength="{{$fields.f8.len}}" />
-                        <span class="input-clear-button"></span>
-                    </div>
-                  </div>
-                </li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">{{data.codeLbl}}</div>
+								<div class="item-input-wrap">
+									<input type="text" placeholder="{{data.codeLbl}}" data-id="8" value="{{data.code}}" maxlength="{{$fields.f8.len}}" />
+									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
 
-             	<li class="item-content item-input">
-                  <div class="item-inner">
-                    <div class="item-title item-label">{{data.qtyLbl}}</div>
-                    <div class="item-input-wrap">
-                        <input type="text" placeholder="{{data.qtyLbl}}" data-id="9" value="{{data.qty}}"  maxlength="{{$fields.f9.len}}" />
-                        <span class="input-clear-button"></span>
-                    </div>
-                  </div>
-                </li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">{{data.qtyLbl}}</div>
+								<div class="item-input-wrap">
+									<input type="text" placeholder="{{data.qtyLbl}}" data-id="9" value="{{data.qty}}" maxlength="{{$fields.f9.len}}" />
+									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
 
-             	<li class="item-content item-input">
-                  <div class="item-inner">
-                    <div class="item-title item-label">{{data.descriptionLbl}}</div>
-                    <div class="item-input-wrap">
-                        <input type="text" placeholder="{{data.descriptionLbl}}" data-id="10" value="{{data.description}}"  maxlength="{{$fields.f10.len}}" />
-                        <span class="input-clear-button"></span>
-                    </div>
-                  </div>
-                </li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">{{data.descriptionLbl}}</div>
+								<div class="item-input-wrap">
+									<input type="text" placeholder="{{data.descriptionLbl}}" data-id="10" value="{{data.description}}" maxlength="{{$fields.f10.len}}" />
+									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
 
-          </ul>
-        </div>
-        </div>
+					</ul>
+				</div>
+			</div>
 
-        <div class="block">
-          <div class="row">
-              <a href="#" class=" col button button-fill button-big active" data-type="action" data-cmd="ENTER">Confirm</a>
-              <a href="#" class="col button button-fill button-big active" data-type="action" data-cmd="PF3">Exit</a>
-           </div>
-        </div>
+			<div class="block">
+				<div class="row">
+					<a href="#" class=" col button button-fill button-big active" data-type="action" data-cmd="ENTER">Confirm</a>
+					<a href="#" class="col button button-fill button-big active" data-type="action" data-cmd="PF3">Exit</a>
+				</div>
+			</div>
 
-      </form>
-    </div>
-    
-    
-  <div class="popover popover-menu">
-    <div class="popover-angle"></div>
-    <div class="popover-inner">
-      <div class="list">
-        <ul>
-	<li>
-	  <a href="#" class="list-button item-link popover-close" data-type="action" data-cmd="PF3">
-		<div class="item-title">Exit</div>
-	  </a>
-	</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+		</form>
+	</div>
 
+	<div class="popover popover-menu">
+		<div class="popover-angle"></div>
+		<div class="popover-inner">
+			<div class="list">
+				<ul>
+					<li>
+						<a href="#" class="list-button item-link popover-close" data-type="action" data-cmd="PF3">
+							<div class="item-title">Exit</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 
-  </div>
+</div>

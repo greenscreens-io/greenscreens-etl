@@ -1,113 +1,123 @@
-            <div class="container-fluid">
-                <div class="row">
+<div class="container-fluid">
+  <div class="row">
 
-                    <div class="col-sm-offset-2 col-sm-8">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">{{data.title}}</h4>
-                            </div>
-                            <div class="content">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <label>{{data.customerLbl}}</label>
-                                                <input type="text" class="form-control border-input" disabled="" value="{{data.customerFld}}">
-                                            </div>
-                                        </div>
-                                    </div>
+    <div class="col-sm-offset-2 col-sm-8">
+      <div class="card">
+        <div class="header">
+          <h4 class="title">{{data.title}}</h4>
+        </div>
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>{{data.firstNameLbl}}</label>
-                                                <input type="text" class="form-control border-input" placeholder="First Name"  data-id="1" value="{{data.firstNameFld}}"  {{#if $fields.f1.isBypass}} readonly {{else}} maxlength="{{$fields.f1.len}}"{{/if}} >
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>{{data.lastNameLbl}}</label>
-                                                <input type="text" class="form-control border-input" placeholder="Last Name"  data-id="2" value="{{data.lastNameFld}}"  {{#if $fields.f2.isBypass}} readonly {{else}} maxlength="{{$fields.f2.len}}"{{/if}} >
-                                            </div>
-                                        </div>
-                                    </div>
+        <div class="content">
+          <form>
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>{{data.emailLbl}}</label>
-                                                <input type="text" class="form-control border-input" placeholder="Email Address"  data-id="3" value="{{data.emailFld}}"  {{#if $fields.f3.isBypass}} readonly {{else}} maxlength="{{$fields.f3.len}}"{{/if}} >
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>{{data.addressLbl}}</label>
-                                                <input type="text" class="form-control border-input" placeholder="Home Address"  data-id="4" value="{{data.addressFld}}"  {{#if $fields.f4.isBypass}} readonly {{else}} maxlength="{{$fields.f4.len}}"{{/if}} >
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>{{data.cityLbl}}</label>
-                                                <input type="text" class="form-control border-input" placeholder="City" data-id="5" value="{{data.cityFld}}"  {{#if $fields.f5.isBypass}} readonly {{else}} maxlength="{{$fields.f5.len}}"{{/if}} >
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>{{data.stateLbl}}</label>
-                                                <input type="text" class="form-control border-input" placeholder="State"  data-id="6" value="{{data.stateFld}}"  {{#if $fields.f6.isBypass}} readonly {{else}} maxlength="{{$fields.f6.len}}"{{/if}} >
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>{{data.zipLbl}}</label>
-                                                <input type="number" class="form-control border-input" placeholder="ZIP Code" data-id="7" value="{{data.zipFld}}" max="99999" min="0" {{#if $fields.f7.isBypass}} readonly {{else}} {{/if}} >
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <label>{{data.codeLbl}}</label>
-                                                <input type="number" class="form-control border-input" data-id="8" value="{{data.codeFld}}" max="999" min="0" {{#if $fields.f8.isBypass}} readonly {{else}} {{/if}} >
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>{{data.typeLbl}}</label>
-                                                <input type="number" class="form-control border-input" placeholder="Type" data-id="9" value="{{data.typeFld}}" max="5" min="0" {{#if $fields.f9.isBypass}} readonly {{else}} {{/if}} >
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">{{data.balanceLbl}}</label>
-                                                <input type="text" class="form-control border-input" placeholder="Balance" data-id="10" value="{{data.balanceFld}}" {{#if $fields.f10.isBypass}} readonly {{else}} maxlength="{{$fields.f10.len}}"{{/if}} >
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-center">
-
-                                         {{#if $fields.f10.isBypass}}
-                                          {{else}}
-                                           <button type="button" class="btn btn-info btn-fill btn-wd" data-type="submit" data-cmd="ENTER">Update</button>
-                                         {{/if}}
-                                        <button type="button" class="btn btn-info btn-fill btn-wd" data-type="action" data-cmd="PF3">Exit</button>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label>{{data.customerLbl}}</label>
+                  <input type="text" class="form-control border-input" disabled="" value="{{data.customerFld}}">
                 </div>
+              </div>
             </div>
+
+            <div class="row">
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>{{data.firstNameLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="First Name" data-id="1" value="{{data.firstNameFld}}" {{#if $fields.f1.isBypass}} readonly {{else}} maxlength="{{$fields.f1.len}}" {{/if}}>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>{{data.lastNameLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="Last Name" data-id="2" value="{{data.lastNameFld}}" {{#if $fields.f2.isBypass}} readonly {{else}} maxlength="{{$fields.f2.len}}" {{/if}}>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>{{data.emailLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="Email Address" data-id="3" value="{{data.emailFld}}" {{#if $fields.f3.isBypass}} readonly {{else}} maxlength="{{$fields.f3.len}}" {{/if}}>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>{{data.addressLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="Home Address" data-id="4" value="{{data.addressFld}}" {{#if $fields.f4.isBypass}} readonly {{else}} maxlength="{{$fields.f4.len}}" {{/if}}>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row">
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>{{data.cityLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="City" data-id="5" value="{{data.cityFld}}" {{#if $fields.f5.isBypass}} readonly {{else}} maxlength="{{$fields.f5.len}}" {{/if}}>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>{{data.stateLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="State" data-id="6" value="{{data.stateFld}}" {{#if $fields.f6.isBypass}} readonly {{else}} maxlength="{{$fields.f6.len}}" {{/if}}>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>{{data.zipLbl}}</label>
+                  <input type="number" class="form-control border-input" placeholder="ZIP Code" data-id="7" value="{{data.zipFld}}" max="99999" min="0" {{#if $fields.f7.isBypass}} readonly {{else}} {{/if}}>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label>{{data.codeLbl}}</label>
+                  <input type="number" class="form-control border-input" data-id="8" value="{{data.codeFld}}" max="999" min="0" {{#if $fields.f8.isBypass}} readonly {{else}} {{/if}}>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>{{data.typeLbl}}</label>
+                  <input type="number" class="form-control border-input" placeholder="Type" data-id="9" value="{{data.typeFld}}" max="5" min="0" {{#if $fields.f9.isBypass}} readonly {{else}} {{/if}}>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">{{data.balanceLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="Balance" data-id="10" value="{{data.balanceFld}}" {{#if $fields.f10.isBypass}} readonly {{else}} maxlength="{{$fields.f10.len}}" {{/if}}>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="text-center">
+              {{#if $fields.f10.isBypass}} {{else}}
+              <button type="button" class="btn btn-info btn-fill btn-wd" data-type="submit" data-cmd="ENTER">Update</button>
+              {{/if}}
+              <button type="button" class="btn btn-info btn-fill btn-wd" data-type="action" data-cmd="PF3">Exit</button>
+            </div>
+
+            <div class="clearfix"></div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

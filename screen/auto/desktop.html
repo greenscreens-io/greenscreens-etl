@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <title>Acme Ltd.</title>
+  <link rel="stylesheet" href="{{env.origin}}/resources/mobile/css/framework7.min.css">
+  <link rel="stylesheet" href="{{env.origin}}/resources/mobile/css/fonts.css">
+
+  <!-- firefox fix
+     - original function returns null when iframe display:none
+     https://bugzilla.mozilla.org/show_bug.cgi?id=548397
+  -->
+  <script>
+    window.getComputedStyle2 = window.getComputedStyle;
+    window.getComputedStyle = function(element, prop) {
+      if (element.currentStyle) {
+        return element.currentStyle[prop];
+      } else if (window.getComputedStyle2 && window.getComputedStyle2(element, prop)) {
+        return window.getComputedStyle2(element, prop);
+      } else {
+        element.style.getPropertyValue = function(prop) {
+          return element.style[prop];
+        }
+        return element.style;
+      }
+    }
+  </script>
+
+  <script type="text/javascript" src="{{env.origin}}/resources/mobile/js/framework7.min.js"></script>
+  <script type="text/javascript" src="{{env.origin}}/lite/lib/jquery.min.js"></script>
+  <script type="text/javascript" src="{{env.origin}}/lite/lib/microevent.js"></script>
+  <script type="text/javascript" src="{{env.origin}}/lite/lib/ui.js"></script>
+
+  <style>
+    segment {
+      display: none;
+    }
+  </style>
+
+  <segment id="body">
+
+    <div data-page="blank" class="page">
+
+      <!-- Top Navbar-->
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="left">
+            <a href="#" class="link icon-only panel-open"><i class="f7-icons">bars</i></a>
+          </div>
+          <div class="center sliding">[[title]]</div>
+          <div class="right">
+            <a href="#" id="popover" data-popover=".popover-menu" class="link icon-only popover-open">
+              <i class="f7-icons">more_vertical_round_fill</i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Menubar-->
+      <div class="popover popover-menu">
+        <div class="popover-angle"></div>
+        <div class="popover-inner">
+          <div class="list">
+            <ul>
+              [[menuitems]]
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div dir="ltr" class="page-content">
+
+        <div>[[options]]</div>
+
+        <form autocomplete="off">
+          <div class="list block">
+            <ul>
+              [[fields]]
+            </ul>
+          </div>
+
+          <div class="block">
+            <a href="#" class="button button-fill button-big active" data-type="submit" data-cmd="ENTER">Confirm</a>
+          </div>
+        </form>
+
+        <div class="block-title">[[error]]</div>
+
+      </div>
+
+    </div>
+  </segment>
+
+  <segment id="option">
+    <li>
+      <a href="#" class="list-button item-link" data-type="action" data-id="1" data-cmd="ENTER" data-val="[[value]]">
+        <div class="item-title">[[label]]</div>
+      </a>
+    </li>
+  </segment>
+
+  <segment id="options">
+    <div class="card">
+      <div class="list-block list links-list">
+        <ul>
+          [[option]]
+        </ul>
+      </div>
+    </div>
+  </segment>
+
+  <segment id="menuitems">
+    <li>
+      <a href="#" class="list-button item-link popover-close" data-type="action" data-cmd="[[value]]">
+        <div class="item-title">[[label]]</div>
+      </a>
+    </li>
+  </segment>
+
+  <segment id="fields">
+    <li class="item-content item-input">
+      <div class="item-inner">
+        <div class="item-title item-floating-label">[[label]]</div>
+        <div class="item-input-wrap">
+          <bdo>
+            <input type="[[type]]" value="[[value]]" id="[[id]]" name="[[name]]" maxlength=[[maxlen]] placeholder="[[label]]" data-id="[[id]]"  required="[[required]]" />
+          </bdo>
+          <span class="input-clear-button" style="right: 0;left: 90%;"></span>
+        </div>
+      </div>
+    </li>
+  </segment>
+</head>
+
+<script>
+  var segments = {};
+  var LAST = null;
+
+  function initsegments() {
+    $('segment').each(function(i, v, a) {
+      var seg = document.createElement('segment');
+      segments[v.id] = seg;
+      seg.innerHTML = v.innerHTML;
+    });
+    $('segment').remove();
+  }
+
+  function textNodesUnder(el) {
+    var n, a, walk;
+
+    a = {
+        el: {},
+        at: {}
+      };
+    walk = document.createTreeWalker(el, NodeFilter.SHOW_ALL, null, false);
+
+    while (n = walk.nextNode()) {
+      var attr = n.attributes;
+      if (n.nodeType == Node.TEXT_NODE) {
+        var val = n.nodeValue.trim();
+        if (val.indexOf('[[') > -1) {
+          val = val.replace('[[', '').replace(']]', '');
+          n.nodeValue = '';
+          a.el[val] = n.parentNode;
+        }
+      } else if (attr) {
+        Object.keys(attr).every(function(v) {
+          if (attr[v].value.indexOf('[[') > -1) {
+            a.at[attr[v].name] = attr[v].ownerElement;
+          }
+          return true;
+        });
+      }
+
+    }
+    return a;
+  }
+
+  function createClone(obj) {
+    var cache = {};
+    Object.keys(obj).every(function(v) {
+      cache[v] = obj[v].cloneNode(true);
+      return true;
+    });
+    return cache;
+  }
+
+  function findLongestCol(row) {
+
+    col = null;
+    val = '';
+    len = 0;
+
+    if (row) {
+      Object.keys(row).every(function(v) {
+        col = row[v];
+        if (col.l > len) {
+          val = col.v;
+          len = col.l;
+        };
+        return true;
+      });
+    }
+
+    return val;
+  }
+
+  function getFieldLabel(screen, field) {
+    var col = '';
+    var row = screen[field.row];
+    Object.keys(row).reverse().every(function(v) {
+      if (parseInt(v) < field.col) {
+        col = (row[v].v || '').replace(/\\./g, '').trim();
+        return false;
+      }
+      return true;
+    });
+
+    return col;
+  }
+
+  function setVal(el, name, val) {
+    el[name].setAttribute(name, val);
+  }
+
+  function buildFields(el, obj) {
+    var fields = obj.fields;
+    var keys = Object.keys(fields);
+    var decoder = parent.Tn5250.Decoder;
+    var tmp = [];
+    keys.every(function(v) {
+      var type = 'text';
+      var field = fields[v];
+      var fldlbl = getFieldLabel(obj.screen, field);
+      var isHiden = decoder.isHidden(field);
+      var node = el.cloneNode(true);
+      var els = textNodesUnder(node);
+      var att = els.at;
+      tmp.push(node.firstElementChild);
+      if (isHiden) {
+        type = 'password';
+      }
+      els.el.label.innerText = fldlbl;
+      setVal(att, 'placeholder', fldlbl);
+      setVal(att, 'value', field.v);
+      setVal(att, 'required', '');
+      setVal(att, 'type', type);
+      setVal(att, 'data-id', v);
+      setVal(att, 'name', 'f' + v);
+      setVal(att, 'id', 'f' + v);
+      setVal(att, 'maxlength', field.len);
+      return true;
+    });
+
+    return tmp;
+  }
+
+  function buildItems(el, list) {
+    var tmp = [];
+    list.every(function(item) {
+      var node = el.cloneNode(true);
+      var els = textNodesUnder(node);
+      var key = '';
+      tmp.push(node.firstElementChild);
+      if (els.at['data-cmd']) {
+        key = 'data-cmd';
+      }
+      if (els.at['data-val']) {
+        key = 'data-val';
+      }
+      if (key.length > 0) {
+        els.at[key].setAttribute(key, item.v);
+      }
+      els.el.label.innerText = item.t.trim();
+      return true;
+    });
+    return tmp;
+  }
+
+  function addItems(target, source) {
+    source.every(function(v) {
+      target.insertAdjacentElement('beforeend', v);
+      return true;
+    });
+  }
+
+  function render(obj) {
+    LAST = obj;
+    var html = '';
+    var cache = createClone(segments);
+
+    var body = textNodesUnder(cache.body.firstElementChild);
+    var menuItems = buildItems(cache.menuitems, obj.actions);
+    var fields = buildFields(cache.fields, obj);
+
+    addItems(body.el.fields, fields);
+    addItems(body.el.menuitems, menuItems);
+
+    if (menuItems.length == 0) {
+      //body.el.menuitems.parentElement.parentElement.parentElement.remove();
+      $(cache.body).find('#popover').remove();
+    }
+
+    if (fields.length === 1) {
+      var opts = LAST.options.filter(function(v) {
+        if (v.t.trim().length > 0) return v;
+      });
+      if (opts.length > 0) {
+        var options = buildItems(cache.option, opts);
+        var option = textNodesUnder(cache.options.firstElementChild);
+        addItems(option.el.option, options);
+        body.el.options.insertAdjacentElement('beforeend', cache.options.firstElementChild);
+      }
+    }
+
+    body.el.title.innerText = findLongestCol(obj.screen[0]);
+    body.el.error.innerText = findLongestCol(obj.screen[23]);
+
+    html = cache.body.innerHTML;
+
+    Tn5250.unlink();
+    Tn5250.trigger('html', null, html, obj);
+    Tn5250.link()
+  }
+</script>
+
+<body>
+
+  <!-- Status bar overlay for full screen mode (PhoneGap) -->
+  <div class="statusbar"></div>
+
+  <!-- Panels overlay-->
+  <div class="panel-backdrop"></div>
+
+  <!-- Left panel with reveal effect-->
+  <div class="panel panel-left panel-reveal">
+    <div class="block">
+      <a href="#" id="terminal" class="button button-fill button-raised">Terminal</a>
+    </div>
+
+    <div class="block">
+      <a href="#" id="reload" class="button button-fill button-raised">Reload</a>
+    </div>
+  </div>
+
+  <!-- Main view, should have "view-main" class -->
+  <div class="view view-main" name="appView">
+
+    <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+    <div class="page" name="main" data-page="main">
+
+      <!-- Top Navbar-->
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="left">
+            <a href="#" class="link icon-only panel-open"><i class="f7-icons">bars</i></a>
+          </div>
+          <div dir="ltr" class="center sliding">Acme Ltd.</div>
+          <div class="right"></div>
+        </div>
+      </div>
+
+      <!-- Page, "data-page" contains page name -->
+      <div data-page="index" name="index" class="page">
+
+        <!-- Scrollable page content -->
+        <div dir="ltr" class="page-content">
+          <div class="block-title">Welcome</div>
+          <div class="block">
+            <p>Please wait while loading resources...</p>
+          </div>
+        </div>
+
+      </div>
+      <!-- end page-content -->
+
+    </div>
+    <!-- end page -->
+
+  </div>
+  <!-- end view -->
+
+  <script type="text/javascript">
+
+    window.$$ = Dom7;
+
+    var OPTS = {
+      pushState: false,
+      reloadAll: true,
+      history: false,
+      force: true,
+      reloadCurrent: true,
+      animate: false
+    };
+
+    var myApp = new Framework7({
+      theme: 'md',
+      animatePages: false,
+      materialRipple: false,
+      sortable: false,
+      swipeBackPageAnimateShadow: false,
+      swipeBackPageAnimateOpacity: false,
+      swipeout: false,
+      swipeoutNoFollow: true,
+      swipePanelNoFollow: true,
+      animateNavBackIcon: false,
+      routes: [],
+      on: {
+        pageInit: function(page) {
+          if (location.pathname.endsWith(page.route.path)
+            || location.pathname === page.route.path
+            || page.route.name === 'index') {
+            Tn5250.init(true);
+            $("#terminal").click(function() {
+              myApp.panel.close();
+              Tn5250.switchTerminal();
+            });
+            $("#reload").click(Tn5250.reload);
+          }
+        }
+      }
+    });
+
+    function wrap(data) {
+      return '<div data-page="blank" class="page"><div class="navbar"><div class="navbar-inner"><div class="left"><a href="#" class="link icon-only panel-open"><i class="f7-icons">bars</i></a></div></div></div><div class="page-content">' + data + '</div></div>';
+    }
+
+    // Add main view
+    var mainView = myApp.views.create('.view-main', {
+      dynamicNavbar: false,
+      domCache: false
+    });
+
+    Tn5250.listen('submit', function(cmd, action, data) {
+      //myApp.dialog.progress();
+      myApp.preloader.show();
+    });
+
+    Tn5250.listen('message', function() {
+      //myApp.dialog.close();
+      myApp.preloader.hide();
+    });
+
+    Tn5250.listen('error', function(data) {
+      mainView.router.load({
+        url: '/q/',
+        content: wrap('Internal segments error: ' + data),
+        OPTS
+      });
+    });
+
+    Tn5250.listen('screen', function(data) {
+      render(data);
+    });
+
+    Tn5250.listen('html', function(el, data, json) {
+      if (data.indexOf('class="page"') < 0) {
+        data = wrap(data);
+      }
+      mainView.router.load({
+        url: '/q/',
+        content: data
+      }, OPTS);
+    });
+
+    initsegments();
+  </script>
+
+</html>

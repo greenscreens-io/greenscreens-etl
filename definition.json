@@ -9,9 +9,9 @@
     "etl": "etl/definition.json",
     "spool": "spool/definition.json"
   },
-  "9": {
-    "acme": {
-      "screen": "screen/acme.json"
+  "2": {
+    "webui": {
+      "screen": "screen/auto/detect.json"
     }
   }
 }

@@ -9,8 +9,11 @@
     "etl": "etl/definition.json",
     "spool": "spool/definition.json"
   },
-  "2": {
+  "0": {
     "webui": {
+      "screen": "screen/definition.json"
+    },
+    "auto": {
       "screen": "screen/auto/detect.json"
     }
   }

@@ -10,7 +10,7 @@
   <title>Acme Ltd.</title>
   <link rel="stylesheet" href="{{env.origin}}/resources/mobile/css/framework7.min.css">
   <link rel="stylesheet" href="{{env.origin}}/resources/mobile/css/fonts.css">
-  <script type="text/javascript" src="{{env.origin}}/resources/mobile/js/framework7.min.js"></script>
+  <script type="text/javascript" src="{{env.origin}}/resources/mobile/js/framework7.js"></script>
   <script type="text/javascript" src="{{env.origin}}/lite/lib/jquery.min.js"></script>
   <script type="text/javascript" src="{{env.origin}}/lite/lib/microevent.js"></script>
   <script type="text/javascript" src="{{env.origin}}/lite/lib/ui.js"></script>
@@ -55,7 +55,6 @@
         </div>
       </div>
 
-
       <!-- Page, "data-page" contains page name -->
       <div data-page="index" name="index" class="page">
 
@@ -74,7 +73,6 @@
 
     </div>
     <!-- end page -->
-
 
   </div>
   <!-- end view -->
@@ -111,8 +109,10 @@
             || page.route.name === 'index') {
             Tn5250.init(true);
             $("#terminal").click(function() {
-              myApp.panel.close();
-              Tn5250.switchTerminal();
+              myApp.once('panelClosed', function (panel) {
+                Tn5250.switchTerminal();
+              });
+              myApp.panel.close(false);
             });
             $("#reload").click(Tn5250.reload);
           }
@@ -131,16 +131,6 @@
       domCache: false
     });
 
-    Tn5250.listen('submit', function(cmd, action, data) {
-      //myApp.dialog.progress();
-      myApp.preloader.show();
-    });
-
-    Tn5250.listen('message', function() {
-      //myApp.dialog.close();
-      myApp.preloader.hide();
-    });
-
     Tn5250.listen('error', function(data) {
       mainView.router.load({
         url: '/q/',
@@ -149,10 +139,20 @@
       });
     });
 
+    Tn5250.listen('submit', function(cmd, action, data) {
+      //myApp.dialog.progress();
+      //myApp.preloader.show();
+    });
+
+    Tn5250.listen('message', function() {
+      //myApp.dialog.close();
+      //myApp.preloader.hide();
+    });
+
     Tn5250.listen('html', function(el, data, json) {
       console.log(data);
       console.log(json);
-      if (data.indexOf('class="page"') < 0) {
+      if (data.indexOf('class="page ') < 0) {
         data = wrap(data);
       }
       mainView.router.load({
@@ -161,6 +161,5 @@
       }, OPTS);
     });
   </script>
-
 
 </html>

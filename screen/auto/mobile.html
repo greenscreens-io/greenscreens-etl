@@ -398,8 +398,10 @@
             || page.route.name === 'index') {
             Tn5250.init(true);
             $("#terminal").click(function() {
-              myApp.panel.close();
-              Tn5250.switchTerminal();
+              myApp.once('panelClosed', function (panel) {
+                Tn5250.switchTerminal();
+              });
+              myApp.panel.close(false);
             });
             $("#reload").click(Tn5250.reload);
           }

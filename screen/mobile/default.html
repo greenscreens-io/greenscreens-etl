@@ -109,8 +109,10 @@
              || page.route.name === 'index') {
             Tn5250.init(true);
             $("#terminal").click(function() {
-              myApp.panel.close();
-              Tn5250.switchTerminal();
+              myApp.once('panelClosed', function (panel) {
+                Tn5250.switchTerminal();
+              });
+              myApp.panel.close(false);
             });
             $("#reload").click(Tn5250.reload);
           }
@@ -139,16 +141,16 @@
 
     Tn5250.listen('submit', function(cmd, action, data) {
       //myApp.dialog.progress();
-      myApp.preloader.show();
+      //myApp.preloader.show();
     });
 
     Tn5250.listen('message', function() {
       //myApp.dialog.close();
-      myApp.preloader.hide();
+      //myApp.preloader.hide();
     });
 
     Tn5250.listen('html', function(el, data, json) {
-      if (data.indexOf('class="page"') < 0) {
+      if (data.indexOf('class="page ') < 0) {
         data = wrap(data);
       }
       mainView.router.load({

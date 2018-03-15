@@ -381,15 +381,21 @@
 
     var myApp = new Framework7({
       theme: 'md',
+
       animatePages: false,
+      animateNavBackIcon: false,
       materialRipple: false,
       sortable: false,
-      swipeBackPageAnimateShadow: false,
-      swipeBackPageAnimateOpacity: false,
-      swipeout: false,
-      swipeoutNoFollow: true,
-      swipePanelNoFollow: true,
-      animateNavBackIcon: false,
+
+      swipeout: {
+         noFollow: true,
+         swipePanelNoFollow: true,
+      },
+
+      popover: {
+        animate: false
+      },
+
       routes: [],
       on: {
         pageInit: function(page) {
@@ -403,7 +409,12 @@
               });
               myApp.panel.close(false);
             });
-            $("#reload").click(Tn5250.reload);
+            $("#reload").click(function(){
+              myApp.once('panelClosed', function (panel) {
+                Tn5250.reload();
+              });
+              myApp.panel.close(false);
+            });
           }
         }
       }
@@ -442,7 +453,7 @@
     });
 
     Tn5250.listen('html', function(el, data, json) {
-      if (data.indexOf('class="page"') < 0) {
+      if (data.indexOf('class="page') < 0) {
         data = wrap(data);
       }
       mainView.router.load({

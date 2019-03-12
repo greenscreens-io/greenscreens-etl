@@ -1,0 +1,107 @@
+<div data-page="WRKOUTQ" class="container-fluid" data-fldhash="{{ $screen.fldHash }}" data-attrhash="{{ $screen.attrHash }}" >
+
+
+<div id="error" class="fixed-top container mb-4 mt-5 pt-4"></div>
+
+<main role="main" class="main main-raised mt-0 mb-3">
+
+  <!-- TOP_NAV_TABS -->
+  <div class="card card-nav-tabs">
+
+	        <!-- TAB_BUTTONS_PANEL_SWITCHER-->
+		<div class="card-header card-header-primary text-center">
+			<h4 class="card-title text-capitalize">{{data.title}}</h4>
+		</div><!-- END_TAB_BUTTONS_PANEL_SWITCHER-->
+
+                <!-- CARD_BODY_TOP-->
+		<div class="card-body ">
+                                          <!-- TOOLBAR PART -->
+                                          <div class="row">
+
+                                            <div class="col-md-8">
+                                              <button type="button" class="btn btn-default btn-sm" data-type="submit" data-cmd="PF17">Top</button>
+                                              <button type="button" class="btn btn-default btn-sm" data-type="submit" data-cmd="PF18">Bottom</button>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <button type="button" class="float-right btn btn-default btn-sm" data-type="submit" data-cmd="PF5">Refresh</button>
+                                                <button type="button" class="float-right btn btn-default btn-sm" data-type="submit" data-cmd="PF3">Exit</button>
+                                            </div>
+                                          </div>
+		</div><!-- END_CARD_BODY_TOP -->
+
+   </div><!-- END_TOP NAV_TABS -->
+
+</main>
+
+
+
+                <!-- GRID PART -->
+                <div class="row">
+
+                    <div class="col-md-12">
+                       <ul class="nav nav-tabs">
+                        <li role="presentation" class="{{ data.view1 }}"><button class="btn btn-default btn-sm" data-type="submit" data-cmd="PF11">View 1</button></li>
+                        <li role="presentation" class="{{ data.view2 }}"><button class="btn btn-default btn-sm" data-type="submit" data-cmd="PF11">View 2</button></li>
+                       </ul>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="card mt-0 pt-0">
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-sm table-hover subfile sortable" data-type="subfile">
+
+                                 <thead>
+                                  <tr>
+                                    {{#each grid.header}}
+                                        <th class="border-top-0" >
+                                          {{this}}
+                                        </th>
+                                    {{/each}}
+                                    <th class="border-top-0" style="width:80px;">Option</th>
+                                  </tr>
+                                </thead>
+
+                                    <tbody>
+
+                                      {{#each grid.items}}
+
+                                        <tr>
+                                        
+
+                                        {{#each this}}
+
+                                          <td>
+                                          {{#js_if '@index ===0' }}
+                                           <span><b>{{ this }}</b></span>
+                                          {{else}}
+                                           <span class="{{#js_if '@index ===4' }}badge badge-default{{/js_if}}">{{ this }}</span>
+                                          {{/js_if}}
+
+                                          </td>
+
+                                        {{/each}}
+
+
+                                         <td style="width:110px">
+                                          <div class="pull-right" role="group" aria-label="...">
+                                           <a class="m-2" title="Release" href="#" data-id="{{js '@index+1' }}" data-val="6" data-cmd="ENTER" data-type="action" ><i class="fa fa-print text-secondary"></i></a>
+                                           <a class="m-2" title="Hold" href="#" data-id="{{js '@index+1' }}" data-val="3" data-cmd="ENTER" data-type="action" ><i class="fa fa-pause text-secondary"></i></a>
+                                           <a class="m-2" title="Delete" href="#" data-id="{{js '@index+1' }}" data-val="4" data-cmd="ENTER" data-type="action" ><i class="fa fa-trash text-secondary"></i></a>
+                                           </div>
+                                         </td>
+
+                                      </tr>
+
+                                  {{/each}}
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>

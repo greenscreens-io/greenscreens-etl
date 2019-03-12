@@ -1,0 +1,223 @@
+{
+  "description": "",
+  "timestamp": 0,
+  "version": 0,
+  "type" : "screen",
+
+  "templates": {
+    "default": {
+          "html" : "screen/web/customerDetailsDisplay.html",
+          "output": "#wrapper"
+    },
+    "uuid": {
+      "demo": {
+         "web1" : {
+            "html": "screen/web1/customerDetailsDisplay.html",
+            "output": "#wrapper"
+         },
+         "web2" : {
+            "html": "screen/web2/customerDetailsDisplay.html",
+            "output": "#wrapper"
+         }
+      }
+    }
+  },
+
+  "fields": {
+     "firstName" : 1,
+     "lastName" : 2,
+     "email" : 3,
+     "address" : 4,
+     "city" : 5,
+     "state" : 6,
+     "zip" : 7,
+     "code" : 8,
+     "type" : 9,
+     "balance" : 10
+  },
+
+  "data": {
+    "user": {
+      "row": 1,
+      "col": 2,
+      "len": 10,
+      "name": "",
+      "trim": ""
+    },
+    "time": {
+      "row": 1,
+      "col": 57,
+      "len": 8,
+      "name": "",
+      "trim": ""
+    },
+    "date": {
+      "row": 1,
+      "col": 66,
+      "len": 8,
+      "name": "",
+      "trim": ""
+    },
+    "title": {
+      "row": 2,
+      "col": 2,
+      "len": 49,
+      "name": "",
+      "trim": ""
+    },
+    "r5c2": {
+      "row": 5,
+      "col": 2,
+      "len": 28,
+      "name": "customerLbl",
+      "trim": "\\."
+    },
+    "r5c31": {
+      "row": 5,
+      "col": 31,
+      "len": 5,
+      "name": "customerFld",
+      "trim": ""
+    },
+    "r7c2": {
+      "row": 7,
+      "col": 2,
+      "len": 28,
+      "name": "firstNameLbl",
+      "trim": "\\."
+    },
+    "r7c31": {
+      "row": 7,
+      "col": 31,
+      "len": 12,
+      "name": "firstNameFld",
+      "trim": ""
+    },
+    "r8c2": {
+      "row": 8,
+      "col": 2,
+      "len": 28,
+      "name": "lastNameLbl",
+      "trim": "\\."
+    },
+    "r8c31": {
+      "row": 8,
+      "col": 31,
+      "len": 15,
+      "name": "lastNameFld",
+      "trim": ""
+    },
+    "r10c2": {
+      "row": 10,
+      "col": 2,
+      "len": 28,
+      "name": "emailLbl",
+      "trim": "\\."
+    },
+    "r10c31": {
+      "row": 10,
+      "col": 31,
+      "len": 20,
+      "name": "emailFld",
+      "trim": ""
+    },
+    "r11c2": {
+      "row": 11,
+      "col": 2,
+      "len": 28,
+      "name": "addressLbl",
+      "trim": "\\."
+    },
+    "r11c31": {
+      "row": 11,
+      "col": 31,
+      "len": 20,
+      "name": "addressFld",
+      "trim": ""
+    },
+    "r12c2": {
+      "row": 12,
+      "col": 2,
+      "len": 28,
+      "name": "cityLbl",
+      "trim": "\\."
+    },
+    "r12c31": {
+      "row": 12,
+      "col": 31,
+      "len": 20,
+      "name": "cityFld",
+      "trim": ""
+    },
+    "r13c2": {
+      "row": 13,
+      "col": 2,
+      "len": 28,
+      "name": "stateLbl",
+      "trim": "\\."
+    },
+    "r13c31": {
+      "row": 13,
+      "col": 31,
+      "len": 3,
+      "name": "stateFld",
+      "trim": ""
+    },
+    "r14c2": {
+      "row": 14,
+      "col": 2,
+      "len": 28,
+      "name": "zipLbl",
+      "trim": "\\."
+    },
+    "r14c31": {
+      "row": 14,
+      "col": 31,
+      "len": 6,
+      "name": "zipFld",
+      "trim": ""
+    },
+    "r16c2": {
+      "row": 16,
+      "col": 2,
+      "len": 28,
+      "name": "codeLbl",
+      "trim": "\\."
+    },
+    "r16c31": {
+      "row": 16,
+      "col": 31,
+      "len": 3,
+      "name": "codeFld",
+      "trim": ""
+    },
+    "r17c2": {
+      "row": 17,
+      "col": 2,
+      "len": 28,
+      "name": "typeLbl",
+      "trim": "\\."
+    },
+    "r17c31": {
+      "row": 17,
+      "col": 31,
+      "len": 1,
+      "name": "typeFld",
+      "trim": ""
+    },
+    "r18c2": {
+      "row": 18,
+      "col": 2,
+      "len": 28,
+      "name": "balanceLbl",
+      "trim": "\\."
+    },
+    "r18c31": {
+      "row": 18,
+      "col": 31,
+      "len": 14,
+      "name": "balanceFld",
+      "trim": ""
+    }
+  }
+}

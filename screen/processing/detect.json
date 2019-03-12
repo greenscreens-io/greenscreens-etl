@@ -1,0 +1,18 @@
+{
+  "description": "Generic screen detect",
+  "timestamp": 0,
+  "version": 0,
+  "type": "detect",
+
+  "root" : null,
+
+  "items": [
+    {
+      "row": 0,
+      "col": 0,
+      "text": " ",
+      "file": "screen/processing/universal.json",
+      "rule": "exist"
+    }
+  ]
+}

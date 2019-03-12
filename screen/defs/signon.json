@@ -10,10 +10,16 @@
         "html": "screen/web/signon.html",
         "output": "#wrapper"
     },
-    "os" :{
-      "android" : {
-           "html": "screen/mobile/signon.html",
-           "output": "#wrapper"
+    "uuid": {
+      "demo": {
+         "gui1" : {
+            "html": "screen/web1/signon.html",
+            "output": "#wrapper"
+         },
+         "gui2" : {
+            "html": "screen/web2/signon.html",
+            "output": "#wrapper"
+         }
       }
     }
   },

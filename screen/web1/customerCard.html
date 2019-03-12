@@ -1,0 +1,114 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-sm-offset-2 col-sm-8">
+      <div class="card">
+        <div class="header">
+          <h4 class="title">{{data.title}}</h4>
+        </div>
+        <div class="content">
+          <form>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label>{{data.customerLbl}}</label>
+                  <input type="text" class="form-control border-input" value="{{data.customerNumber}}" data-id="1">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>{{data.firstNameLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="First Name" value="{{data.firstName}}" maxlength="{{$fields.f2.len}}" data-id="2">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>{{data.lastNameLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="Last Name" value="{{data.lastName}}" maxlength="{{$fields.f3.len}}" data-id="3">
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>{{data.addressLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="Address" value="{{data.address}}" maxlength="{{$fields.f4.len}}" data-id="4">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>{{data.cityLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="City" value="{{data.city}}" maxlength="{{$fields.f5.len}}" data-id="5">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>{{data.faxLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="Fax" value="{{data.fax}}" maxlength="{{$fields.f6.len}}" data-id="6">
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>{{data.emailLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="Email" value="{{data.email}}" maxlength="{{$fields.f7.len}}" data-id="7">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label>{{data.codeLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="Code" value="{{data.code}}" data-id="8">
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>{{data.qtyLbl}}</label>
+                  <input type="number" class="form-control border-input" placeholder="Qty" value="{{data.qty}}" max="9" min="0" data-id="9">
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>{{data.descriptionLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="Description" value="{{data.description}}" maxlength="{{$fields.f10.len}}" data-id="10">
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button type="button" class="btn btn-info btn-fill btn-wd" data-type="submit" data-cmd="ENTER">Update</button>
+              <button type="button" class="btn btn-info btn-fill btn-wd" data-type="submit" data-cmd="PF3">Exit</button>
+            </div>
+            <div class="clearfix"></div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

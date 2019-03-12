@@ -9,7 +9,8 @@
      "default" : {
          "excel": "etl/wrkactjob.xlsx",
          "word": "etl/wrkactjob.docx",
-         "output": "etl/wrkactjob",
+         "html": "etl/wrkactjob.html",
+         "output": "wrkactjob",
          "script": null
      }
   },
@@ -48,8 +49,8 @@
 
       "wrkactjob": {
         "sheet": "Sheet1",
-        "header": ["A5", "B5", "C5", "D5", "E5", "F5"],
-        "detail": ["A6", "B6", "C6", {"cell": "D6", "style": {}, "type": "number"}, "E6", "F6" ],
+        "header": ["A5", "B5", "C5", "D5", "E5", "F5","G5","H5","I5"],
+        "detail": ["A6", "B6", "C6", {"cell": "D6", "style": {}, "type": "number"}, "E6", "F6","G5","H5","I5"],
         "total": {
           "style": {
             "bold": true
@@ -84,48 +85,393 @@
     }
   },
   "grids": {
-    "wrkactjob": {
+  
+    "byStatus": {
       "macro": [
-        {
+          {
           "cmd": "PGDOWN",
-	  "startTrigger": { "row" : 18, "col":72, "text":"More..."},
-	  "stopTrigger": {"row" : 18, "col": 73, "text": "Bottom"},
-	  "detect": {"row" : 8, "col": 6, "text": "Subsystem/Job", "rule" : "exist"}
-        }
+  	  "startTrigger": { "row" : 18, "col":72, "text":"More..."},
+  	  "stopTrigger": {"row" : 18, "col": 73, "text": "Bottom"},
+  	  "detect": {"row" : 8, "col": 6, "text": "Subsystem/Job", "rule" : "exist"}
+          }
       ],
       "def": {
+        "name":"wrkactjob",
+        "opts" : {
+          "type" : "default",
+          "big" : false,
+          "byStatus" : "active"
+        },
+        "match": {"row":8, "col":46, "text":"Function"},
         "rows": 9,
-        "rowHeight": 1,
-        "sort" : [1, 0],
-        "_filter" : {"1":"QSECOFR"}
+        "rowHeight": 1
       },
+
       "headers": [
         [8,  6, 13],
         [8, 21, 11],
         [8, 33,  5],
         [8, 39,  5],
         [8, 46, 15],
-        [8, 62,  8],
-        "const"
+        [8, 62,  8]
       ],
+
       "data": [
         [9,  6, 13],
         [9, 21, 11],
         [9, 33,  5],
-        [9, 39,  5, null, "float"],
+        [9, 39,  5],
         [9, 46, 15],
-        [9, 63,  8],
-        "Fixed"
+        [9, 63,  8]
       ],
-      "totals": [
-        "t1",
-        "t2",
-        "t3",
-        "=SUM(INDIRECT(ADDRESS(6,COLUMN())&\":\"&ADDRESS(ROW()-1,COLUMN())))",
-        "t5",
-        "t6",
-        "t7"
-      ]
+      "totals" : []
+    },
+
+
+    "byElapse": {
+      "macro": [
+          {
+          "cmd": "PGDOWN",
+  	  "startTrigger": { "row" : 18, "col":72, "text":"More..."},
+  	  "stopTrigger": {"row" : 18, "col": 73, "text": "Bottom"},
+  	  "detect": {"row" : 8, "col": 6, "text": "Subsystem/Job", "rule" : "exist"}
+          }
+      ],
+      "def": {
+        "name":"wrkactjob",
+        "opts" : {
+          "byElapse" : "active",
+          "type" : "elapsed",
+          "big" : false
+        },
+        "match" : {"row":8, "col":59, "text":"AuxIO"},
+        "rows": 9,
+        "rowHeight": 1
+      },
+      "headers": [
+        [8,  6, 13],
+        [8, 21,  4],
+        [8, 27,  5],
+        [8, 33,  3],
+        [8, 42,  3],
+        [8, 47,  3],
+        [8, 54,  3],
+        [8, 59,  5],
+        [8, 66,  5]
+      ],
+      "data": [
+        [9,  6, 13],
+        [9, 21,  5],
+        [9, 27,  5],
+        [9, 33,  4],
+        [9, 42,  3],
+        [9, 47,  3],
+        [9, 52,  5],
+        [9, 59,  5],
+        [9, 66,  5]
+      ],
+      "totals" : []
+    },
+    
+    "byThread": {
+      "macro": [
+          {
+          "cmd": "PGDOWN",
+  	  "startTrigger": { "row" : 18, "col":72, "text":"More..."},
+  	  "stopTrigger": {"row" : 18, "col": 73, "text": "Bottom"},
+  	  "detect": {"row" : 8, "col": 6, "text": "Subsystem/Job", "rule" : "exist"}
+          }
+      ],
+      "def": {
+        "name":"wrkactjob",
+        "opts" : {
+          "byThread" : "active",
+          "type" : "thread",
+          "big" : false
+        },
+        "match" : {"row":8, "col":54, "text":"Threads"},
+        "rows": 9,
+        "rowHeight": 1
+      },
+
+      "headers": [
+        [8,  6, 13],
+        [8, 21,  4],
+        [8, 33,  6],
+        [8, 41,  4],
+        [8, 47,  5],
+        [8, 54,  7],
+        [8, 64,  7]
+      ],
+
+      "data": [
+        [9,  6, 12],
+        [9, 21, 10],
+        [9, 33,  6, null, "float"],
+        [9, 41,  4],
+        [9, 47,  5],
+        [9, 54,  6],
+        [9, 64,  7]
+      ],
+      "totals" : []
+    },
+
+
+    "byStatusExtA": {
+      "macro": [
+          {
+          "cmd": "PGDOWN",
+  	  "startTrigger": { "row" : 20, "col":72, "text":"More..."},
+  	  "stopTrigger": {"row" : 20, "col": 73, "text": "Bottom"},
+  	  "detect": {"row" : 4, "col": 6, "text": "Subsystem/Job", "rule" : "exist"}
+          }
+      ],
+      "def": {
+        "name":"wrkactjob",
+        "opts" : {
+          "type" : "default",
+          "big" : true,
+          "byStatus" : "active"
+        },
+
+        "match": {"row":3, "col":46, "text":"Function"},
+        "rows": 16,
+        "rowHeight": 1
+      },
+      "headers": [
+        [3,  6, 13],
+        [3, 21, 11],
+        [3, 33,  5],
+        [3, 39,  5],
+        [3, 46, 15],
+        [3, 62,  8]
+      ],
+      "data": [
+        [4,  6, 13],
+        [4, 21, 11],
+        [4, 33,  5, null, "float"],
+        [4, 39,  5],
+        [4, 46, 15],
+        [4, 63,  8]
+      ],
+      "totals" : []
+    },
+
+    "byStatusExtB": {
+      "macro": [
+          {
+          "cmd": "PGDOWN",
+  	  "startTrigger": { "row" : 20, "col":72, "text":"More..."},
+  	  "stopTrigger": {"row" : 20, "col": 73, "text": "Bottom"},
+  	  "detect": {"row" : 4, "col": 6, "text": "Subsystem/Job", "rule" : "exist"}
+          }
+      ],
+      "def": {
+        "name":"wrkactjob",
+        "opts" : {
+          "type" : "default",
+          "big" : true,
+          "byStatus" : "active"
+        },
+        "match": {"row":4, "col":46, "text":"Function"},
+        "rows": 15,
+        "rowHeight": 1
+      },
+      "headers": [
+        [4,  6, 13],
+        [4, 21, 11],
+        [4, 33,  5],
+        [4, 39,  5],
+        [4, 46, 15],
+        [4, 62,  8]
+      ],
+      "data": [
+        [5,  6, 13],
+        [5, 21, 11],
+        [5, 33,  5, null, "float"],
+        [5, 39,  5],
+        [5, 46, 15],
+        [5, 63,  8]
+      ],
+      "totals" : []
+    },
+
+    "byElapseExtA": {
+      "macro": [
+          {
+          "cmd": "PGDOWN",
+  	  "startTrigger": { "row" : 20, "col":72, "text":"More..."},
+  	  "stopTrigger": {"row" : 20, "col": 73, "text": "Bottom"},
+  	  "detect": {"row" : 4, "col": 6, "text": "Subsystem/Job", "rule" : "exist"}
+          }
+      ],
+      "def": {
+        "name":"wrkactjob",
+        "opts" : {
+          "byElapse" : "active",
+          "type" : "elapsed",
+          "big" : true
+        },
+        "match": {"row":3, "col":59, "text":"AuxIO"},
+        "rows": 16,
+        "rowHeight": 1
+      },
+      "headers": [
+        [3,  6, 13],
+        [3, 21,  4],
+        [3, 27,  5],
+        [3, 33,  3],
+        [3, 42,  3],
+        [3, 47,  3],
+        [3, 54,  3],
+        [3, 59,  5],
+        [3, 66,  5]
+      ],
+      "data": [
+        [4,  6, 13],
+        [4, 21,  5],
+        [4, 27,  5, null, "float"],
+        [4, 33,  4],
+        [4, 42,  3],
+        [4, 47,  3],
+        [4, 52,  5],
+        [4, 59,  5],
+        [4, 66,  5]
+      ],
+      "totals" : []
+    },
+
+    "byElapseExtB": {
+      "macro": [
+          {
+          "cmd": "PGDOWN",
+  	  "startTrigger": { "row" : 20, "col":72, "text":"More..."},
+  	  "stopTrigger": {"row" : 20, "col": 73, "text": "Bottom"},
+  	  "detect": {"row" : 4, "col": 6, "text": "Subsystem/Job", "rule" : "exist"}
+          }
+      ],
+      "def": {
+        "name":"wrkactjob",
+        "opts" : {
+          "byElapse" : "active",
+          "type" : "elapsed",
+          "big" : true
+        },
+
+        "match": {"row":4, "col":59, "text":"AuxIO"},
+        "rows": 15,
+        "rowHeight": 1
+      },
+      "headers": [
+        [4,  6, 13],
+        [4, 21,  4],
+        [4, 27,  5],
+        [4, 33,  3],
+        [4, 42,  3],
+        [4, 47,  3],
+        [4, 54,  3],
+        [4, 59,  5],
+        [4, 66,  5]
+      ],
+      "data": [
+        [5,  6, 13],
+        [5, 21,  5],
+        [5, 27,  5, null, "float"],
+        [5, 33,  4],
+        [5, 42,  3],
+        [5, 47,  3],
+        [5, 52,  5],
+        [5, 59,  5],
+        [5, 66,  5]
+      ],
+      "totals" : []
+    },
+
+
+    "byThreadExtA": {
+      "macro": [
+          {
+          "cmd": "PGDOWN",
+  	  "startTrigger": { "row" : 20, "col":72, "text":"More..."},
+  	  "stopTrigger": {"row" : 20, "col": 73, "text": "Bottom"},
+  	  "detect": {"row" : 4, "col": 6, "text": "Subsystem/Job", "rule" : "exist"}
+          }
+      ],
+      "def": {
+        "name":"wrkactjob",
+        "opts" : {
+          "byThread" : "active",
+          "type" : "thread",
+          "big" : true
+        },
+        "match" : {"row":3, "col":54, "text":"Threads"},
+        "rows": 16,
+        "rowHeight": 1
+      },
+
+      "headers": [
+        [3,  6, 13],
+        [3, 21,  4],
+        [3, 33,  6],
+        [3, 41,  4],
+        [3, 47,  5],
+        [3, 54,  7],
+        [3, 64,  7]
+      ],
+
+      "data": [
+        [4,  6, 12],
+        [4, 21, 10],
+        [4, 33,  6, null, "float"],
+        [4, 41,  4],
+        [4, 47,  5],
+        [4, 54,  6],
+        [4, 64,  7]
+      ],
+      "totals" : []
+    },
+    
+    "byThreadExtB": {
+      "macro": [
+          {
+          "cmd": "PGDOWN",
+  	  "startTrigger": { "row" : 20, "col":72, "text":"More..."},
+  	  "stopTrigger": {"row" : 20, "col": 73, "text": "Bottom"},
+  	  "detect": {"row" : 4, "col": 6, "text": "Subsystem/Job", "rule" : "exist"}
+          }
+      ],
+      "def": {
+        "name":"wrkactjob",
+        "opts" : {
+          "byThread" : "active",
+          "type" : "thread",
+          "big" : true
+        },
+        "match" : {"row":4, "col":54, "text":"Threads"},
+        "rows": 15,
+        "rowHeight": 1
+      },
+
+      "headers": [
+        [4,  6, 13],
+        [4, 21,  4],
+        [4, 33,  6],
+        [4, 41,  4],
+        [4, 47,  5],
+        [4, 54,  7],
+        [4, 64,  7]
+      ],
+
+      "data": [
+        [5,  6, 12],
+        [5, 21, 10],
+        [5, 33,  6, null, "float"],
+        [5, 41,  4],
+        [5, 47,  5],
+        [5, 54,  6],
+        [5, 64,  7]
+      ],
+      "totals" : []
     }
   }
 }

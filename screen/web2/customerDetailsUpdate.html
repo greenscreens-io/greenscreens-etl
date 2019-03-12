@@ -1,0 +1,131 @@
+<div class="container-fluid" data-page="CUSTOMER-DETAILS-UPD" data-attr="{{ $screen.attrHash }}" data-fld="{{ $screen.fldHash }}" >
+
+<div id="error" class="fixed-top container mb-4 mt-5 pt-4"></div>
+
+  <div class="row">
+
+
+    <div class="offset-sm-2 col-sm-8">
+      <div class="card">
+        <div class="card-header card-header-primary text-center">
+          <h4 class="card-title">{{data.title}}</h4>
+        </div>
+
+        <div class="content m-3">
+          <form>
+
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label>{{data.customerLbl}}</label>
+                  <input type="text" class="form-control border-input" disabled="" value="{{data.customerFld}}">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>{{data.firstNameLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="First Name" name="f1" data-id="1" value="{{data.firstNameFld}}" {{#iffld 'f1' 'isBypass'}} readonly {{else}} maxlength="{{fld 'f1' 'len'}}" {{/iffld}}>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>{{data.lastNameLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="Last Name" name="f2" data-id="2" value="{{data.lastNameFld}}" {{#iffld 'f2' 'isBypass'}} readonly {{else}} maxlength="{{fld 'f2' 'len'}}" {{/iffld}}>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>{{data.emailLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="Email Address" name="f3" data-id="3" value="{{data.emailFld}}" {{#iffld 'f3' 'isBypass'}} readonly {{else}} maxlength="{{fld 'f3' 'len'}}" {{/iffld}}>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>{{data.addressLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="Home Address" name="f4" data-id="4" value="{{data.addressFld}}" {{#iffld 'f4' 'isBypass'}} readonly {{else}} maxlength="{{fld 'f4' 'len'}}" {{/iffld}}>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row">
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>{{data.cityLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="City" name="f6" data-id="5" value="{{data.cityFld}}" {{#iffld 'f5' 'isBypass'}} readonly {{else}} maxlength="{{fld 'f5' 'len'}}" {{/iffld}}>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>{{data.stateLbl}}</label>
+                  <input type="text" class="form-control border-input" placeholder="State" name="f6" data-id="6" value="{{data.stateFld}}" {{#iffld 'f6' 'isBypass'}} readonly {{else}} maxlength="{{fld 'f6' 'len'}}" {{/iffld}}>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>{{data.zipLbl}}</label>
+                  <input type="number" class="form-control border-input" placeholder="ZIP Code" name="f7" data-id="7" value="{{data.zipFld}}" max="99999" min="0" {{#iffld 'f7' 'isBypass'}} readonly {{else}} {{/iffld}}>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label>{{data.codeLbl}}</label>
+                  <input type="number" class="form-control border-input" name="f8" data-id="8" value="{{data.codeFld}}" max="999" min="0" {{#iffld 'f8' 'isBypass'}} readonly {{else}} {{/iffld}}>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>{{data.typeLbl}}</label>
+                  <input type="number" class="form-control border-input" placeholder="Type" name="f9" data-id="9" value="{{data.typeFld}}" max="5" min="0" {{#iffld 'f9' 'isBypass'}} readonly {{else}} {{/iffld}}>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">{{data.balanceLbl}}</label>
+
+                  <input type="text" class="form-control border-input" placeholder="Balance" name="f10" data-id="10" value="{{data.balanceFld}}" {{#iffld 'f10' 'isBypass'}} readonly {{else}} maxlength="{{fld 'f10' 'max'}}" {{/iffld}}>
+                </div>
+              </div>
+
+            </div>
+            
+            <hr>
+
+            <div class="text-center">
+              {{#iffld 'f10' 'isBypass'}} {{else}}
+              <button type="button" class="btn btn-info btn-fill btn-wd" data-type="submit" data-cmd="ENTER">Update</button>
+              {{/if}}
+              <button type="button" class="btn btn-info btn-fill btn-wd" data-type="submit" data-cmd="PF3">Exit</button>
+            </div>
+
+            <div class="clearfix"></div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

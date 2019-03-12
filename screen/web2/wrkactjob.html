@@ -1,0 +1,116 @@
+<div data-page="WRKACTJOB" class="container-fluid" data-fldhash="{{ $screen.fldHash }}" data-attrhash="{{ $screen.attrHash }}" >
+
+<div id="error" class="fixed-top container mb-4 mt-5 pt-4"></div>
+
+<main role="main" class="main main-raised mt-0 mb-3">
+
+  <!-- TOP_NAV_TABS -->
+  <div class="card card-nav-tabs">
+
+	        <!-- TAB_BUTTONS_PANEL_SWITCHER-->
+		<div class="card-header card-header-primary text-center">
+			<h4 class="card-title text-capitalize">{{data.title}}</h4>
+		</div><!-- END_TAB_BUTTONS_PANEL_SWITCHER-->
+
+                <!-- CARD_BODY_TOP-->
+		<div class="card-body ">
+                                          <!-- TOOLBAR PART -->
+                                          <div class="row">
+
+                                            <div class="col-md-8">
+                                              <button type="button" class="btn btn-default btn-sm" data-type="submit" data-cmd="PF19">Auto</button>
+                                              <button type="button" class="btn btn-default btn-sm" data-type="submit" data-cmd="PF17">Top</button>
+                                              <button type="button" class="btn btn-default btn-sm" data-type="submit" data-cmd="PF18">Bottom</button>
+                                              <button type="button" class="btn btn-default btn-sm" data-type="submit" data-cmd="PF21">Extend</button>
+                                              <button type="button" class="btn btn-default btn-sm" data-type="submit" data-cmd="PF13">Reset stats</button>
+                                              <button type="button" class="btn btn-default btn-sm" data-type="submit" data-cmd="PF10">Restart stats</button>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <button type="button" class="float-right btn btn-default btn-sm" data-type="submit" data-cmd="PF5">Refresh</button>
+                                                <button type="button" class="float-right btn btn-default btn-sm" data-type="submit" data-cmd="PF3">Exit</button>
+                                            </div>
+                                          </div>
+		</div><!-- END_CARD_BODY_TOP -->
+
+   </div><!-- END_TOP NAV_TABS -->
+
+</main>
+
+                  <!-- GRID PART -->
+                  <div class="row">
+
+                    <!-- SUBFILE TABS -->
+                    <div class="col-md-12">
+                      <ul class="nav nav-tabs">
+                        <li role="presentation" class="{{ data.byStatus }}"><button class="btn btn-default btn-sm" data-type="submit" data-cmd="PF11">By Status</button></li>
+                        <li role="presentation" class="{{ data.byElapse }}"><button class="btn btn-default btn-sm" data-type="submit" data-cmd="PF11">By Elapsed</button></li>
+                        <li role="presentation" class="{{ data.byThread }}"><button class="btn btn-default btn-sm" data-type="submit" data-cmd="PF11">By Thread</button></li>
+                      </ul>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="card mt-0 pt-0">
+
+                        <div class="content table-responsive table-full-width">
+                          <table class="table table-striped table-hover subfile sortable" data-type="subfile">
+
+                            <thead>
+                              <tr>
+                                {{#each grid.header}}
+
+                                      {{#js_if "@index === 0" }}
+                                        <th class="border-top-0" style="width:40px;" >
+                                         {{ this }}
+                                        </th>
+                                      {{else}}
+                                        <th class="border-top-0">
+                                         {{ this }}
+                                        </th>
+                                      {{/js_if}}
+
+                                {{/each}}
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              {{#each grid.items}}
+
+                                  <tr>
+
+                                    {{#each this}}
+
+                                      {{set "tmp" this}}
+
+                                      {{#js_if "@index === 0" }}
+                                        <td>
+                                          <select style="width:40px;" data-id="{{js '@index+1' }}" data-type="select" data-cmd="ENTER">
+                                             <option value="" {{isSelected '' this}}></option>
+                                           {{#each @root.$options}}
+                                             <option value="{{this.v}}" {{isSelected this.v @root.tmp}}>{{this.v}} {{this.t}}</option>
+                                           {{/each}}
+                                          </select>
+                                        </td>
+                                      {{else}}
+                                        <td>
+                                         <span>{{ this }}</span>
+                                        </td>
+                                      {{/js_if}}
+
+                                    {{/each}}
+
+                                  </tr>
+
+                              {{/each}}
+                            </tbody>
+
+                          </table>
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+
+</div>

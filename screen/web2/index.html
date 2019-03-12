@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>DEMO</title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport">
+
+{{#if env.browser.isMobileAndroid }}
+
+    <link rel="stylesheet" href="**assets/fonts/roboto/roboto.css">
+    <link rel="stylesheet" href="**assets/css/font-awesome.min.css">
+    <link href="**assets/material-kit/css/material-kit.css" rel="stylesheet">
+    <link href="**assets/dataTables/datatables.min.css" rel="stylesheet">
+{{else}}
+    <link rel="stylesheet" type="text/css" href="{{env.origin}}/resources/assets/fonts/roboto/roboto.css">
+    <link rel="stylesheet" href="{{env.origin}}/resources/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link href="{{env.origin}}/resources/assets2/material-kit-2.0.4/assets/css/material-kit.css" rel="stylesheet">
+    <link href="{{env.origin}}/resources/assets2/dataTables/datatables.min.css" rel="stylesheet">
+{{/if}}
+
+<style>
+:focus {
+  border: 2px solid lightskyblue !important;
+}
+.table-hover > tbody > tr.no-hover:hover,
+.table-hover > thead > tr.no-hover:hover {
+    background-color: transparent;
+}
+.btn.btn-light {
+    color: #212529;
+    background-color: #d8d8d8;
+    border-color: #eaebec;
+    box-shadow: none;
+}
+.form-control.border-input:read-only {
+    border: none;
+    background: #f6f6f6;
+    box-shadow: none;
+    color: #495555;
+}
+
+.form-control.border-input {
+    border: 1px solid #eaeaea;
+    background-image: none;
+    padding-left: 4px;
+    background: #fdfdfd;
+}
+</style>
+
+
+<template id="prompt">
+  <div class="form-group">
+    <input autofocus type="text" name="value"  class="form-control" >
+  </div>
+  <p class="text-danger" style="display:none">Empty value not allowed!</p>
+</template>
+
+<template id="tplMessage">
+  <div class="alert alert-danger alert-dismissible fade show">
+      <div class="alert-icon">
+         <i class="material-icons">error_outline</i>
+      </div>
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Danger!</strong> #MESSAGE
+  </div>
+</template>
+
+</head>
+
+<body>
+
+	<nav class="navbar fixed-top navbar-expand-lg py-1">
+		<div class="container">
+			<div class="navbar-translate">
+                                <h4 class="m-1 p-0"><b>DEMO</b></h4>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="sr-only">Toggle navigation</span>
+                                        <span class="navbar-toggler-icon"></span>
+                                        <span class="navbar-toggler-icon"></span>
+                                        <span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="navbar-nav ml-auto">
+
+					<li class="nav-item" id="cmd">
+                                               <a id="command" class="nav-link py-0" href="#">
+                                                 <i class="fa fa-comment-o"></i> Command
+                                               </a>
+                                        </li>
+					<li class="nav-item">
+                                           <a id="reload" class="nav-link py-0" data-placement="bottom" href="#">
+                                             <i class="fa fa-refresh"></i> Refresh
+					   </a>
+                                        </li>
+					<li class="nav-item">
+                                           <a id="terminal" class="nav-link py-0" data-placement="bottom" href="#">
+                                             <i class="fa fa-tv"></i> Terminal
+					   </a>
+                                        </li>
+
+                                      {{#js_if 'this.env.browser.isMobileAndroid === false' }}
+					<li class="nav-item">
+                                           <a id="printer" class="nav-link py-0" data-placement="bottom" href="#" >
+                                             <i class="fa fa-print"></i> Printer
+					   </a>
+                                        </li>
+
+					<li class="dropdown nav-item">
+                                           <a href="#" class="dropdown-toggle nav-link py-0" data-toggle="dropdown">
+                                              <i class="material-icons">apps</i>
+                                           </a>
+					   <div class="dropdown-menu dropdown-with-icons">
+                                               <a id="template" class="dropdown-item" href="#">
+                                                 <i class="material-icons fa fa-file"></i> Template
+                                               </a>
+                                               <a id="download" class="dropdown-item" href="#">
+                                                 <i class="material-icons fa fa-download"></i> Download
+                                               </a>
+                                               <a id="upload" class="dropdown-item" href="#">
+                                                 <i class="material-icons fa fa-upload"></i> Upload
+                                               </a>
+					   </div>
+                                        </li>
+
+                                      {{/js_if}}
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+        <div id="wrapper" style="padding-top: 4rem;">
+            <div id="app"></div>
+        </div>
+
+        <div id="loader" class="modal fade gs-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <span class="fa fa-spinner fa-spin fa-3x"></span>
+                </div>
+            </div>
+        </div>
+
+
+{{#if env.browser.isMobileAndroid }}
+	<script src="**assets/material-kit/js/core/jquery.min.js" type="text/javascript"></script>
+	<script src="**assets/material-kit/js/core/popper.min.js" type="text/javascript"></script>
+	<script src="**assets/material-kit/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+	<script src="**assets/material-kit/js/plugins/moment.min.js"></script>
+
+	<script src="**assets/material-kit/js/plugins/nouislider.min.js" type="text/javascript"></script>
+	<script src="**assets/material-kit/js/material-kit.min.js" type="text/javascript"></script>
+       	<script src="**assets/dataTables/datatables.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="**assets/lib/microevent.js"></script>
+
+     {{#if env.isDebug }}
+         <script type="text/javascript" src="{{env.origin}}/lite/lib_dbg/ui.js"></script>
+     {{else}}
+         <script type="text/javascript" src="**assets/lib/ui.js"></script>
+     {{/if}}
+{{else}}
+
+	<script src="{{env.origin}}/resources/assets2/material-kit-2.0.4/assets/js/core/jquery.min.js" type="text/javascript"></script>
+	<script src="{{env.origin}}/resources/assets2/material-kit-2.0.4/assets/js/core/popper.min.js" type="text/javascript"></script>
+	<script src="{{env.origin}}/resources/assets2/material-kit-2.0.4/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+	<script src="{{env.origin}}/resources/assets2/material-kit-2.0.4/assets/js/plugins/moment.min.js"></script>
+	<script src="{{env.origin}}/resources/assets2/material-kit-2.0.4/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+	<script src="{{env.origin}}/resources/assets2/material-kit-2.0.4/assets/js/material-kit.min.js" type="text/javascript"></script>
+       	<script src="{{env.origin}}/resources/assets2/dataTables/datatables.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="{{env.origin}}/lite/lib/microevent.js"></script>
+
+       {{#if env.isDebug }}
+           <script type="text/javascript" src="{{env.origin}}/lite/lib_dbg/ui.js"></script>
+       {{else}}
+           <script type="text/javascript" src="{{env.origin}}/lite/lib/ui.js"></script>
+       {{/if}}
+
+{{/if}}
+
+
+      <script>
+
+          function initImageHover(trigger) {
+            $('*[rel=popover]').popover({
+              html: true,
+              trigger: 'hover click tap',
+              placement: 'bottom',
+              content: function(){return '<img src="'+$(this).data('img') + '" />';}
+            });
+          }
+
+          function loader(sts) {
+            return;
+            if (sts) {
+                $('#loader').modal('show');
+            } else {
+                setTimeout(function(){$('#loader').modal('hide')}, 500);
+            }
+          }
+
+          function onCommand(val) {
+            var data = [{
+              val: val,
+              opt: [
+                [19, 6],
+                [20, 6]
+              ]
+            }];
+            Tn5250.sendTerminal('ENTER', data);
+          }
+
+          function onPrompt(v, id) {
+            if (v && v.value) {
+              if (id === 'cmd') {
+                onCommand(v.value);
+              }
+              if (id === 'outq') {
+                onCommand('wrkoutq ' + v.value);
+              }
+            }
+          }
+
+          function doCommand() {
+             // todo send html input from template
+             Tn5250.prompt('Command', '<input id="cmd"/>' , 'cmd');
+          }
+
+        function onHtml(target, html, json, idx, len) {
+
+          if (idx === 0) {
+            Tn5250.pause(true);
+          }
+
+          if (idx === len-1) {
+              var el = document.querySelector("div[data-page='MAIN']");
+              if (el) {
+                $('#cmd').show();
+              } else {
+                $('#cmd').hide();
+              }          
+              window.scrollTo(0,0);
+              Tn5250.pause(false);
+              loader(false);
+          }
+
+          $('.popover').remove();
+
+          $("#wrapper").find("script").each(function(el) {
+             try {
+               eval($(this).text());
+             } catch (e) {console.log(e);}
+          });
+
+          initImageHover();
+          $('#actions [data-toggle="tooltip"]').tooltip();
+
+          if (json.data) {
+             $('table.sortable').DataTable({paging:false, searching:false, order: []});
+             if (json.subfile) {
+               Tn5250.setPaging(true);
+             }
+
+             var err = json.data.error || null;
+             if (err && err.trim().length > 0) {
+                 var tmp = parent.Tn5250.Hotspot.detect(err, 'fn');
+                 if (tmp.length === 0) {
+                    showError(err);
+                 }
+             }
+          }
+
+        }
+
+        function onScreen(data) {
+
+          setTimeout(function(){
+            Tn5250.switchTerminal();
+          },500);
+        }
+
+        function onSubmit(data, action) {
+          if (data === 'rmt') {
+              loader(true);
+              Tn5250.pause(true);
+          }
+        }
+
+        function onMessage(data) {
+          loader(false);
+        }
+
+        function onError(data) {
+          Tn5250.pause(true);
+          if (data.output) {
+            $('#app').html(data.err);
+          } else {
+            showNotification(data.err, null, null, 'danger', 2000);
+          }
+          Tn5250.pause(false);
+        }
+
+        $(document).on('keydown', function(e) {
+          if (e.key && e.key.length > 1 && e.key.indexOf('F') === 0) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        });
+      
+        $(document).ready(function() {
+          Tn5250.init();
+
+          $('body').on('change', 'select', function(){
+             $(this).attr('data-changed', 'true');
+          });
+
+          $("#reload").on('click', Tn5250.reload);
+          $("#terminal").on('click', Tn5250.switchTerminal);
+          $("#printer").on('click', Tn5250.printer);
+          $("#template").on('click', Tn5250.template);
+          $('#command').click(function() {
+             Tn5250.prompt('Enter command ', '#prompt', 'cmd');
+          });
+          $("#upload").on('click', Tn5250.upload);
+          $("#download").on('click', Tn5250.download);
+
+          Tn5250.listen('html', onHtml);
+          Tn5250.listen('screen', onScreen);
+          Tn5250.listen('submit', onSubmit);
+          Tn5250.listen('prompt', onPrompt);
+          Tn5250.listen('error', onError);
+          Tn5250.listen('message', onMessage);
+        });
+
+          function showError(msg) {
+          
+             if (msg && msg.indexOf('COPYRIGHT IBM CORP')>-1) {
+               return;
+             }
+
+
+              var isMobile = parent.Tn5250.isMobile;
+              var isRtl = parent.Tn5250.Text.isRtl(msg);
+              var val = msg;
+
+              if (!isMobile) {
+                val = msg.replace(/ /g, '&nbsp;');
+                if (isRtl) {
+                  val = '<div style="text-align:right;" ><bdo>'+val+'</bdo></div>'
+                } else {
+                  val = '<bdo>'+val+'</bdo>';
+                }
+              } else {
+                val = parent.Tn5250.Text.bidiWrap(val);
+              }
+
+              var html = $('#tplMessage').html().replace('#MESSAGE', val);
+              $('#error').prepend(html);
+          }
+
+        </script>
+
+</body>
+</html>
+

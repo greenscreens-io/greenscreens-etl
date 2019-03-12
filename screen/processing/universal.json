@@ -1,0 +1,31 @@
+{
+
+  "description": "Screen automation",
+  "timestamp": 0,
+  "version": 0,
+  "type": "processing",
+
+  "resize" : {
+    "w" : 60,
+    "h" : 8,
+    "x" : 12,
+    "y" : 4
+  },
+
+  "css" : [
+     {
+       "target" : ".tnview",
+       "class" : "xx1",
+       "_styles" : {
+           "width" : "50%"
+       }
+     }
+  ],
+
+  "script" : {
+    "id" : "script1",
+    "data" : "",
+    "url" : ""
+  }
+
+}

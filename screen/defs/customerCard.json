@@ -9,10 +9,16 @@
        "html": "screen/web/customerCard.html",
        "output": "#wrapper"
      },
-    "os" :{
-      "android" : {
-          "html": "screen/mobile/customerCard.html",
-          "output": "#wrapper"
+    "uuid": {
+      "demo": {
+         "web1" : {
+            "html": "screen/web1/customerCard.html",
+            "output": "#wrapper"
+         },
+         "web2" : {
+            "html": "screen/web2/customerCard.html",
+            "output": "#wrapper"
+         }
       }
     }
   },
@@ -32,102 +38,102 @@
 
   "data": {
     "user": {
-      "r": 1,
-      "c": 5,
-      "l": 10,
-      "n": "",
-      "t": ""
+      "row": 1,
+      "col": 5,
+      "len": 10,
+      "name": "",
+      "trim": ""
     },
     "time": {
-      "r": 1,
-      "c": 71,
-      "l": 8,
-      "n": "",
-      "t": ""
+      "row": 1,
+      "col": 71,
+      "len": 8,
+      "name": "",
+      "trim": ""
     },
     "date": {
-      "r": 0,
-      "c": 71,
-      "l": 8,
-      "n": "",
-      "t": ""
+      "row": 0,
+      "col": 71,
+      "len": 8,
+      "name": "",
+      "trim": ""
     },
     "title": {
-      "r": 0,
-      "c": 28,
-      "l": 24,
-      "n": "",
-      "t": ""
+      "row": 0,
+      "col": 28,
+      "len": 24,
+      "name": "",
+      "trim": ""
     },
     "r4c0": {
-      "r": 4,
-      "c": 0,
-      "l": 22,
-      "n": "customerLbl",
-      "t": "\\."
+      "row": 4,
+      "col": 0,
+      "len": 22,
+      "name": "customerLbl",
+      "trim": "\\."
     },
     "r5c0": {
-      "r": 5,
-      "c": 0,
-      "l": 22,
-      "n": "firstNameLbl",
-      "t": "\\."
+      "row": 5,
+      "col": 0,
+      "len": 22,
+      "name": "firstNameLbl",
+      "trim": "\\."
     },
     "r6c0": {
-      "r": 6,
-      "c": 0,
-      "l": 22,
-      "n": "lastNameLbl",
-      "t": "\\."
+      "row": 6,
+      "col": 0,
+      "len": 22,
+      "name": "lastNameLbl",
+      "trim": "\\."
     },
     "r8c0": {
-      "r": 8,
-      "c": 0,
-      "l": 22,
-      "n": "addressLbl",
-      "t": "\\."
+      "row": 8,
+      "col": 0,
+      "len": 22,
+      "name": "addressLbl",
+      "trim": "\\."
     },
     "r9c0": {
-      "r": 9,
-      "c": 0,
-      "l": 22,
-      "n": "cityLbl",
-      "t": "\\."
+      "row": 9,
+      "col": 0,
+      "len": 22,
+      "name": "cityLbl",
+      "trim": "\\."
     },
     "r11c0": {
-      "r": 11,
-      "c": 0,
-      "l": 22,
-      "n": "faxLbl",
-      "t": "\\."
+      "row": 11,
+      "col": 0,
+      "len": 22,
+      "name": "faxLbl",
+      "trim": "\\."
     },
     "r13c0": {
-      "r": 13,
-      "c": 0,
-      "l": 22,
-      "n": "emailLbl",
-      "t": "\\."
+      "row": 13,
+      "col": 0,
+      "len": 22,
+      "name": "emailLbl",
+      "trim": "\\."
     },
     "r15c0": {
-      "r": 15,
-      "c": 0,
-      "l": 22,
-      "n": "codeLbl",
-      "t": "\\."
+      "row": 15,
+      "col": 0,
+      "len": 22,
+      "name": "codeLbl",
+      "trim": "\\."
     },
     "r15c45": {
-      "r": 15,
-      "c": 45,
-      "l": 8,
-      "n": "qtyLbl",
-      "t": "\\."
+      "row": 15,
+      "col": 45,
+      "len": 8,
+      "name": "qtyLbl",
+      "trim": "\\."
     },
     "r17c0": {
-      "r": 17,
-      "c": 0,
-      "l": 22,
-      "n": "descriptionLbl",
-      "t": "\\."
+      "row": 17,
+      "col": 0,
+      "len": 22,
+      "name": "descriptionLbl",
+      "trim": "\\."
     }
   }
 }

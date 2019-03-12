@@ -1,0 +1,65 @@
+<div class="container-fluid" data-id="signon" data-fldhash="{{ $screen.fldHash }}" data-attrhash="{{ $screen.attrHash }}">
+	<div class="row">
+		<div class="col-md-offset-4 col-md-4">
+			<div class="card card-user">
+
+				<div class="image">
+					<img src="{{env.origin}}/resources/assets2/paper-dashboard-1.1/assets/img/background.jpg" alt="...">
+				</div>
+
+				<div class="content">
+					<div class="author">
+						<img class="avatar border-white" src="{{ env.origin }}/resources/assets2/paper-dashboard-1.1/assets/img/faces/face-2.jpg" alt="...">
+						<div class="row">
+							<div class="col-md-6"><small>System : {{ data.system }} </small></div>
+							<div class="col-md-6"><small>Display : {{ data.displayName }} </small></div>
+						</div>
+					</div>
+
+					<form  autocomplete="off">
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Username</label>
+									<input class="form-control border-input" type="text" value="{{ data.user }}" name="user" data-id="1" placeholder="Username" required="required" style="text-transform: uppercase;" />
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<label for="">Password</label>
+									<input class="password form-control border-input" type="text" value="{{ data.password }}" name="password" data-id="2" placeholder="Password" required="required"  autocomplete="nope"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="clearfix"></div>
+					</form>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12" align="center">
+						<h5 class="alert-danger">{{ data.error }}</h5></div>
+				</div>
+
+				<hr>
+
+				<div class="text-center">
+					<div class="row">
+						<div class="col-md-offset-4 col-md-4">
+							<br>
+							<button type="submit" data-type="submit" data-cmd="ENTER" class="btn btn-info btn-fill btn-wd">Let me in</button>
+							<br>
+							<br>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

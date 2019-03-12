@@ -10,10 +10,16 @@
           "html" : "screen/web/main.html",
           "output": "#wrapper"
     },
-    "os" :{
-      "android" : {
-         "html" : "screen/mobile/main.html",
-         "output": "#wrapper"
+    "uuid": {
+      "demo": {
+         "gui1" : {
+            "html": "screen/web1/main.html",
+            "output": "#wrapper"
+         },
+         "gui2" : {
+            "html": "screen/web2/main.html",
+            "output": "#wrapper"
+         }
       }
     }
   },

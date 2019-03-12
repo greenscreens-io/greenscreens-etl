@@ -9,6 +9,18 @@
     "default": {
        "html": "screen/web/blank.html",
        "output": "#wrapper"
+    },
+    "uuid": {
+      "demo": {
+         "web1" : {
+            "html": "screen/web1/blank.html",
+            "output": "#wrapper"
+         },
+         "web2" : {
+            "html": "screen/web2/blank.html",
+            "output": "#wrapper"
+         }
+      }
     }
   }
 

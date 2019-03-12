@@ -9,11 +9,17 @@
        "html" : "screen/web/masterInquiry.html",
        "output": "#wrapper"
     },
-    "os" :{
-      "android" : {
-         "html" : "screen/mobile/masterInquiry.html",
-         "output": "#wrapper"
-       }
+    "uuid": {
+      "demo": {
+         "gui1" : {
+            "html": "screen/web1/masterInquiry.html",
+            "output": "#wrapper"
+         },
+         "gui2" : {
+            "html": "screen/web2/masterInquiry.html",
+            "output": "#wrapper"
+         }
+      }
     }
   },
 
@@ -32,17 +38,17 @@
         "trim": ""
       },
       "date": {
-        "row": 0, 
-        "col": 69, 
-        "len": 8, 
-        "name": "", 
+        "row": 0,
+        "col": 69,
+        "len": 8,
+        "name": "",
         "trim": ""
       },
       "title": {
-        "row": 0, 
-        "col": 24, 
-        "len": 31, 
-        "name": "", 
+        "row": 0,
+        "col": 24,
+        "len": 31,
+        "name": "",
         "trim": ""
       },
       "user": {
@@ -56,7 +62,21 @@
         "row": 2, 
         "col": 3, 
         "len": 18, 
-        "name": "", 
+        "name": "",
+        "trim": ""
+      },
+      "topmsg": {
+        "row": 5,
+        "col": 1,
+        "len": 78,
+        "name": "",
+        "trim": ""
+      },
+      "bottommsg": {
+        "row": 21,
+        "col": 1,
+        "len": 78,
+        "name": "",
         "trim": ""
       }
   },
@@ -65,14 +85,14 @@
 
         "view1" : {
           "def": {
-            "name":"subfile",
+            "name":"grid",
             "opts" : {
               "type" : "default",
               "view1" : "active"
             },
             "match": {
-                     "row":4, 
-                     "col":32, 
+                     "row":4,
+                     "col":32,
                      "text":"First Name", 
                      "rule":"start"
             },
@@ -102,7 +122,7 @@
 
         "view2" : {
           "def": {
-            "name":"subfile",
+            "name":"grid",
             "opts" : {
               "type" : "alternate",
               "view2" : "active"

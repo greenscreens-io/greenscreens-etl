@@ -1,0 +1,36 @@
+<div id="app" data-page="MAIN" data-attr="{{ $screen.attrHash }}" data-fld="{{ $screen.fldHash }}">
+
+<div id="error" class="fixed-top container mb-4 mt-5 pt-4"></div>
+
+<div class="row m-3">
+  <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+    <div class="card">
+        <div class="card-header card-header-primary text-center">
+          <h4 class="card-title">{{data.title}}</h4>
+        </div>
+
+        <br>
+
+        <div class="card-body">
+
+
+          <!-- SUBFILE PART -->
+          <div class="list-group">
+            {{#each $options }}
+                <button type="button" class="list-group-item list-group-item-action"
+                    data-id="1" data-cmd="ENTER" data-type="action" data-val="{{this.v}}">{{this.t}}</button>
+            {{/each}}
+          </div>
+
+             <hr>
+
+            <div class="footer text-center">
+              <button class="btn btn-primary btn-wd btn-lg" data-type="action" data-cmd="PF3" >Return</a>
+            </div>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+</div>

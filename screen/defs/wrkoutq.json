@@ -10,11 +10,17 @@
         "html": "screen/web/wrkoutq.html",
         "output": "#wrapper"
     },
-    "os" :{
-      "android" : {
-        "html": "screen/mobile/wrkoutq.html"
+    "uuid": {
+      "demo": {
+         "gui1" : {
+            "html": "screen/web1/wrkoutq.html",
+            "output": "#wrapper"
+         },
+         "gui2" : {
+            "html": "screen/web2/wrkoutq.html",
+            "output": "#wrapper"
+         }
       }
-    }
   },
 
   "fields": {
@@ -34,7 +40,7 @@
     "view1": {
 
       "def": {
-        "name":"subfile",
+        "name":"grid",
         "opts" : {
           "view1" : "active"
         },
@@ -70,7 +76,7 @@
     "view2": {
 
       "def": {
-        "name":"subfile",
+        "name":"grid",
         "opts" : {
           "view2" : "active"
         },

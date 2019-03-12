@@ -9,10 +9,16 @@
           "html" : "screen/web/customerDetails.html",
           "output": "#wrapper"
     },
-    "os" :{
-      "android" : {
-          "html" : "screen/mobile/customerDetails.html",
-          "output": "#wrapper"
+    "uuid" :{
+      "demo": {
+         "web1" : {
+            "html": "screen/web1/customerDetails.html",
+            "output": "#wrapper"
+         },
+         "web2" : {
+            "html": "screen/web2/customerDetails.html",
+            "output": "#wrapper"
+         }
       }
     }
   },

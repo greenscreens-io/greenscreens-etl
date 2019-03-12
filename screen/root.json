@@ -6,11 +6,17 @@
 
   "templates": {
     "default": {
-      "html" : "screen/web/default.html"
+      "html" : "screen/web1/index.html"
     },
-    "os": {
-      "android": {
-          "html": "screen/mobile/default.html"
+
+    "uuid": {
+      "demo": {
+         "gui1" : {
+            "html": "screen/web1/index.html"
+         },
+         "gui2" : {
+            "html": "screen/web2/index.html"
+         }
       }
     }
   }

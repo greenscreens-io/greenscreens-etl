@@ -106,8 +106,15 @@
     {
       "row": 2,
       "col": 20,
-      "text": "Customer details",
-      "file": "screen/defs/customerDetails.json",
+      "text": "Customer details - Display Mode",
+      "file": "screen/defs/customerDetailsDisplay.json",
+      "rule": "start"
+    },
+    {
+      "row": 2,
+      "col": 20,
+      "text": "Customer details - Update Mode",
+      "file": "screen/defs/customerDetailsUpdate.json",
       "rule": "start"
     },
     {

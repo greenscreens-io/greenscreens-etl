@@ -1,0 +1,120 @@
+<div data-page="MASTER_INQUIRY" class="container-fluid" data-fldhash="{{$screen.fldHash}} " data-attrhash="{{$screen.attrHash}} ">
+
+<div id="error" class="fixed-top container mb-4 mt-5 pt-4"></div>
+
+<main role="main" class="main main-raised mt-0 mb-3">
+
+  <!-- TOP_NAV_TABS -->
+  <div class="card card-nav-tabs">
+
+	        <!-- TAB_BUTTONS_PANEL_SWITCHER-->
+		<div class="card-header card-header-primary text-center">
+			<h4 class="card-title text-capitalize">{{data.title}}</h4>
+		</div><!-- END_TAB_BUTTONS_PANEL_SWITCHER-->
+
+
+                <!-- CARD_BODY_TOP-->
+		<div class="card-body ">
+                                          <div class="row">
+                                            <div class="col-md-12">
+                                              <button type="button" class="btn btn-default btn-sm" data-type="submit" data-cmd="PF8">Export</button>
+                                              <button type="button" class="btn btn-default btn-sm" data-type="submit" data-cmd="PF6">New Record</button>
+                                              <button type="button" class="btn btn-default btn-sm" data-type="submit" data-cmd="PF10">Toggle Filter</button>
+                                              <button type="button" class="btn btn-default btn-sm float-right" data-type="submit" data-cmd="PF3">Exit</button>
+                                            </div>
+
+                                          </div>
+		</div><!-- END_CARD_BODY_TOP -->
+
+   </div><!-- END_TOP NAV_TABS -->
+</main>
+
+
+  <!-- GRID PART -->
+  <div class="row">
+
+    <div class="col-md-6">
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="{{data.view1}} "><button class="btn btn-default btn-sm" data-type="submit" data-cmd="PF11">Default</button></li>
+        <li role="presentation" class="{{data.view2}} "><button class="btn btn-default btn-sm" data-type="submit" data-cmd="PF11">Alternative</button></li>
+      </ul>
+    </div>
+
+    <div class="col-md-6 col-md-6">
+         <div class="row justify-content-end">
+            <div class="col-sm-4">
+              <form data-cmd="ENTER">
+                <input class="form-control border-input" type="text" value="{{data.filter}}" name="f1" data-id="1" placeholder="{{data.filterTitle}}" />
+              </form>
+            </div>
+
+            <div class="col-sm-2">
+              <button class="btn btn-default ui-button" type="button" data-type="submit" data-cmd="ENTER"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+       <div class="card mt-0 pt-0">
+
+        <div class="content table-responsive table-full-width">
+          <table class="table table-sm table-hover subfile" data-type="subfile">
+
+            <thead>
+              <tr>
+                {{#each grid.header}}
+                <th class="border-top-0 {{#js_if '@index ===5' }}text-right{{/js_if}}" >
+                  {{this}}
+                </th>
+                {{/each}}
+              </tr>
+            </thead>
+
+            <tbody>
+
+              {{#each grid.items}}
+
+              <tr>
+
+                    <td>
+                      {{this[0]}}
+                    </td>
+                    <td>
+                      {{this[1]}}
+                    </td>
+                    <td>
+                      {{this[2]}}
+                    </td>
+                    <td>
+                      <span class="badge badge-info">{{this[3]}}</span>
+                    </td>
+                    <td>
+                      {{this[4]}}
+                    </td>
+                    <td class="text-right">
+                      <b>{{this[5]}}</b>
+                    </td>
+
+              </tr>
+
+              <tr class="no-hover">
+                <td colspan="6" class="border-top-0">
+                   <button class="m-0 p-1 btn btn-light btn-sm" data-id="{{js '@index+2' }}" data-type="submit" data-cmd="ENTER" value="2">Change</button>
+                   <button class="m-0 p-1 btn btn-light btn-sm" data-id="{{js '@index+2' }}" data-type="submit" data-cmd="ENTER" value="5">Display</button>
+                   <button class="m-0 p-1 btn btn-light btn-sm" data-id="{{js '@index+2' }}" data-type="submit" data-cmd="ENTER" value="4">Delete</button>
+                </td>
+              </tr>
+
+              {{/each}}
+
+            </tbody>
+
+          </table>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
